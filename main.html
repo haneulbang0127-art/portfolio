@@ -18,10 +18,10 @@
 <header class="nav" id="nav">
   <div class="nav__inner">
     <nav class="nav__menu" aria-label="주요 메뉴">
-      <a class="nav__link is-active" href="main.html" aria-current="page">HOME</a>
-      <a class="nav__link" href="work.html">WORK</a>
-      <a class="nav__link" href="ai-lab.html">AI Lab</a>
-      <a class="nav__link" href="about.html">About</a>
+      <a class="nav__link is-active" href="#top" data-spy="top" aria-current="page">HOME</a>
+      <a class="nav__link" href="#work" data-spy="work">WORK</a>
+      <a class="nav__link" href="#ailab" data-spy="ailab">AI Lab</a>
+      <a class="nav__link" href="#about" data-spy="about">About</a>
     </nav>
 
     <button class="nav__burger" id="navBurger" type="button"
@@ -31,14 +31,14 @@
   </div>
 
   <div class="nav__panel" id="navPanel" hidden>
-    <a class="nav__panelLink" href="main.html" aria-current="page">HOME</a>
-    <a class="nav__panelLink" href="work.html">WORK</a>
-    <a class="nav__panelLink" href="ai-lab.html">AI Lab</a>
-    <a class="nav__panelLink" href="about.html">About</a>
+    <a class="nav__panelLink" href="#top" data-spy="top" aria-current="page">HOME</a>
+    <a class="nav__panelLink" href="#work" data-spy="work">WORK</a>
+    <a class="nav__panelLink" href="#ailab" data-spy="ailab">AI Lab</a>
+    <a class="nav__panelLink" href="#about" data-spy="about">About</a>
   </div>
 </header>
 
-<main class="hero">
+<main class="hero" id="top">
 
   <!-- 3D 배경 (three.js) — WebGL이 없으면 빈 캔버스로 남아 기존 화면 그대로 -->
   <canvas class="hero__gl" id="heroGl" aria-hidden="true"></canvas>
@@ -104,7 +104,7 @@
 </main>
 
 <!-- ===== 전문 분야 — 좌측 아코디언 + 우측 대형 제품 목업 ===== -->
-<section class="slogan" id="slogan" data-anim-group>
+<section class="slogan" id="work" data-anim-group>
   <div class="slogan__row">
 
     <div class="slogan__col">
@@ -223,7 +223,7 @@
 </section>
 
 <!-- ===== 세션 카드 — if.kakao.com/2025 스타일 ===== -->
-<section class="cards" id="cards" data-anim-group>
+<section class="cards" id="ailab" data-anim-group>
   <div class="cards__row">
 
     <article class="card" data-anim-obj style="--i:0">
@@ -256,6 +256,56 @@
       </div>
     </article>
 
+  </div>
+</section>
+
+<!-- ===== About ===== -->
+<section class="about" id="about" data-anim-group>
+  <div class="about__inner">
+    <p class="about__label" data-anim-obj style="--i:0">ABOUT</p>
+
+    <div class="bento">
+      <!-- 한 줄 정의 — 실제 문구 -->
+      <article class="bt bt--lead" data-anim-obj style="--i:1">
+        <p class="bt__lead">사용자의 하루에<br />긍정적인 경험을 남기는<br />프로덕트 디자이너</p>
+        <p class="bt__name">조하늘</p>
+      </article>
+
+      <!-- 사진 자리 -->
+      <article class="bt bt--photo" data-anim-obj style="--i:2">
+        <span class="bt__slot">[사진 준비 중]</span>
+      </article>
+
+      <!-- 다루는 도메인 — 실제 내용 -->
+      <article class="bt bt--domain" data-anim-obj style="--i:3">
+        <p class="bt__cap">다뤄온 프로덕트</p>
+        <ul class="bt__tags">
+          <li>B2B SaaS</li>
+          <li>O2O</li>
+          <li>Commerce</li>
+        </ul>
+      </article>
+
+      <!-- 도구 -->
+      <article class="bt bt--tools" data-anim-obj style="--i:4">
+        <p class="bt__cap">도구</p>
+        <ul class="bt__tags">
+          <li class="is-todo">[도구 준비 중]</li>
+        </ul>
+      </article>
+
+      <!-- 지금 관심사 -->
+      <article class="bt bt--focus" data-anim-obj style="--i:5">
+        <p class="bt__cap">요즘 관심</p>
+        <p class="bt__body">[문구 준비 중] 지금 파고 있는 주제를 한두 문장으로 넣습니다.</p>
+      </article>
+
+      <!-- 연락 — 실제 동작 -->
+      <article class="bt bt--contact" data-anim-obj style="--i:6">
+        <p class="bt__cap">연락</p>
+        <a class="bt__mail" id="aboutMail" href="#">메일 보내기</a>
+      </article>
+    </div>
   </div>
 </section>
 
@@ -713,6 +763,78 @@
   sync();
 })();
 
+/* ===== 스크롤 스파이 — 지금 보고 있는 섹션을 네비에 표시 =====
+   앵커로 이동해도 활성 알약이 따라가지 않으면 네비가 죽은 것처럼 보인다. */
+(function () {
+  var links = [].slice.call(document.querySelectorAll('[data-spy]'));
+  if (!links.length) return;
+
+  var sections = links
+    .map(function (a) {
+      var el = document.getElementById(a.getAttribute('data-spy'));
+      return el ? { id: a.getAttribute('data-spy'), el: el } : null;
+    })
+    .filter(Boolean);
+
+  if (!sections.length) return;
+
+  var current = null;
+
+  function mark(id) {
+    if (id === current) return;
+    current = id;
+
+    links.forEach(function (a) {
+      var on = a.getAttribute('data-spy') === id;
+      a.classList.toggle('is-active', on);
+      if (on) a.setAttribute('aria-current', 'page');
+      else a.removeAttribute('aria-current');
+    });
+  }
+
+  /* 화면 상단에서 조금 내려온 지점을 기준선으로 삼는다 */
+  function check() {
+    var line = 140;
+    var found = sections[0].id;
+
+    for (var i = 0; i < sections.length; i++) {
+      if (sections[i].el.getBoundingClientRect().top <= line) found = sections[i].id;
+    }
+
+    /* 맨 아래까지 내려가면 마지막 섹션을 활성으로 */
+    if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 2) {
+      found = sections[sections.length - 1].id;
+    }
+
+    mark(found);
+  }
+
+  window.addEventListener('scroll', check, { passive: true });
+  window.addEventListener('resize', check);
+  check();
+
+  /* 모바일 패널에서 고르면 패널을 닫는다 */
+  document.querySelectorAll('.nav__panelLink[data-spy]').forEach(function (a) {
+    a.addEventListener('click', function () {
+      var panel = document.getElementById('navPanel');
+      var burger = document.getElementById('navBurger');
+      if (panel && !panel.hidden) {
+        panel.hidden = true;
+        if (burger) burger.setAttribute('aria-expanded', 'false');
+        document.getElementById('nav').classList.remove('is-open');
+      }
+    });
+  });
+})();
+
+/* ===== About의 메일 링크 — 주소를 조각으로 조립해 넣는다 ===== */
+(function () {
+  var a = document.getElementById('aboutMail');
+  if (!a) return;
+  var parts = ['haneulbang', 'naver', 'com'];
+  a.href = 'mailto:' + parts[0] + String.fromCharCode(64) + parts[1] + '.' + parts[2];
+})();
+
 /* ===== 상단 네비게이션 ===== */
 (function () {
   var nav = document.getElementById('nav');
@@ -782,7 +904,7 @@
 
 /* ===== 전문 분야 — 아코디언 ↔ 우측 목업 연동 ===== */
 (function () {
-  var section = document.getElementById('slogan');
+  var section = document.getElementById('work');
   if (!section) return;
 
   var rows = [].slice.call(section.querySelectorAll('.acc__row'));

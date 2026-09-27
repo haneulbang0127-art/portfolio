@@ -904,6 +904,158 @@ textarea { font: inherit; color: inherit; resize: none; }
 }
 
 /* ============================================================
+   앵커 이동 — 고정 네비(96px)에 제목이 가리지 않도록
+   ============================================================ */
+
+html { scroll-behavior: smooth; }
+
+#top, #work, #ailab, #about { scroll-margin-top: 108px; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+/* ============================================================
+   About — 벤토 그리드
+   ============================================================ */
+
+.about {
+  padding: 135px 0 150px;
+  background: #fff;
+}
+
+.about__inner {
+  width: min(1232px, 100% - 48px);
+  margin: 0 auto;
+}
+
+.about__label {
+  margin-bottom: 22px;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: var(--c-hint);
+}
+
+.bento {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 150px;
+  gap: 14px;
+}
+
+.bt {
+  display: flex;
+  flex-direction: column;
+  padding: 24px 26px;
+  border: 1px solid rgba(23, 23, 23, 0.07);
+  border-radius: 24px;
+  background: #f6f8f9;
+  overflow: hidden;
+}
+
+/* 타일 배치 — 큰 문장 하나 + 사진 + 작은 조각들 */
+.bt--lead    { grid-column: span 2; grid-row: span 2; justify-content: space-between; }
+.bt--photo   { grid-column: span 1; grid-row: span 2; align-items: center; justify-content: center; }
+.bt--domain  { grid-column: span 1; }
+.bt--tools   { grid-column: span 1; }
+.bt--focus   { grid-column: span 2; }
+.bt--contact { grid-column: span 2; justify-content: space-between; }
+
+.bt--lead {
+  background: linear-gradient(150deg, #eef3f5 0%, #f8fafb 62%);
+}
+
+.bt__lead {
+  font-size: clamp(20px, 2.1vw, 28px);
+  font-weight: 600;
+  line-height: 1.45;
+  letter-spacing: -0.5px;
+  color: var(--c-head);
+  word-break: keep-all;
+}
+
+.bt__name {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 1;
+  color: var(--c-head);
+}
+
+.bt__cap {
+  margin-bottom: 12px;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--c-hint);
+}
+
+.bt__body {
+  font-size: 14.5px;
+  line-height: 24px;
+  color: var(--c-lead);
+  word-break: keep-all;
+}
+
+.bt__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.bt__tags li {
+  padding: 6px 11px;
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: inset 0 0 0 1px rgba(23, 23, 23, 0.06);
+  font-size: 12.5px;
+  color: var(--c-head);
+}
+
+/* 아직 안 채운 자리 */
+.bt__tags li.is-todo,
+.bt__slot {
+  color: var(--c-hint);
+  font-size: 12.5px;
+}
+
+.bt--photo { background: #eef1f3; }
+
+.bt__mail {
+  align-self: flex-start;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: var(--c-head);
+  color: #fff;
+  font-size: 13px;
+  transition: transform 0.25s var(--ease-out), opacity 0.25s var(--ease-soft);
+}
+
+.bt__mail:hover { transform: translateY(-1px); opacity: 0.88; }
+
+@media (max-width: 1024px) {
+  .bento { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 144px; }
+  .bt--lead  { grid-column: span 2; grid-row: span 2; }
+  .bt--photo { grid-column: span 1; grid-row: span 2; }
+  .bt--focus { grid-column: span 2; }
+  .bt--contact { grid-column: span 2; }
+}
+
+@media (max-width: 767px) {
+  .about { padding: 88px 0 100px; }
+  .bento { grid-template-columns: 1fr; grid-auto-rows: auto; gap: 10px; }
+  .bt { padding: 20px 20px; min-height: 108px; }
+  .bt--lead, .bt--photo, .bt--domain,
+  .bt--tools, .bt--focus, .bt--contact { grid-column: span 1; grid-row: auto; }
+  .bt--lead { gap: 16px; }
+  .bt--photo { min-height: 180px; }
+}
+
+/* ============================================================
    준비 중 페이지 (work / ai-lab / about)
    ============================================================ */
 
