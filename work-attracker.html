@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>앳트래커 광고 분석 개선 · 조하늘</title>
+<meta name="description" content="VOC로 제품이 놓친 사용자 니즈를 발견하고 재설계한 B2B SaaS 광고 분석 개선 프로젝트." />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3CradialGradient id='g' cx='34%25' cy='30%25'%3E%3Cstop offset='0' stop-color='%23ffffff'/%3E%3Cstop offset='.55' stop-color='%23ffd9a8'/%3E%3Cstop offset='1' stop-color='%23ff9a6b'/%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle cx='16' cy='16' r='14' fill='url(%23g)'/%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://cdn.jsdelivr.net" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+<link rel="stylesheet" href="assets/css/base.css" />
+<link rel="stylesheet" href="assets/css/case.css" />
+</head>
+<body class="case">
+
+<main class="case__wrap">
+
+  <!-- ===== 메타 ===== -->
+  <header class="case-meta">
+    <p class="case-meta__item"><span class="case-meta__key">Date</span><span class="case-meta__val">2023.06 ~ 2023.07</span></p>
+    <p class="case-meta__item"><span class="case-meta__key">Product</span><span class="case-meta__val">앳트래커(B2B SaaS)</span></p>
+    <p class="case-meta__item"><span class="case-meta__key">Role</span><span class="case-meta__val">Product Design(100%)</span></p>
+    <p class="case-meta__item"><span class="case-meta__key">Category</span><span class="case-meta__val">WEB, APP</span></p>
+  </header>
+
+  <!-- ===== 개요 ===== -->
+  <section class="block">
+    <h1 class="block__title">VOC로 제품이 놓친 사용자 니즈를 발견하고 재설계하기</h1>
+    <div class="block__body">
+      <p>VOC와 영업 미팅에서 확인한 고객 요구를 바탕으로 광고 분석의 목적을 ‘새로운 위치 탐색’에서 ‘운영 중인 광고의 성과 판단’으로 전환했습니다. 이에 ROAS 중심으로 문제 광고를 찾고 상세 성과를 확인하는 Web·App 경험을 설계했습니다. 개선 이후에는 잠재 고객사 7곳 중 4곳의 가입과 기존 고객사 21곳 중 17곳의 긍정 반응을 확인했으며 후속 니즈를 바탕으로 광고 집행 의사결정을 지원하는 서비스 논의로 확장되었습니다.</p>
+    </div>
+  </section>
+
+  <!-- ===== VOC 현황 · 비즈니스 영향 ===== -->
+  <section class="block">
+    <div class="panel">
+      <div class="grid-2">
+        <div class="card">
+          <h2 class="card__title">VOC를 통한 사용자 니즈 파악</h2>
+          <p class="card__sub">2023년 1~6월 기능 개선 요청 VOC 현황</p>
+          <div class="bars">
+            <div class="bar">
+              <span class="bar__label">광고 분석</span>
+              <span class="bar__track"><i class="bar__fill" style="width:100%"></i></span>
+              <span class="bar__val">52%</span>
+            </div>
+            <div class="bar">
+              <span class="bar__label">매장 공지</span>
+              <span class="bar__track"><i class="bar__fill" style="width:40.4%"></i></span>
+              <span class="bar__val">21%</span>
+            </div>
+            <div class="bar">
+              <span class="bar__label">자동 댓글 관리</span>
+              <span class="bar__track"><i class="bar__fill" style="width:23.1%"></i></span>
+              <span class="bar__val">12%</span>
+            </div>
+            <div class="bar">
+              <span class="bar__label">매출 비교</span>
+              <span class="bar__track"><i class="bar__fill" style="width:17.3%"></i></span>
+              <span class="bar__val">9%</span>
+            </div>
+            <div class="bar">
+              <span class="bar__label">기타</span>
+              <span class="bar__track"><i class="bar__fill" style="width:11.5%"></i></span>
+              <span class="bar__val">6%</span>
+            </div>
+          </div>
+          <p class="insight">주요 요청 사항 → 운영 중인 광고의 성과 판단</p>
+        </div>
+
+        <div class="card">
+          <h2 class="card__title">비즈니스 영향 검토</h2>
+          <div class="checks">
+            <div class="check">
+              <p class="check__k"><i>01</i>고객 유지</p>
+              <p class="check__v">실제 사용자 이탈과 연결되는 문제인가?</p>
+            </div>
+            <div class="check">
+              <p class="check__k"><i>02</i>매출 및 재계약</p>
+              <p class="check__v">필요 기능 부재가 재계약과 매출에 영향을 미치는가?</p>
+            </div>
+            <div class="check">
+              <p class="check__k"><i>03</i>신규 도입 전환</p>
+              <p class="check__v">기능 개선이 잠재 고객의 가입 결정에 기여할 수 있는가?</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 배경 ===== -->
+  <section class="block">
+    <p class="block__eyebrow">배경</p>
+    <h2 class="block__title">사용자들은 새로운 광고 위치 탐색 아닌 사용 중인 광고 분석을 원하고 있었어요.</h2>
+    <div class="block__body">
+      <p>2023년 1~6월 수집한 VOC에서 광고 분석 기능 요청이 전체의 52%로 가장 높은 비중을 차지했습니다. 앳트래커의 주요 고객인 프랜차이즈와 자영업자가 가장 많이 이용하던 배달 플랫폼은 배달의 민족이며 기존 광고 분석 기능은 배달의민족 광고 상품인 ‘울트라콜’의 새로운 광고 위치를 탐색하는 기능을 제공하고 있었습니다.</p>
+      <p>하지만 VOC 분석 결과 사용자는<strong> ‘새로운 위치 탐색’이 아닌 ‘운영 중인 광고의 성과 판단’을 필요</strong>로 하고 있었으며 신규 영업 미팅에서도 같은 요구가 반복 되었으며 일부 잠재 고객사는 해당 기능이 제공되면 가입하고 싶다는 의사를 밝혔습니다.</p>
+      <p>이를 바탕으로 프로젝트의 필요성과 우선순위를 함께 논의한 결과 <strong>기존 고객의 반복된 요구를 충족하지 못하면 서비스 이탈로 이어지고 재계약에도 부정적인 영향을 주어 매출 손실</strong>로 이어질 수 있다고 판단했습니다. 또한 <strong>잠재 고객의 가입 의사에서 신규 도입으로 이어질 가능성을 확인</strong>하고 광고 분석 개선 프로젝트를 진행했습니다.</p>
+    </div>
+  </section>
+
+  <!-- ===== 인터뷰 결과 비교 ===== -->
+  <section class="block">
+    <div class="panel">
+      <div class="interview">
+        <div class="card">
+          <span class="tag">점주 · 3곳 심층 인터뷰</span>
+          <p class="interview__quote">어떤 광고를 유지·중단해야 할지 모르겠어요.</p>
+          <div class="interview__rows">
+            <div><p class="interview__k">상황</p><p class="interview__v">운영 중인 광고의 유지·중단 여부 결정</p></div>
+            <div><p class="interview__k">기존 업무 방식</p><p class="interview__v">전체 주문·매출과 광고 위치를 따로 확인</p></div>
+            <div><p class="interview__k">판단을 막는 요인</p><p class="interview__v">광고별 비용 대비 성과를 비교할 근거 부족</p></div>
+            <div><p class="interview__k">결과</p><p class="interview__v">기존 광고를 유지하거나 전체 매출을 바탕으로 조정</p></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <span class="tag">프랜차이즈 본사 · 3곳 심층 인터뷰</span>
+          <p class="interview__quote">여러 지점의 광고 성과를 일일이 파악하기 어려워요.</p>
+          <div class="interview__rows">
+            <div><p class="interview__k">상황</p><p class="interview__v">광고 예산 배분을 위한 각 지점별 광고 성과 판단</p></div>
+            <div><p class="interview__k">기존 업무 방식</p><p class="interview__v">여러 지점의 광고 현황과 실적을 개별적으로 확인</p></div>
+            <div><p class="interview__k">판단을 막는 요인</p><p class="interview__v">전국 광고 현황과 지점별 성과를 한눈에 파악하기 어려움</p></div>
+            <div><p class="interview__k">결과</p><p class="interview__v">지점별 성과 확인과 문제 지점 탐색에 많은 시간 소요</p></div>
+          </div>
+        </div>
+      </div>
+
+      <p class="strip">광고 운영 판단에 필요한 성과 정보의 부재 → 광고별 조정 대상과 지점별 현황 파악이 어려움</p>
+    </div>
+  </section>
+
+  <!-- ===== 문제 발견 ===== -->
+  <section class="block">
+    <p class="block__eyebrow">문제 발견</p>
+    <h2 class="block__title">사용자들은 새로운 광고 위치 탐색 아닌 사용 중인 광고 분석을 원하고 있었어요.</h2>
+    <div class="block__body">
+      <p>사용자가 광고 성과를 통해 어떤 결정을 하고싶은 지 파악하기 위해 점주 3곳과 프랜차이즈 본사 3곳의 심층 인터뷰를 진행했고 성과를 확인하려던 상황과 기존 업무 방식, 판단을 막는 요인, 실제 진행한 업무에 대한 공통된 의견을 정리하고 분석해 보았어요.</p>
+      <p>점주는 광고별 비용 대비 성과를 비교하기 어려워 기존 광고를 유지하거나 전체 매출을 바탕으로 조정 여부를 판단했습니다. 본사는 여러 지점의 광고 현황과 실적을 개별적으로 확인해야 하여 지점별 성과를 파악하고 문제 지점을 찾는 데 많은 시간과 노력이 들었습니다.</p>
+    </div>
+  </section>
+
+  <!-- ===== 문제 정의 ===== -->
+  <section class="block">
+    <p class="block__eyebrow">문제 정의</p>
+    <div class="callout">
+      <div class="callout__list">
+        <div class="callout__row">
+          <span class="callout__num">1</span>
+          <p class="callout__text">운영 중인 광고의 성과를 비교할 수 없어 유지·중단을 판단하기 어려움</p>
+        </div>
+        <div class="callout__row">
+          <span class="callout__num">2</span>
+          <p class="callout__text">지도를 수동으로 탐색하여 누락 데이터가 발생하고 문제 지점을 찾기 어려움</p>
+        </div>
+        <div class="callout__row">
+          <span class="callout__num">3</span>
+          <p class="callout__text">프랜차이즈 본사가 여러 지점의 광고 현황을 개별적으로 확인하여 전체 성과 파악에 많은 리소스가 듦</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== AS-IS ===== -->
+  <section class="block">
+    <div class="panel">
+      <figure class="shot">
+        <img class="shot__img" src="assets/img/attracker/02-as-is.png" width="560" height="340" alt="개선 전 광고 분석 화면. 지도 위 회색 핀이 밀집해 있고 광고별 성과 정보는 제공되지 않는다." />
+        <figcaption class="shot__cap">AS-IS 광고 분석</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ===== 가설 ===== -->
+  <section class="block">
+    <p class="block__eyebrow">가설</p>
+    <div class="callout callout--tint">
+      <p class="callout__text">운영 중인 광고의 성과 비교와 지역·지점별 현황을 제공하면 사용자의 탐색 시간을 줄이고 광고의 유지·중단에 대한 의사결정을 지원할 수 있을 것이다. 이러한 개선은 기존 고객의 서비스 만족도를 높이고 광고 분석 기능을 요구한 잠재 고객의 신규 가입으로 이어질 것이다.</p>
+    </div>
+  </section>
+
+  <!-- ===== 측정 가능한 지표 ===== -->
+  <section class="block">
+    <div class="panel">
+      <div class="metrics">
+        <div class="metric"><p class="metric__name">✅ 노출수</p><p class="metric__desc">광고가 사용자에게 노출된 횟수</p></div>
+        <div class="metric"><p class="metric__name">✅ 클릭수</p><p class="metric__desc">광고를 클릭한 사용자 수</p></div>
+        <div class="metric"><p class="metric__name">✅ 클릭률</p><p class="metric__desc">사용자 반응을 효과적으로 유도했는지</p></div>
+        <div class="metric"><p class="metric__name">✅ 전환수</p><p class="metric__desc">구매, 문의 등 액션이 발생한 횟수</p></div>
+        <div class="metric"><p class="metric__name">✅ 전환율</p><p class="metric__desc">실제 성과로 이어진 비율</p></div>
+        <div class="metric"><p class="metric__name">✅ 광고비용</p><p class="metric__desc">광고에 투입된 총 비용</p></div>
+        <div class="metric metric--dark metric--wide"><p class="metric__name">✅ ROAS</p><p class="metric__desc">(광고를 통한 매출/광고비용)* 100, 투자 대비 매출 효율 판단 지표</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 전략 01 ===== -->
+  <section class="block">
+    <p class="block__eyebrow">전략 01</p>
+    <h2 class="block__title">광고 운영 의사결정의 기준을 비용 대비 매출 효율로 설정했어요.</h2>
+    <div class="block__body">
+      <p>사용자들이 필요로 하는 현재 운영 중인 광고 성과를 제공하기에 위해 광고를 운영했을 때 실제로 측정 가능한 데이터 항목을 먼저 파악했습니다. 지표 선정에서는 광고에 대한 사용자 반응과 실제 매출, 주문과 같은 비즈니스 성과를 구분해 검토했습니다.</p>
+      <p>노출수·클릭수는 과정 지표로 광고에 대한 사용자 반응을 보여주지만 해당 반응이 실제 매출로 이어졌는지까지 알기 어려웠고 매출액·주문수는 결과 지표로 비즈니스 성과를 알 수 있지만 이를 광고비와 함께 해석할 수 있는 기준이 필요했습니다. 또한 앳트래커의 사용자인 프랜차이즈와 자영업자는 광고를 마케팅 관점이 아닌 <strong>비용 관점에서 광고의 지속, 중단, 확대를 판단</strong>하였기 때문에 투입 대비 성과를 보여줄 수 있는 지표가 필요했어요.</p>
+      <p>이러한 점들을 고려하여 광고 성과 판단을 위한 메인 키워드를 <strong>광고 효율 [ROAS = (광고를 통한 매출/광고비용)* 100]</strong>로 설정하였고 스크래핑 할 수 있는 관련 성과 지표인 광고 매출액, 노출수, 클릭수, 주문수, 클릭률을 함께 노출하기로 정의하였습니다.</p>
+    </div>
+  </section>
+
+  <!-- ===== 지도 옵션 ===== -->
+  <section class="block">
+    <div class="panel">
+      <div class="mapopt">
+        <figure class="shot">
+          <img class="shot__img shot__img--raise" src="assets/img/attracker/03-map-options.png" width="448" height="394" alt="네이버 지도 API 문서의 지도 예제 목록을 띄워 옵션을 테스트한 브라우저 화면." />
+        </figure>
+        <div class="mapopt__chips">
+          <p class="chip-dark">Zoom Control</p>
+          <p class="chip-dark">Marker Clustering</p>
+          <p class="chip-dark">Map Filter</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 전략 02 ===== -->
+  <section class="block">
+    <p class="block__eyebrow">전략 02</p>
+    <h2 class="block__title">복잡한 지도 환경에서도 사용자가 필요한 데이터를 빠르게 탐색할 수 있는 옵션 찾기</h2>
+    <div class="block__body">
+      <p>울트라콜은 위치 기반 광고 상품이므로 광고 성과를 분석할 때 공간적 맥락과 정량적 성과 데이터를 함께 제공하고자 했어요. 그래서 서비스에서 사용 중인 네이버 지도 API의 유형과 옵션이 적용된 실제 화면을 TEST 하면서 사용자가 지도를 쉽게 컨트롤하고 원하는 데이터를 빠르게 찾을 수 있는 옵션을 검토했습니다.</p>
+      <ul>
+        <li><b>Zoom Control → 탐색 범위 조절</b>전체 광고 분포에서 관심 지역과 개별 광고로 탐색 범위를 단계적으로 좁힐 수 있도록 확대·축소 기능을 적용했습니다. 이를 통해 사용자가 목적에 맞는 광고를 빠르게 탐색할 수 있도록 했습니다.</li>
+        <li><b>Marker Clustering → 밀집된 광고 핀의 가독성과 성능 최적화</b>많은 광고 핀을 한 번에 표시하면 핀이 겹쳐 위치와 성과를 구분하기 어렵고 지도 렌더링 부담도 커질 수 있어 인접한 핀을 그룹화해 넓은 범위에서는 전체 분포를 파악하고 지도를 확대하면 개별 광고를 확인할 수 있도록 클러스터링을 적용했습니다.</li>
+        <li><b>Map Filter → 분석 조건에 맞는 데이터 선별</b>사용자마다 확인하려는 성과 지표와 탐색 범위가 달라 필요한 조건에 맞는 광고만 선별해 확인할 수 있도록 필터를 적용해 전체 광고를 일일이 탐색해야 하는 부담을 줄였습니다.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===== 스크래핑 제약 대응 ===== -->
+  <section class="block">
+    <div class="panel">
+      <div class="table-scroll">
+        <table class="ctable">
+          <thead>
+            <tr><th scope="col">스크래핑의 제약</th><th scope="col">확인이 필요한 정보</th><th scope="col">대응 원칙</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>실시간 데이터가 아님</td><td>데이터의 기준 시점</td><td>업데이트 시점·출처 표시</td></tr>
+            <tr><td>수집 과정에서 오류 발생</td><td>현재 데이터 수집 상태</td><td>로딩·에러 상태 구분</td></tr>
+            <tr><td>일부 데이터가 누락될 수 있음</td><td>확인 가능한 데이터 범위</td><td>누락 상태 안내</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="strip">사용자가 데이터 수집 기준과 현재 상태를 이해한 뒤 성과를 판단할 수 있도록 대응 원칙 수립</p>
+    </div>
+  </section>
+
+  <!-- ===== 전략 03 ===== -->
+  <section class="block">
+    <p class="block__eyebrow">전략 03</p>
+    <h2 class="block__title">스크래핑 데이터의 신뢰와 정확성 높이기</h2>
+    <div class="block__body">
+      <p>서비스 특성상 데이터를 실시간 API가 아닌 스크래핑 방식으로 수집하고 있어 최신 데이터 반영이 지연되거나 일부 값에 오류와 누락이 발생할 수 있었습니다. 이에 발생 가능한 오류 패턴과 제약을 파악하고 수집 상태가 사용자의 광고 운영 판단에 미치는 영향을 검토했습니다.</p>
+      <p>데이터 상태를 명확히 안내하지 않으면 오래된 정보를 현재 성과로 인식하거나 수집 오류와 누락을 실제 성과 저하로 해석할 수 있다고 판단했습니다. 특히 실제 성과가 없는 0과 데이터를 확인할 수 없는 상태를 명확히 구분할 필요가 있었습니다.</p>
+      <p>이에 <strong>사용자가 데이터의 기준 시점과 확인 가능한 범위를 이해하고 수집 상태를 고려해 광고 성과를 판단</strong>할 수 있도록 설계했습니다.</p>
+    </div>
+  </section>
+
+  <!-- ===== Before / After ===== -->
+  <section class="block">
+    <div class="panel panel--tint">
+      <div class="ba">
+        <div class="ba__col">
+          <span class="ba__badge">Before</span>
+          <img class="shot__img shot__img--raise" src="assets/img/attracker/04-before.png" width="320" height="195" alt="개선 전 화면. 회색 핀이 밀집한 지도만 제공된다." />
+          <p class="ba__cap">새로운 광고 위치를 직접 수동으로 탐색</p>
+        </div>
+        <div class="ba__col">
+          <span class="ba__badge ba__badge--after">After</span>
+          <img class="shot__img shot__img--raise" src="assets/img/attracker/05-after.png" width="319" height="204" alt="개선 후 화면. 효율별 색상 핀이 놓인 지도와 성과 차트·광고 목록 패널이 함께 제공된다." />
+          <p class="ba__cap ba__cap--strong">현재 운영 중인 광고의 효율을 한눈에 분석</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 문제 해결 01 ===== -->
+  <section class="block">
+    <p class="block__eyebrow">문제 해결 01</p>
+    <h2 class="block__title">지도와 정보 영역을 분리해 광고 성과를 시각적/수치적으로 빠르게 파악할 수 있도록 설계했어요.</h2>
+    <div class="block__body">
+      <p>기존에는 운영 중인 광고별 성과를 파악할 수 없어 광고를 유지·중단할 결정 근거가 부족했고 지도 위에서 위치 커서를 직접 움직이며 수동으로 데이터를 탐색해야 하여 탐색 하지 않은 데이터를 놓칠 수 있었습니다.</p>
+      <p>이를 해결하기 위해 광고 효율을 핵심 판단 기준으로 설정하고 ROAS = (광고 매출액 ÷ 광고 운영비) × 100으로 광고별 효율을 산출했습니다. 이 데이터를 지도 영역과 정보 영역으로 나누어 위치 기반으로 수치 데이터를 파악할 수 있도록 구조를 잡았습니다.</p>
+      <p>지도 영역에서는 광고 효율이 높은 핀은 주황색, 낮은 핀은 청록색으로 구분해 사용자가 지도 위에서 광고의 효율 차이와 위치를 함께 식별할 수 있도록 했습니다. 정보 영역에는 상단에는 전체 성과를 차트로 요약하고 하단에는 광고별 효율·ID·주소·집행 기간을 제공해 전체 현황에서 개별 광고의 상세 정보까지 단계적으로 확인할 수 있도록 구성했습니다.</p>
+      <p>이를 통해 사용자는 전체 광고 분포 확인 → 효율이 낮은 광고 발견 → 상세 성과 비교의 흐름으로 운영 조정 대상을 선별하고 광고의 유지·중단을 검토하는 데 필요한 근거를 확인할 수 있게 되었습니다.</p>
+    </div>
+  </section>
+
+  <!-- ===== 효율 핀 ===== -->
+  <section class="block">
+    <div class="panel">
+      <figure class="shot">
+        <img class="shot__img shot__img--raise" src="assets/img/attracker/06-efficiency-pins.png" width="473" height="302" alt="광고 효율 수치가 적힌 핀이 크기와 색으로 구분되어 지도에 표시된 화면." />
+      </figure>
+    </div>
+  </section>
+
+  <!-- ===== 문제 해결 02 ===== -->
+  <section class="block">
+    <p class="block__eyebrow">문제 해결 02</p>
+    <h2 class="block__title">전체 현황에서 개별 광고까지 문제 광고를 빠르게 찾고 관리할 수 있어요.</h2>
+    <div class="block__body">
+      <p>점주는 매장의 여러 광고를 비교하기 어려웠고 프랜차이즈 본사는 여러 지점의 광고를 개별적으로 확인해야 해 전체 현황을 파악하는 데 많은 시간이 필요했습니다. 이에 관리 범위와 분석 목적에 따라 탐색 구조를 구분했습니다.</p>
+      <p>점주 페이지에서는 전체 광고 현황 → 광고별 성과 비교 → 개별 광고 상세 확인 순서로 구성해 운영을 조정할 광고를 찾도록 했습니다. 프랜차이즈 페이지에서는 전국 광고의 분포와 효율을 먼저 제공하고 마커 클러스터링과 지도 확대·축소를 통해 전국 현황 → 관심 지역 → 지점별 성과 → 개별 광고 순서로 탐색 범위를 좁히도록 설계했습니다.</p>
+      <p>이를 통해 점주는 조정이 필요한 광고를 선별해 상세 성과를 확인하고 본사는 각 지점을 하나씩 확인하지 않고도 전체 현황에서 성과를 살펴볼 지점과 광고까지 단계적으로 탐색할 수 있게 되었습니다.</p>
+    </div>
+  </section>
+
+  <!-- ===== 필터 ===== -->
+  <section class="block">
+    <div class="panel">
+      <figure class="shot">
+        <img class="shot__img shot__img--raise" src="assets/img/attracker/07-filter.png" width="480" height="307" alt="지표와 거리 범위 필터가 적용된 광고 분석 화면." />
+      </figure>
+    </div>
+  </section>
+
+  <!-- ===== 문제 해결 03 ===== -->
+  <section class="block">
+    <p class="block__eyebrow">문제 해결 03</p>
+    <h2 class="block__title">분석 목적에 따라 원하는 지표와 범위를 선택해 데이터를 확인해요.</h2>
+    <div class="block__body">
+      <p>기존에는 광고 위치별 매출액만 확인할 수 있어 노출·클릭·주문·광고 효율 등 목적에 따른 성과 비교가 어려웠습니다. 또한 광고 핀의 반경을 변경할 수 없어 필요한 지역 범위에 맞춰 광고 성과를 탐색하고 비교하는 데 한계가 있었습니다.</p>
+      <p>광고를 운영하는 목적에 따라 중요하게 보는 지표가 다르기 때문에 필터를 통해 원하는 데이터를 얻을 수 있도록 했습니다.</p>
+      <ul>
+        <li>노출수 → 브랜드가 얼마나 많은 사람들에게 노출되는지 확인, 브랜드 인지도 향상 목표</li>
+        <li>클릭수 → 어떤 광고가 가장 관심을 끌었는지 분석, 클릭 유도 목표</li>
+        <li>주문건 → 실제 구매 전환율이 높은 광고 파악, 최대 수익 창출 목표</li>
+      </ul>
+      <p>또한 실제 광고가 적용되는 3km에서는 전체 광고 분포와 효율 확인하고 500m에서는 인접한 광고의 효율과 주변 성과를 비교하고 300m에서는 특정 광고 주변의 성과를 집중적으로 확인하여 사용자가 분석 목적에 따라 필요한 정보에 집중할 수 있도록 설계했습니다.</p>
+      <p>그 결과 지표 선택 → 거리 범위 설정 → 조건에 맞는 광고 확인 순서로 탐색할 수 있게 되었고 이를 통해 분석 목적에 따라 필요한 광고를 선별하고 확인해야 할 지역과 광고의 범위를 구체적으로 좁힐 수 있게 되었습니다.</p>
+    </div>
+  </section>
+
+  <!-- ===== 모바일 ===== -->
+  <section class="block">
+    <div class="panel panel--tint">
+      <div class="phones">
+        <img src="assets/img/attracker/08-mobile-map.png" width="226" height="377" alt="모바일 광고 분석 화면. 상단에 좌우 스와이프로 전환하는 광고 카드, 아래에 효율 핀이 표시된 지도." />
+        <img src="assets/img/attracker/09-mobile-detail.png" width="226" height="377" alt="모바일 광고 상세 화면. 바텀시트에 광고 효율·매출액·광고비와 지표별 차트가 표시된다." />
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 문제 해결 04 ===== -->
+  <section class="block">
+    <p class="block__eyebrow">문제 해결 04</p>
+    <h2 class="block__title">모바일에서도 지도 탐색과 광고 분석 흐름이 끊기지 않도록 최적화했어요.</h2>
+    <div class="block__body">
+      <p>모바일의 제한된 화면과 터치 기반의 사용성을 고려해 광고 탐색 인터랙션과 정보 구조를 재설계했습니다.</p>
+      <p>광고 핀은 좌우 스와이프로 전환하도록 하여 지도에서 여러 광고를 연속적으로 탐색할 수 있도록 하고 선택한 광고의 상세 정보는 바텀시트에 배치해 지도 맥락을 유지하면서 성과 데이터를 확인하도록 구성했습니다. 필터는 별도의 모달에서 설정하도록 분리해 다수의 필터 옵션을 조작할 때 발생할 수 있는 오선택과 선택한 조건을 명확하게 확인할 수 있도록 행동 단계를 나눴습니다.</p>
+      <p>그 결과 사용자는 모바일 환경에서도 광고 핀 탐색 → 상세 성과 확인 → 조건 변경의 흐름을 이어갈 수 있게 되었습니다. 제한된 화면에서도 여러 광고를 연속적으로 비교하고 지도 탐색 맥락을 유지하면서 필요한 성과 정보와 필터 조건을 확인할 수 있게 되었습니다.</p>
+    </div>
+  </section>
+
+  <!-- ===== 성과 카드 ===== -->
+  <section class="block">
+    <div class="panel">
+      <div class="results">
+        <div class="result">
+          <span class="result__tag">CUSTOMER IMPACT</span>
+          <p class="result__num">57%</p>
+          <p class="result__label">잠재 고객 신규 가입 전환</p>
+          <p class="result__desc">요청 기능을 확인한 잠재 고객사 7곳 중 4곳이 신규 가입했습니다.</p>
+        </div>
+        <div class="result">
+          <span class="result__tag">CUSTOMER FEEDBACK</span>
+          <p class="result__num">81%</p>
+          <p class="result__label">기존 고객 긍정 피드백</p>
+          <p class="result__desc">기존 고객사 21곳 중 17곳에서 광고 효율을 쉽게 파악하고 운영 판단에 활용할 수 있다는 긍정적인 반응을 확인했습니다.</p>
+        </div>
+        <div class="result">
+          <span class="result__tag">PRODUCT OPPORTUNITY</span>
+          <p class="result__num">NEXT</p>
+          <p class="result__label">광고 위치 추천 서비스로 확장</p>
+          <p class="result__desc">‘다음 광고를 어디에 집행할 것인가’라는 후속 문제를 발견해 신규 서비스 논의로 이어졌습니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 성과 ===== -->
+  <section class="block">
+    <p class="block__eyebrow">성과</p>
+    <h2 class="block__title">긍정적인 고객 반응과 신규 가입 전환, 후속 제품으로의 확장 가능성을 확인했어요.</h2>
+    <div class="block__body">
+      <p>출시 후 고객 반응을 통해 운영 중인 광고의 성과를 제공하는 방향이 실제 광고비 관리와 운영 판단에 유의미하다는 점을 확인했습니다. 이는 광고 분석의 목적을 ‘새로운 위치 탐색’에서 ‘현재 광고의 성과 판단’으로 전환한 제품 방향이 고객의 핵심 니즈와 맞닿아 있었음을 보여주었습니다.</p>
+      <p>또한 고객의 요구가 현재 성과를 확인하는 데서 끝나지 않고 축적된 데이터를 바탕으로 다음 광고 집행 방향을 제안받고 싶은 니즈로 이어진다는 점을 발견했습니다. 이를 통해 광고 분석을 현황 조회 기능에서 광고 집행 의사결정을 지원하는 경험으로 확장할 가능성을 확인했습니다.</p>
+    </div>
+  </section>
+
+  <footer class="case-foot">
+    <p>© 2026 조하늘 · Product Designer</p>
+    <p><a href="index.html">홈으로 돌아가기</a></p>
+  </footer>
+
+</main>
+
+</body>
+</html>

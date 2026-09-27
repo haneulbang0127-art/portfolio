@@ -1,0 +1,554 @@
+/* ============================================================
+   main-if.css — if.kakao.com/2025 스타일 메인
+   실측값: 컨테이너 1360 / 섹션 패딩 180·120 / 흰 배경
+           섹션 제목 50px·66px·w800·-0.64px·#111
+           부제   50px·66px·w600·-1px·#999
+           소제목 40px·52.8px·w600·-1.2px
+   KakaoBig은 유료라 프로젝트 서체(Geist + Pretendard)로 대체.
+   ============================================================ */
+
+:root {
+  --font-ui: "Geist", "Pretendard Variable", Pretendard, -apple-system,
+             BlinkMacSystemFont, "Apple SD Gothic Neo", system-ui, sans-serif;
+
+  --ink: #111;
+  --gray: #999;
+  --ground: #fff;
+
+  /* 카드 아트워크 바탕 — if.kakao 실측 */
+  --cream: #ffebbe;
+  --cyan: #c3f5fa;
+  --pink: #ffdcff;
+
+  --chip-line: #e7e7e7;
+  --chip-text: #5c5c5c;
+  --placeholder: #777;
+  --hint: #858585;
+  --send: #dedede;
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-quint: cubic-bezier(0.23, 1, 0.32, 1);
+
+  /* 섹션 리듬 — 좁은 화면에서 함께 줄어든다 */
+  --sec-top: clamp(88px, 12.5vw, 180px);
+  --sec-bottom: clamp(64px, 8.3vw, 120px);
+}
+
+* { box-sizing: border-box; }
+
+html, body { margin: 0; padding: 0; }
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  font-family: var(--font-ui);
+  font-size: 16px;
+  color: var(--ink);
+  background: var(--ground);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, p { margin: 0; }
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+textarea { font: inherit; color: inherit; resize: none; }
+
+:focus-visible {
+  outline: 2px solid rgba(17, 17, 17, 0.45);
+  outline-offset: 3px;
+  border-radius: 8px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* if.kakao 컨테이너 1360px */
+.inner {
+  width: min(1360px, 100% - 48px);
+  margin: 0 auto;
+}
+
+/* ============================================================
+   섹션 헤더 — if.kakao의 두 톤 구조
+   같은 50px으로 진한 줄(w800) + 회색 줄(w600)을 좌측 정렬로 쌓는다
+   ============================================================ */
+
+.head { margin-bottom: clamp(40px, 5.6vw, 80px); }
+
+.head__tit {
+  font-size: clamp(28px, 3.47vw, 50px);
+  font-weight: 800;
+  line-height: 1.32;
+  letter-spacing: -0.0128em;
+  color: var(--ink);
+  word-break: keep-all;
+}
+
+.head__desc {
+  font-size: clamp(28px, 3.47vw, 50px);
+  font-weight: 600;
+  line-height: 1.32;
+  letter-spacing: -0.02em;
+  color: var(--gray);
+  word-break: keep-all;
+}
+
+.serif {
+  font-family: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  font-weight: 700;
+}
+
+/* ============================================================
+   키비주얼 — if.kakao는 풀블리드 영상 한 장.
+   영상 대신 카드 아트워크와 같은 색 언어의 그라디언트 블록.
+   ============================================================ */
+
+.kv {
+  padding: clamp(16px, 1.7vw, 24px) 0 0;
+  background: var(--ground);
+}
+
+.kv__inner {
+  width: min(1360px, 100% - 48px);
+  margin: 0 auto;
+}
+
+.kv__art {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  /* min-height를 두면 aspect-ratio가 폭을 역산해(340x1360/620=746px)
+     좁은 화면에서 컨테이너를 넘어간다. 비율만으로 높이를 정하고,
+     좁을 때는 비율 자체를 세로로 바꾼다. */
+  aspect-ratio: 1360 / 620;
+  padding: clamp(24px, 3.3vw, 48px);
+  border-radius: clamp(20px, 2.2vw, 32px);
+  overflow: hidden;
+  background-color: var(--cream);
+  /* DAY 1 카드와 같은 마젠타 → 코랄 블롭 */
+  background-image: radial-gradient(
+    72% 128% at 18% 52%,
+    #ff1f6b 0%,
+    #ff2f60 30%,
+    #ff5d50 58%,
+    #ff8b48 80%,
+    rgba(255, 139, 72, 0) 90%
+  );
+  animation: kv-in 1.1s var(--ease-out) both;
+}
+
+@keyframes kv-in {
+  from { opacity: 0; transform: scale(0.985); }
+  to   { opacity: 1; transform: none; }
+}
+
+.kv__meta {
+  font-size: clamp(13px, 1.11vw, 16px);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.kv__word {
+  margin-top: 0.08em;
+  font-size: clamp(52px, 10vw, 144px);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: #fff;
+}
+
+.kv__sub {
+  margin-top: 0.6em;
+  font-size: clamp(15px, 1.53vw, 22px);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: rgba(255, 255, 255, 0.9);
+  word-break: keep-all;
+}
+
+/* ============================================================
+   소개 + 챗봇
+   ============================================================ */
+
+.intro {
+  padding: var(--sec-top) 0 var(--sec-bottom);
+  background: var(--ground);
+}
+
+.ask {
+  /* 챗봇은 기존 메인의 Figma 값 그대로 — 740 x 130 */
+  width: min(740px, 100%);
+}
+
+.ask__form {
+  background: #fff;
+  border: 0;
+  border-radius: 24px;
+  padding: 20px 21px 14px;
+  box-shadow: 0 1px 2px rgba(17, 17, 17, 0.05),
+              0 14px 36px -18px rgba(17, 17, 17, 0.18);
+  transition: box-shadow 0.35s var(--ease-soft);
+}
+
+.ask__form:focus-within {
+  box-shadow: 0 1px 2px rgba(17, 17, 17, 0.06),
+              0 18px 44px -18px rgba(17, 17, 17, 0.24);
+}
+
+.ask__input {
+  display: block;
+  width: 100%;
+  min-height: 58px;
+  max-height: 200px;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  background: none;
+  font-size: 16px;
+  line-height: 27.2px;
+  overflow-y: auto;
+}
+
+.ask__input::placeholder { color: var(--placeholder); }
+
+.ask__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+/* Figma에서 opacity 0으로 숨겨둔 안내 문구 (자리는 유지) */
+.ask__hint {
+  font-size: 12px;
+  line-height: 18px;
+  color: var(--hint);
+  opacity: 0;
+}
+
+.ask__send {
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  width: 38px;
+  height: 38px;
+  border-radius: 19px;
+  background: var(--send);
+  transition: background 0.25s var(--ease-soft), transform 0.25s var(--ease-out);
+}
+
+.ask__send img { display: block; width: 21px; height: 21px; }
+.ask__send:hover { transform: translateY(-1px); }
+.ask__send.is-ready { background: var(--ink); }
+.ask__send.is-ready img { filter: brightness(0) invert(1); }
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-top: 18px;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 10px 13px;
+  border: 1px solid var(--chip-line);
+  border-radius: 30px;
+  background: #fff;
+  font-size: 13px;
+  line-height: 19.5px;
+  color: var(--chip-text);
+  transition: border-color 0.25s var(--ease-soft),
+              transform 0.25s var(--ease-out),
+              box-shadow 0.25s var(--ease-soft);
+}
+
+.chip img { display: block; width: 14px; height: 14px; }
+
+.chip:hover {
+  border-color: #cfcfcf;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px -12px rgba(17, 17, 17, 0.3);
+}
+
+/* ============================================================
+   전문 분야 — batcrew.co.kr #homeSlogan 값
+   ============================================================ */
+
+.slogan {
+  padding: var(--sec-top) 0 var(--sec-bottom);
+  background: var(--ground);
+}
+
+.slogan__row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.slogan__col { min-width: 0; }
+
+/* 화살표가 글자 밖으로 나가므로 잘리지 않게 여유를 둠 (간격 16 + 화살표 52) */
+.slogan__cats { padding-right: 68px; }
+
+.slogan__link {
+  display: block;
+  padding: 0;
+  text-align: left;
+}
+
+.slogan__item {
+  position: relative;
+  display: inline-block;
+  font-size: 56px;
+  line-height: 1.1;
+  letter-spacing: -0.288px;
+  color: var(--ink);
+  opacity: 0.2;
+  transition: opacity 0.4s var(--ease-soft);
+}
+
+.slogan__item::after {
+  content: "";
+  position: absolute;
+  left: calc(100% + 16px);
+  top: 50%;
+  transform: translateY(-50%);
+  width: 52px;
+  height: 52px;
+  background: url("../icons/arrow-up-right.svg") 50% 50% / contain no-repeat;
+  opacity: 0.5;
+  pointer-events: none;
+  transition: opacity 0.4s var(--ease-soft);
+}
+
+.slogan__link.is-active .slogan__item,
+.slogan__link:hover .slogan__item,
+.slogan__link:focus-visible .slogan__item { opacity: 1; }
+
+.slogan__link.is-active .slogan__item::after,
+.slogan__link:hover .slogan__item::after,
+.slogan__link:focus-visible .slogan__item::after { opacity: 1; }
+
+.slogan__media {
+  display: none;
+  position: relative;
+  height: 506px;
+  text-align: right;
+}
+
+.slogan__preview {
+  display: none;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  margin-left: auto;
+  aspect-ratio: 16 / 9;
+  background: #111;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.slogan__preview.is-active { display: block; }
+
+.slogan__preview img,
+.slogan__preview video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 플레이스홀더 라벨 — 실제 미디어를 넣으면 자동으로 가려짐 */
+.slogan__preview > span {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* ============================================================
+   세션 카드 — if.kakao .section_info 값
+   카드 radius 32 / DAY 58px·w800·-0.04em / 제목 26px·36.4px
+   배지 16px·w700·radius100·padding 12·18·14 / 아트→정보 28
+   ============================================================ */
+
+.cards {
+  padding: 0 0 var(--sec-bottom);
+  background: var(--ground);
+}
+
+.cards__row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.card { min-width: 0; }
+
+.card__art {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1 / 1;
+  border-radius: clamp(14px, 2.2vw, 32px);
+  overflow: hidden;
+  transition: 0.3s ease-in-out;
+}
+
+/* hover 시 프로스티드 글래스 레이어 — if.kakao 원본 값 */
+.card__art::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(255, 255, 255, 0.12);
+  -webkit-backdrop-filter: blur(30px);
+  backdrop-filter: blur(30px);
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s ease-in-out;
+}
+
+.card:hover .card__art::after,
+.card:focus-within .card__art::after { opacity: 1; visibility: visible; }
+
+.card:hover .card__day,
+.card:focus-within .card__day { color: #fff; }
+
+/* DAY 1 — 크림 위 마젠타 → 코랄 블롭 */
+.card__art--voc {
+  background-color: var(--cream);
+  background-image: radial-gradient(
+    60% 70% at 20% 48%,
+    #ff1f6b 0%, #ff2f60 32%, #ff5d50 62%, #ff8b48 82%,
+    rgba(255, 139, 72, 0) 90%
+  );
+}
+
+/* DAY 2 — 위쪽 밖에 중심을 둔 동심원 띠 */
+.card__art--interview {
+  background-color: var(--cyan);
+  background-image: radial-gradient(
+    ellipse 132% 138% at 50% -14%,
+    #cdff4a 0 21%, #0b2247 21% 33%, #3ad0f2 33% 46%,
+    #0b2247 46% 57%, #8fe6f2 57% 67%, rgba(195, 245, 250, 0) 67%
+  );
+}
+
+/* KREW DAY — 연분홍 위 와이어프레임 구 (SVG) */
+.card__art--qa { background-color: var(--pink); }
+
+.card__day {
+  position: relative;
+  z-index: 10;
+  font-size: clamp(15px, 3.6vw, 52px);
+  font-weight: 800;
+  line-height: 1.3;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+  text-align: center;
+  transition: color 0.3s ease-in-out;
+}
+
+.card__info { margin-top: clamp(10px, 1.95vw, 28px); }
+
+.card__title {
+  display: block;
+  /* 제목 줄 수가 카드마다 달라 소제목 높이가 어긋난다.
+     3줄(3 × 1.4em) 높이로 바닥을 깔아 나란히 맞춘다. */
+  min-height: 4.2em;
+  font-size: clamp(13px, 1.81vw, 26px);
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: -0.42px;
+  color: #333;
+  word-break: keep-all;
+}
+
+.card__desc {
+  margin-top: clamp(6px, 1.11vw, 16px);
+  font-size: clamp(11px, 1.39vw, 20px);
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: -0.42px;
+  color: #888;
+  word-break: keep-all;
+}
+
+/* ============================================================
+   스크롤 등장 — batcrew 값 (y 2.25rem → 0, 1.6s, stagger 0.18s)
+   ============================================================ */
+
+[data-anim-obj] {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(2.25rem);
+}
+
+.is-revealed [data-anim-obj] {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition:
+    opacity 1.6s var(--ease-quint),
+    transform 1.6s var(--ease-quint),
+    visibility 0s linear;
+  transition-delay: calc(var(--i) * 0.18s);
+}
+
+/* ============================================================
+   반응형
+   ============================================================ */
+
+@media (min-width: 1025px) {
+  .slogan__item { font-size: 110px; }
+  /* 110px "Performance"는 절반보다 넓다. 왼쪽 열을 글자 폭에 맞추고
+     남은 폭을 미리보기에 주면 셰브론이 패널에 가려지지 않는다. */
+  .slogan__col { flex: 0 0 auto; max-width: 64%; }
+  .slogan__media { display: block; flex: 1 1 0; min-width: 0; }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .slogan__item { font-size: 80px; }
+  .slogan__item::after { width: 35px; height: 35px; left: calc(100% + 14px); }
+  .slogan__cats { padding-right: 49px; }
+}
+
+@media (max-width: 767px) {
+  /* 좁은 화면에서는 키비주얼을 세로 비율로 — 원본도 모바일에서 더 길다 */
+  .kv__art { aspect-ratio: 4 / 5; }
+  .slogan__item { font-size: 40px; }
+  .slogan__item::after { width: 24px; height: 24px; left: calc(100% + 12px); }
+  .slogan__cats { padding-right: 36px; }
+  /* 카드가 좁아(390px에서 101px) 제목 줄 수가 달라진다.
+     가장 긴 제목이 5줄까지 가므로 그 높이로 바닥을 깔아 정렬 */
+  .card__title { min-height: calc(5em * 1.4); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kv__art { animation: none !important; transform: none !important; }
+  [data-anim-obj] {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+  }
+  * { transition-duration: 0.01ms !important; }
+}

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="robots" content="noindex, nofollow" />
+<title>조하늘 포트폴리오</title>
+<meta name="description" content="사용자의 하루에 긍정적인 경험을 남기는 프로덕트 디자이너 조하늘입니다." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;450;500;600;700;800&family=Cormorant+Garamond:wght@700&display=swap" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+<link rel="stylesheet" href="assets/css/main-if.css" />
+</head>
+<body>
+
+<!-- ===== 키비주얼 — if.kakao의 풀블리드 비주얼 자리 ===== -->
+<section class="kv" aria-label="키비주얼">
+  <div class="kv__inner">
+    <div class="kv__art">
+      <p class="kv__meta">Product Designer · Portfolio 2026</p>
+      <h1 class="kv__word">POSITIVE</h1>
+      <p class="kv__sub">경험을 만드는 일, 조하늘</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 소개 + 챗봇 ===== -->
+<section class="intro" data-anim-group>
+  <div class="inner">
+    <div class="head" data-anim-obj style="--i:0">
+      <h2 class="head__tit">사용자의 하루에<br />긍정적인 경험을 남기는</h2>
+      <p class="head__desc">프로덕트 디자이너 조하늘입니다.<br />무엇이든 물어봐 주세요.</p>
+    </div>
+
+    <!-- 챗봇 — 기존 메인에서 그대로 -->
+    <div class="ask" data-anim-obj style="--i:1">
+      <form class="ask__form" id="askForm" autocomplete="off">
+        <label class="sr-only" for="askInput">조하늘에 대해 물어보세요</label>
+        <textarea
+          class="ask__input"
+          id="askInput"
+          rows="1"
+          maxlength="300"
+          placeholder="조하늘에 대해 물어보세요"></textarea>
+
+        <div class="ask__foot">
+          <p class="ask__hint">등록된 소개를 바탕으로 답해요</p>
+          <button class="ask__send" id="askSend" type="submit" aria-label="질문 보내기">
+            <img src="assets/icons/arrow-up.svg" alt="" width="21" height="21" />
+          </button>
+        </div>
+      </form>
+
+      <div class="chips" role="group" aria-label="추천 질문">
+        <button class="chip" type="button">
+          자기소개 부탁해요
+          <img src="assets/icons/plus.svg" alt="" width="14" height="14" />
+        </button>
+        <button class="chip" type="button">
+          어떤 경험을 만들고 싶나요?
+          <img src="assets/icons/plus.svg" alt="" width="14" height="14" />
+        </button>
+        <button class="chip" type="button">
+          디자인에서 중요하게 생각하는 것은?
+          <img src="assets/icons/plus.svg" alt="" width="14" height="14" />
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 전문 분야 ===== -->
+<section class="slogan" id="slogan" data-anim-group>
+  <div class="inner">
+    <div class="head" data-anim-obj style="--i:0">
+      <h2 class="head__tit">이런 일을 합니다.</h2>
+      <p class="head__desc">We <span class="serif">specialize</span> in doing works like:</p>
+    </div>
+
+    <div class="slogan__row">
+      <div class="slogan__col">
+        <div class="slogan__cats">
+          <button class="slogan__link is-active" type="button" data-cat="branding" data-anim-obj style="--i:1">
+            <span class="slogan__item">Branding</span>
+          </button>
+          <button class="slogan__link" type="button" data-cat="marketing" data-anim-obj style="--i:2">
+            <span class="slogan__item">Marketing</span>
+          </button>
+          <button class="slogan__link" type="button" data-cat="performance" data-anim-obj style="--i:3">
+            <span class="slogan__item">Performance</span>
+          </button>
+          <button class="slogan__link" type="button" data-cat="global" data-anim-obj style="--i:4">
+            <span class="slogan__item">Global</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="slogan__media" data-anim-obj style="--i:5">
+        <!-- 실제 영상/이미지가 들어갈 자리 (지금은 플레이스홀더) -->
+        <div class="slogan__preview is-active" data-cat="branding"><span>Branding</span></div>
+        <div class="slogan__preview" data-cat="marketing"><span>Marketing</span></div>
+        <div class="slogan__preview" data-cat="performance"><span>Performance</span></div>
+        <div class="slogan__preview" data-cat="global"><span>Global</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 세션 카드 ===== -->
+<section class="cards" id="cards" data-anim-group>
+  <div class="inner">
+    <div class="head" data-anim-obj style="--i:0">
+      <h2 class="head__tit">가능성, 일상이 되다.</h2>
+      <p class="head__desc">일상에 스며든 AI,<br />카카오가 열어가는 가능성의 문을 두드려보세요.</p>
+    </div>
+
+    <div class="cards__row">
+      <article class="card" data-anim-obj style="--i:1">
+        <div class="card__art card__art--voc">
+          <strong class="card__day">VOC</strong>
+        </div>
+        <div class="card__info">
+          <strong class="card__title">VOC 수집부터 개선 과제 도출까지<br />AI로 제품 의사결정 과정 자동화하기</strong>
+          <p class="card__desc">VOC AI 분석 대시보드</p>
+        </div>
+      </article>
+
+      <article class="card" data-anim-obj style="--i:2">
+        <div class="card__art card__art--interview">
+          <strong class="card__day">INTERVIEW</strong>
+        </div>
+        <div class="card__info">
+          <strong class="card__title">인터뷰 설계부터 링크 배부까지<br />AI로 반복 가능한 사용자 리서치 프로세스 만들기</strong>
+          <p class="card__desc">사용자 인터뷰 프로세스</p>
+        </div>
+      </article>
+
+      <article class="card" data-anim-obj style="--i:3">
+        <div class="card__art card__art--qa">
+          <strong class="card__day">QA</strong>
+        </div>
+        <div class="card__info">
+          <strong class="card__title">복잡한 사용자 케이스를 구조화해<br />QA 검증 흐름을 자동화하기</strong>
+          <p class="card__desc">유저 케이스별 QA</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<script>
+/* ===== 챗봇 입력 ===== */
+(function () {
+  var input = document.getElementById('askInput');
+  var send  = document.getElementById('askSend');
+  var form  = document.getElementById('askForm');
+  if (!input || !send || !form) return;
+
+  function sync() {
+    input.style.height = 'auto';
+    /* 비어 있으면 인라인 높이를 지워 CSS의 min-height가 맡게 한다 */
+    input.style.height = input.value
+      ? Math.min(input.scrollHeight, 200) + 'px'
+      : '';
+    send.classList.toggle('is-ready', input.value.trim().length > 0);
+  }
+
+  input.addEventListener('input', sync);
+
+  var syncTimer = null;
+  window.addEventListener('resize', function () {
+    clearTimeout(syncTimer);
+    syncTimer = setTimeout(sync, 150);
+  });
+
+  document.querySelectorAll('.chip').forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      input.value = chip.textContent.trim();
+      input.focus();
+      sync();
+    });
+  });
+
+  input.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      form.requestSubmit();
+    }
+  });
+
+  /* 답변 데이터는 아직 연결 전 — 제출은 막아둠 */
+  form.addEventListener('submit', function (e) { e.preventDefault(); });
+
+  sync();
+})();
+
+/* ===== 스크롤 등장 — 섹션 상단이 화면 80%를 지나면 ===== */
+(function () {
+  var groups = [].slice.call(document.querySelectorAll('[data-anim-group]'));
+  if (!groups.length) return;
+
+  function check() {
+    var line = window.innerHeight * 0.8;
+    for (var i = groups.length - 1; i >= 0; i--) {
+      if (groups[i].getBoundingClientRect().top < line) {
+        groups[i].classList.add('is-revealed');
+        groups.splice(i, 1);
+      }
+    }
+    if (!groups.length) {
+      window.removeEventListener('scroll', check);
+      window.removeEventListener('resize', check);
+    }
+  }
+
+  window.addEventListener('scroll', check, { passive: true });
+  window.addEventListener('resize', check);
+  check();
+})();
+
+/* ===== 전문 분야 — 큰 글씨 hover ↔ 미리보기 연동 ===== */
+(function () {
+  var section = document.getElementById('slogan');
+  if (!section) return;
+
+  var links = [].slice.call(section.querySelectorAll('.slogan__link'));
+  var previews = [].slice.call(section.querySelectorAll('.slogan__preview'));
+
+  function activate(cat) {
+    links.forEach(function (l) { l.classList.toggle('is-active', l.dataset.cat === cat); });
+    previews.forEach(function (p) { p.classList.toggle('is-active', p.dataset.cat === cat); });
+  }
+
+  links.forEach(function (link) {
+    link.addEventListener('mouseenter', function () { activate(link.dataset.cat); });
+    link.addEventListener('focus', function () { activate(link.dataset.cat); });
+  });
+})();
+</script>
+
+</body>
+</html>

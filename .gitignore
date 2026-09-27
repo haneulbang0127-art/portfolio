@@ -1,0 +1,8 @@
+# 생성물 — subset.py로 언제든 다시 만든다 (1.4MB)
+build/fonts-embed.css
+build/.fontcache/
+build/artifact-main.html
+
+# 임시
+_artifact-preview.html
+.DS_Store
