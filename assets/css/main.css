@@ -916,10 +916,7 @@ html { scroll-behavior: smooth; }
 }
 
 /* ============================================================
-   About — 벤토 보드 (Figma 763:9470 레퍼런스 스타일)
-   ------------------------------------------------------------
-   4열 보드, 좁은 간격, 파스텔 타일, 세로로 긴 사진 타일.
-   사진은 임시 SVG — assets/img/about-*.svg를 교체하면 된다.
+   About — 벤토 그리드
    ============================================================ */
 
 .about {
@@ -932,212 +929,130 @@ html { scroll-behavior: smooth; }
   margin: 0 auto;
 }
 
-.about__tit {
-  margin-bottom: 34px;
-  font-size: clamp(26px, 2.7vw, 38px);
-  font-weight: 700;
-  line-height: 1.2;
-  letter-spacing: -0.8px;
-  color: var(--c-head);
-}
-
-.about__serif {
-  font-family: "Cormorant Garamond", Georgia, "Times New Roman", serif;
-  font-weight: 700;
+.about__label {
+  margin-bottom: 22px;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: var(--c-hint);
 }
 
 .bento {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(2, 232px);
-  gap: 10px;
+  grid-auto-rows: 150px;
+  gap: 14px;
 }
 
 .bt {
-  position: relative;
   display: flex;
   flex-direction: column;
-  padding: 24px 24px 22px;
-  border-radius: 18px;
-  background: #f4f6f7;
+  padding: 24px 26px;
+  border: 1px solid rgba(23, 23, 23, 0.07);
+  border-radius: 24px;
+  background: #f6f8f9;
   overflow: hidden;
 }
 
-/* 파스텔 톤 — 사이트 팔레트 안에서만 */
-.bt--tint-lav { background: #eceef7; }
-.bt--tint-blu { background: #e6eef4; }
-.bt--tint-grn { background: #e9f1ea; }
-.bt--tint-crm { background: #f6f1e8; }
+/* 타일 배치 — 큰 문장 하나 + 사진 + 작은 조각들 */
+.bt--lead    { grid-column: span 2; grid-row: span 2; justify-content: space-between; }
+.bt--photo   { grid-column: span 1; grid-row: span 2; align-items: center; justify-content: center; }
+.bt--domain  { grid-column: span 1; }
+.bt--tools   { grid-column: span 1; }
+.bt--focus   { grid-column: span 2; }
+.bt--contact { grid-column: span 2; justify-content: space-between; }
 
-/* ---- 배치 ---- */
-.bt--domain  { grid-column: 1; grid-row: 1; justify-content: space-between; }
-.bt--tools   { grid-column: 1; grid-row: 2; justify-content: center; }
-.bt--photo   { grid-column: 2; grid-row: 1 / span 2; padding: 0; }
-.bt--pic     { grid-column: 3; grid-row: 1; padding: 0; }
-.bt--stat    { grid-column: 3; grid-row: 2; justify-content: flex-end; }
-.bt--focus   { grid-column: 4; grid-row: 1; justify-content: space-between; }
-.bt--contact { grid-column: 4; grid-row: 2; align-items: center; justify-content: center; }
-
-/* ---- 이미지 ---- */
-.bt__img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
+.bt--lead {
+  background: linear-gradient(150deg, #eef3f5 0%, #f8fafb 62%);
 }
 
-.bt--photo .bt__name {
-  position: relative;
-  margin: 26px 0 0 24px;
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: clamp(24px, 2.4vw, 34px);
-  line-height: 1;
-  color: #fff;
-  text-shadow: 0 1px 12px rgba(23, 23, 23, 0.22);
-}
-
-/* ---- 조각들 ---- */
-.bt__chipRow { display: flex; gap: 7px; }
-
-.bt__dot {
-  width: 26px;
-  height: 26px;
-  border-radius: 9px;
-  box-shadow: 0 1px 3px rgba(23, 23, 23, 0.1);
-}
-
-.bt__dot--a { background: linear-gradient(140deg, #ff8a5c, #ff5d7e); }
-.bt__dot--b { background: linear-gradient(140deg, #6fc7f2, #3a8ce0); }
-.bt__dot--c { background: linear-gradient(140deg, #9fdcb0, #4fae7a); }
-
-.bt__body {
-  font-size: 14px;
-  line-height: 22px;
+.bt__lead {
+  font-size: clamp(20px, 2.1vw, 28px);
+  font-weight: 600;
+  line-height: 1.45;
+  letter-spacing: -0.5px;
   color: var(--c-head);
   word-break: keep-all;
+}
+
+.bt__name {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 1;
+  color: var(--c-head);
 }
 
 .bt__cap {
-  font-size: 12.5px;
-  line-height: 19px;
+  margin-bottom: 12px;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
   color: var(--c-hint);
+}
+
+.bt__body {
+  font-size: 14.5px;
+  line-height: 24px;
+  color: var(--c-lead);
   word-break: keep-all;
-}
-
-.bt__step {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  background: #fff;
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--c-head);
-}
-
-.bt__stepTit {
-  margin-top: auto;
-  margin-bottom: 5px;
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--c-head);
-}
-
-.bt__num {
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: clamp(52px, 6vw, 84px);
-  line-height: 0.95;
-  letter-spacing: -0.03em;
-  color: var(--c-head);
 }
 
 .bt__tags {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 8px;
+  flex-wrap: wrap;
+  gap: 6px;
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
 .bt__tags li {
-  display: inline-flex;
-  align-items: center;
-  gap: 9px;
-  padding: 7px 8px 7px 14px;
+  padding: 6px 11px;
   border-radius: 999px;
   background: #fff;
-  box-shadow: inset 0 0 0 1px rgba(23, 23, 23, 0.07);
+  box-shadow: inset 0 0 0 1px rgba(23, 23, 23, 0.06);
   font-size: 12.5px;
   color: var(--c-head);
 }
 
-.bt__tags li.is-on {
-  background: #e4efe6;
-  box-shadow: inset 0 0 0 1px rgba(79, 174, 122, 0.3);
+/* 아직 안 채운 자리 */
+.bt__tags li.is-todo,
+.bt__slot {
+  color: var(--c-hint);
+  font-size: 12.5px;
 }
 
-.bt__tags li span {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background: rgba(23, 23, 23, 0.06);
-  font-size: 12px;
-  line-height: 1;
-  color: var(--c-chip-text);
-}
+.bt--photo { background: #eef1f3; }
 
 .bt__mail {
-  display: inline-flex;
-  align-items: center;
-  gap: 9px;
-  padding: 11px 18px 11px 12px;
+  align-self: flex-start;
+  padding: 10px 16px;
   border-radius: 999px;
-  background: #fff;
-  box-shadow: 0 6px 18px -10px rgba(23, 23, 23, 0.28);
+  background: var(--c-head);
+  color: #fff;
   font-size: 13px;
-  color: var(--c-head);
-  transition: transform 0.25s var(--ease-out);
+  transition: transform 0.25s var(--ease-out), opacity 0.25s var(--ease-soft);
 }
 
-.bt__mail:hover { transform: translateY(-1px); }
-
-.bt__mailIcon {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  background: #e6eef4;
-  box-shadow: inset 0 0 0 1px rgba(23, 23, 23, 0.06);
-}
+.bt__mail:hover { transform: translateY(-1px); opacity: 0.88; }
 
 @media (max-width: 1024px) {
-  .bento { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(4, 200px); }
-  .bt--domain  { grid-column: 1; grid-row: 1; }
-  .bt--photo   { grid-column: 2; grid-row: 1 / span 2; }
-  .bt--tools   { grid-column: 1; grid-row: 2; }
-  .bt--pic     { grid-column: 1; grid-row: 3; }
-  .bt--stat    { grid-column: 2; grid-row: 3; }
-  .bt--focus   { grid-column: 1; grid-row: 4; }
-  .bt--contact { grid-column: 2; grid-row: 4; }
+  .bento { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 144px; }
+  .bt--lead  { grid-column: span 2; grid-row: span 2; }
+  .bt--photo { grid-column: span 1; grid-row: span 2; }
+  .bt--focus { grid-column: span 2; }
+  .bt--contact { grid-column: span 2; }
 }
 
 @media (max-width: 767px) {
   .about { padding: 88px 0 100px; }
-  .about__tit { margin-bottom: 24px; }
-  .bento { grid-template-columns: 1fr; grid-template-rows: none; gap: 8px; }
-  .bt { grid-column: 1 !important; grid-row: auto !important; min-height: 150px; padding: 20px; }
-  .bt--photo { min-height: 320px; }
-  .bt--pic { min-height: 180px; }
+  .bento { grid-template-columns: 1fr; grid-auto-rows: auto; gap: 10px; }
+  .bt { padding: 20px 20px; min-height: 108px; }
+  .bt--lead, .bt--photo, .bt--domain,
+  .bt--tools, .bt--focus, .bt--contact { grid-column: span 1; grid-row: auto; }
+  .bt--lead { gap: 16px; }
+  .bt--photo { min-height: 180px; }
 }
 
 /* ============================================================
