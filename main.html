@@ -262,48 +262,55 @@
 <!-- ===== About ===== -->
 <section class="about" id="about" data-anim-group>
   <div class="about__inner">
-    <p class="about__label" data-anim-obj style="--i:0">ABOUT</p>
+    <h2 class="about__tit" data-anim-obj style="--i:0"><span class="about__serif">About</span> 조하늘</h2>
 
     <div class="bento">
-      <!-- 한 줄 정의 — 실제 문구 -->
-      <article class="bt bt--lead" data-anim-obj style="--i:1">
-        <p class="bt__lead">사용자의 하루에<br />긍정적인 경험을 남기는<br />프로덕트 디자이너</p>
-        <p class="bt__name">조하늘</p>
+      <!-- 다뤄온 프로덕트 -->
+      <article class="bt bt--domain bt--tint-lav" data-anim-obj style="--i:1">
+        <div class="bt__chipRow">
+          <span class="bt__dot bt__dot--a"></span>
+          <span class="bt__dot bt__dot--b"></span>
+          <span class="bt__dot bt__dot--c"></span>
+        </div>
+        <p class="bt__body">B2B SaaS · O2O · Commerce<br />세 종류의 프로덕트를 맡아왔습니다</p>
       </article>
 
-      <!-- 사진 자리 -->
+      <!-- 사진 (세로로 긴 타일) -->
       <article class="bt bt--photo" data-anim-obj style="--i:2">
-        <span class="bt__slot">[사진 준비 중]</span>
+        <img class="bt__img" src="assets/img/about-portrait.svg" alt="" />
+        <p class="bt__name">Haneul</p>
       </article>
 
-      <!-- 다루는 도메인 — 실제 내용 -->
-      <article class="bt bt--domain" data-anim-obj style="--i:3">
-        <p class="bt__cap">다뤄온 프로덕트</p>
+      <!-- 이미지 타일 -->
+      <article class="bt bt--pic bt--tint-grn" data-anim-obj style="--i:3">
+        <img class="bt__img" src="assets/img/about-tile.svg" alt="" />
+      </article>
+
+      <!-- 요즘 관심 -->
+      <article class="bt bt--focus bt--tint-crm" data-anim-obj style="--i:4">
+        <p class="bt__step">01</p>
+        <p class="bt__stepTit">요즘 관심</p>
+        <p class="bt__cap">[문구 준비 중] 지금 파고 있는 주제</p>
+      </article>
+
+      <!-- 도구 태그 -->
+      <article class="bt bt--tools" data-anim-obj style="--i:5">
         <ul class="bt__tags">
-          <li>B2B SaaS</li>
-          <li>O2O</li>
-          <li>Commerce</li>
+          <li>Figma <span>+</span></li>
+          <li class="is-on">프로토타이핑 <span>+</span></li>
+          <li>[도구 준비 중] <span>+</span></li>
         </ul>
       </article>
 
-      <!-- 도구 -->
-      <article class="bt bt--tools" data-anim-obj style="--i:4">
-        <p class="bt__cap">도구</p>
-        <ul class="bt__tags">
-          <li class="is-todo">[도구 준비 중]</li>
-        </ul>
+      <!-- 큰 숫자 -->
+      <article class="bt bt--stat bt--tint-blu" data-anim-obj style="--i:6">
+        <p class="bt__num">3</p>
+        <p class="bt__cap">지금까지 맡아온<br />프로덕트</p>
       </article>
 
-      <!-- 지금 관심사 -->
-      <article class="bt bt--focus" data-anim-obj style="--i:5">
-        <p class="bt__cap">요즘 관심</p>
-        <p class="bt__body">[문구 준비 중] 지금 파고 있는 주제를 한두 문장으로 넣습니다.</p>
-      </article>
-
-      <!-- 연락 — 실제 동작 -->
-      <article class="bt bt--contact" data-anim-obj style="--i:6">
-        <p class="bt__cap">연락</p>
-        <a class="bt__mail" id="aboutMail" href="#">메일 보내기</a>
+      <!-- 연락 -->
+      <article class="bt bt--contact bt--tint-lav" data-anim-obj style="--i:7">
+        <a class="bt__mail" id="aboutMail" href="#"><span class="bt__mailIcon" aria-hidden="true"></span>메일 보내기</a>
       </article>
     </div>
   </div>

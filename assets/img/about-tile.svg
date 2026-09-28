@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
+  <!-- 임시 이미지 -->
+  <defs>
+    <linearGradient id="tg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#e7f0e9"/>
+      <stop offset="1" stop-color="#f6faf6"/>
+    </linearGradient>
+    <radialGradient id="tb" cx="62%" cy="34%" r="58%">
+      <stop offset="0" stop-color="#ffffff" stop-opacity=".9"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="400" height="300" fill="url(#tg)"/>
+  <ellipse cx="250" cy="105" rx="150" ry="130" fill="url(#tb)"/>
+  <g fill="none" stroke="#98b8a4" stroke-width="5" stroke-linecap="round" opacity=".55">
+    <path d="M160 96c40 22 40 64 0 86s-40 64 0 86"/>
+    <path d="M240 96c-40 22-40 64 0 86s40 64 0 86"/>
+    <path d="M168 122h64M160 176h80M168 232h64"/>
+  </g>
+</svg>
