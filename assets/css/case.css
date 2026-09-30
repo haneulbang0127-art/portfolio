@@ -74,7 +74,6 @@
   font-weight: 400;
   line-height: 27px;
   color: var(--nv-body);
-  word-break: keep-all;
 }
 
 .p b { font-weight: 600; }
@@ -115,6 +114,7 @@
   margin: 0 0 6px;
   font-size: 13px;
   font-weight: 500;
+  line-height: 16px;
   letter-spacing: 0.04em;
   color: var(--nv-mute);
 }
@@ -123,6 +123,7 @@
   margin: 0;
   font-size: 16px;
   font-weight: 500;
+  line-height: 19px;
   color: var(--nv-ink);
 }
 
@@ -161,13 +162,18 @@
 
 .tag {
   position: relative;
-  padding: 6px 12px;
+  padding: 6px 13px;
   border-radius: 999px;
+  background: #f5f5ff;
   font-size: 14px;
   font-weight: 500;
   line-height: 19px;
   color: var(--nv-chip);
 }
+
+/* 마지막 칩만 단색 테두리 */
+.tag--plain { border: 1px solid #d8d9ff; padding: 5px 12px; }
+.tag--plain::before { display: none; }
 
 .tag::before {
   content: "";
@@ -231,90 +237,93 @@
    ============================================================ */
 
 .s-bg { padding: 180px 0; }
-.s-bg .panel { height: 540px; margin-top: 56px; }
+/* 패널 1240x540, 내용 200,578 -> 안쪽 여백 97/100/100 */
+.s-bg .panel { height: 540px; margin-top: 56px; padding: 97px 100px 100px; }
 
-.duo {
-  display: flex;
-  gap: 44px;
-  align-items: stretch;
-}
+.duo { display: flex; gap: 44px; align-items: stretch; }
 
 .card {
-  border: 1.4px solid var(--nv-line-2);
-  border-radius: 14px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  border: 1.375px solid var(--nv-line-2);
+  border-radius: 13.75px;
   background: #fff;
 }
 
-.card--voc { flex: 0 0 490px; padding: 22px 22px 19px; }
-.card--imp { flex: 0 0 506px; padding: 22px; }
+.card--voc { flex: 0 0 490px; padding: 20.625px 20.625px 17.875px; gap: 22px; }
+.card--imp { flex: 0 0 506px; padding: 20.625px; gap: 16.5px; }
 
-.card__tit {
-  margin: 0;
-  font-size: 17px;
+/* 카드 제목 줄: 396 폭 안에서 제목과 "가상" 칩을 양끝으로 */
+.card__head { display: flex; align-items: center; justify-content: space-between; width: 396px; height: 25px; }
+
+.card__tit { margin: 0; font-size: 19.25px; font-weight: 600; line-height: 23px; color: #1b1b1b; }
+.card--imp .card__tit { line-height: 23.375px; color: #33333d; }
+
+.card__chip {
+  padding: 4.125px 8.25px;
+  border-radius: 11px;
+  background: #ecf2ff;
+  font-size: 11px;
   font-weight: 600;
-  line-height: 23px;
-  color: #33333d;
+  line-height: 13px;
+  color: #235fed;
 }
 
-.card__sub {
-  margin: 6px 0 22px;
-  font-size: 13.8px;
-  font-weight: 400;
-  color: #6b707a;
-}
+/* 제목 묶음(제목+부제)은 간격 5.5, 그 아래 막대 묶음과는 카드 gap 22 */
+.card__sub { margin: 0; font-size: 13.75px; font-weight: 400; line-height: 16px; color: #6b707a; }
 
-.bars { display: flex; flex-direction: column; gap: 14px; }
+.card__grp { display: flex; flex-direction: column; }
+.card__grp--head { gap: 5.5px; }
+.card__grp--body { gap: 26.125px; }
+
+.bars { display: flex; flex-direction: column; gap: 13.75px; }
 
 .bars__row {
   display: grid;
-  grid-template-columns: 78px 1fr 34px;
-  gap: 12px;
+  grid-template-columns: 90.75px 291.5px 33px;   /* 트랙 폭도 피그마 고정값 */
+  gap: 13.75px;
   align-items: center;
-  height: 21px;
+  height: 22px;
 }
 
-.bars__label { font-size: 12.5px; color: #6b707a; }
+.bars__label { font-size: 13.75px; font-weight: 400; line-height: 16px; color: #6b707a; }
 
-.bars__track {
-  height: 9px;
-  border-radius: 5px;
-  background: #f0ebfc;
-  overflow: hidden;
-}
-
-.bars__fill {
-  display: block;
-  height: 100%;
-  border-radius: 5px;
-  background: #734de8;
-}
+.bars__track { height: 11px; border-radius: 5.5px; background: #f0ebfc; overflow: hidden; }
+.bars__fill { display: block; height: 100%; border-radius: 5.5px; background: #734de8; }
 
 .bars__val {
-  font-size: 12.5px;
-  font-weight: 600;
+  font-size: 13.75px;
+  font-weight: 500;
+  line-height: 16px;
   text-align: right;
   color: #1b1b1b;
 }
 
 .insight {
-  margin: 26px 0 0;
-  padding: 11px 10px;
-  border-radius: 6px;
+  box-sizing: border-box;
+  height: 42px;
+  margin: 0;
+  padding: 9.625px 8.25px;
+  border: 1.375px solid #fff;
+  border-radius: 5.5px;
   background: #f9f9f9;
-  font-size: 13.5px;
-  font-weight: 600;
+  font-size: 16.5px;
+  font-weight: 500;
+  line-height: 20px;
   text-align: center;
-  color: #6b707a;
+  color: #33333d;
 }
 
-.imp { display: flex; flex-direction: column; gap: 14px; margin: 17px 0 0; padding: 0; list-style: none; }
+.imp { display: flex; flex-direction: column; gap: 13.75px; margin: 0; padding: 0; list-style: none; }
 
 .imp > li {
-  padding: 11px 17px;
+  padding: 11px 16.5px;
   border-radius: 11px;
   background: #faf7ff;
-  font-size: 14px;
-  line-height: 23px;
+  font-size: 16.5px;
+  font-weight: 400;
+  line-height: 27.5px;
   color: #33333d;
   word-break: keep-all;
 }
@@ -327,7 +336,7 @@
    ============================================================ */
 
 .s-disc {
-  padding: 160px 0;
+  padding: 160px 0 113px;
   background: var(--nv-dark);
 }
 
@@ -366,8 +375,11 @@
   display: flex;
   gap: 56px;
   justify-content: center;
+  align-items: flex-start;
   margin-top: 72px;
 }
+
+.quoteCol { display: flex; flex-direction: column; align-items: center; }
 
 .quote {
   padding: 32px;
@@ -380,14 +392,26 @@
   margin: 0 0 10px;
   font-size: 15px;
   font-weight: 600;
+  line-height: 18px;
   color: var(--nv-p1);
+}
+
+/* 카드 밖, 다크 배경 위 요약 한 줄 */
+.quote__sum {
+  margin: 24px 0 0;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 22.5px;
+  color: #fff;
+  text-align: center;
+  word-break: keep-all;
 }
 
 .quote__say {
   margin: 0;
   font-size: 24px;
   font-weight: 600;
-  line-height: 1.35;
+  line-height: 29px;
   color: #24242e;
   word-break: keep-all;
 }
@@ -445,13 +469,13 @@
 }
 
 .prob__cap {
-  margin: 12px 0 0;
+  margin: 20px 0 0;
   font-size: 15px;
   text-align: center;
   color: #818181;
 }
 
-.probs { flex: 0 0 380px; display: flex; flex-direction: column; gap: 16px; }
+.probs { flex: 0 0 380px; display: flex; flex-direction: column; gap: 16px; margin: 0; padding: 0; }
 
 .probs > li {
   padding: 20px 24px;
@@ -563,47 +587,59 @@
    Strategy 02 — 1242, 네이버 지도 API
    ============================================================ */
 
-.s-str2 .panel { height: 707px; }
+/* 패널 1240x707 안에 피그마 좌표 그대로 (아래 스크린샷은 패널이 잘라낸다) */
+.s-str2 .panel { position: relative; height: 707px; overflow: hidden; }
 
-.mapapi {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 26px;
-  width: 100%;
-  padding: 26px 15px;
-}
+.mapapi { position: absolute; inset: 0; }
 
+/* 라벨은 패널이 아니라 스크린샷 위에 가운데 정렬 (피그마 484,640 / 폭 173) */
 .mapapi__tit {
+  position: absolute;
+  left: 133px;
+  top: 105px;
+  width: 677px;
   margin: 0;
-  font-size: 27px;
+  font-size: 27.225px;
   font-weight: 500;
-  line-height: 42px;
+  line-height: 42.35px;
+  text-align: center;
   color: #606060;
 }
 
-.mapapi__row { display: flex; gap: 40px; align-items: flex-start; }
-
-.mapapi__shots { display: flex; flex-direction: column; gap: 12px; width: 560px; }
+.mapapi__shots { position: absolute; left: 133px; top: 172px; width: 677px; }
 
 .mapapi__shots img {
+  position: absolute;
+  left: 0;
   display: block;
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
+  width: 677px;
+  height: 401px;
 }
 
-.mapapi__chips { display: flex; flex-direction: column; gap: 14px; }
+.mapapi__shots img:nth-of-type(1) { top: 0; }
+.mapapi__shots img:nth-of-type(2) { top: 267px; }
+
+.mapapi__chips { position: absolute; left: 871px; top: 224px; }
 
 .mapapi__chips span {
-  padding: 16px;
-  border-radius: 8px;
+  position: absolute;
+  left: 0;
+  display: block;
+  box-sizing: border-box;
+  height: 75px;
+  padding: 24px;
+  border-radius: 12.1px;
   background: #1f1f1f;
-  font-size: 23px;
+  font-size: 22.6875px;
   font-weight: 600;
+  line-height: 27px;
   color: #fff;
   white-space: nowrap;
 }
+
+.mapapi__chips span:nth-of-type(1) { top: 0; }
+.mapapi__chips span:nth-of-type(2) { top: 104px; }
+.mapapi__chips span:nth-of-type(3) { top: 208px; }
 
 /* ============================================================
    Strategy 03 — 924, 스크래핑 대응 표
@@ -807,6 +843,19 @@
   .s-bg .panel, .s-prob .panel, .s-str .panel, .s-sol .panel, .sol4 .panel { height: auto; }
   .panel { padding: 28px; }
   .prob { padding: 0; }
+  /* 피그마 고정폭(칩 줄, 막대 트랙, 지도 API 절대배치)은 좁은 화면에서 푼다 */
+  .card__head { width: 100%; }
+  .bars__row { grid-template-columns: 74px minmax(0, 1fr) 33px; gap: 10px; }
+  .insight { height: auto; min-height: 42px; }
+
+  .s-str2 .panel { height: auto; overflow: visible; padding: 28px; }
+  .mapapi { position: static; display: flex; flex-direction: column; align-items: center; gap: 24px; }
+  .mapapi__tit { position: static; width: 100%; }
+  .mapapi__shots { position: static; width: 100%; display: flex; flex-direction: column; gap: 12px; }
+  .mapapi__shots img { position: static; width: 100%; height: auto; }
+  .mapapi__chips { position: static; display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+  .mapapi__chips span { position: static; height: auto; padding: 14px 18px; font-size: 18px; }
+
   .metrics__row { flex-wrap: wrap; }
   .metric { flex: 1 1 140px; height: auto; font-size: 19px; }
   .metric--roas { height: auto; }
