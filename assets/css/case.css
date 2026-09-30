@@ -1,391 +1,908 @@
 /* ============================================================
-   case.css — 케이스 스터디 상세 페이지
-   Figma "앳트레커" 프레임(1440×11231)의 800px 본문 컬럼을
-   반응형으로 옮긴 레이아웃.
+   케이스 스터디 상세 — Figma 752:7101 (1440 x 11141)
+   본문 컬럼은 Figma의 x=320 / w=800 그대로.
+   수치·색은 전부 Figma에서 읽은 값이다. 임의로 만든 값은 없다.
+   1024 이하에서만 폭에 맞춰 재배치한다.
    ============================================================ */
 
+/* Figma 팔레트 — 목차·백버튼이 .case 바깥에 있어 :root에 둔다 */
+:root {
+  --fx-surface: #f5f5f5;
+  --fx-surface-v: #f5f5ff;
+  --fx-line: #ededed;
+  --fx-line-2: #e8e8e8;
+  --fx-line-3: #f1f1f1;
+  --fx-ink: #24242e;
+  --fx-ink-2: #292933;
+  --fx-ink-3: #33333d;
+  --fx-mute: #979aa6;
+  --fx-mute-2: #494949;
+  --fx-mute-6: #868686;
+  --fx-mute-7: #6b707a;
+  --fx-dark: #1f1f1f;
+  --fx-dark-2: #393939;
+  --fx-accent: #4d52ff;
+  --fx-accent-2: #6b6fff;
+  --fx-accent-3: #5c3bba;
+  --fx-accent-4: #734de8;
+  --fx-accent-bg: #eef;
+  --fx-accent-bg-2: #faf7ff;
+  --fx-accent-line: #d8d9ff;
+  --fx-accent-on-dark: #d4c5ff;
+}
+
 .case {
-  --col: 800px;
-
-  --ink: #111;
-  --ink-body: #373737;
-  --ink-mute: #6b707a;
-  --ink-faint: #9a9aa5;
-
-  --accent: #734de8;
-  --accent-vivid: #6c63ff;
-  --accent-soft: #f0ebfc;
-  --accent-bg: #f5f3ff;
-
-  --fig: #f4f4f4;
-  --fig-tint: #f2f0fd;
-  --card: #fff;
-  --line: #ececec;
-  --dark: #3a3a3a;
-
-  --shadow: 0 2px 12px rgba(17, 17, 26, 0.05), 0 0 1px rgba(17, 17, 26, 0.06);
-
-  --fs-eyebrow: 1rem;
-  --fs-title: clamp(1.375rem, 1rem + 1.55vw, 1.75rem);
-  --fs-body: clamp(0.9375rem, 0.9rem + 0.2vw, 1rem);
-
-  --pad-x: clamp(1.25rem, 5vw, 2rem);
-  --block-pt: clamp(1.75rem, 4vw, 2.5rem);
-  --block-pb: clamp(3rem, 8vw, 5rem);
-
-  font-family: var(--font-sans);
-  color: #000;
+  /* 좌측 목차 첫 항목과 본문 첫 줄의 베이스라인을 맞춘다 */
+  padding: 92px 0 160px;
   background: #fff;
 }
 
-.case__wrap {
-  width: 100%;
-  max-width: calc(var(--col) + var(--pad-x) * 2);
-  margin: 0 auto;
-  padding-inline: var(--pad-x);
+/* ---- 고정 백버튼 — 블랙 원형 ---- */
+
+.backBtn {
+  position: fixed;
+  top: 24px;
+  left: 24px;
+  z-index: 100;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--c-send-on);
+  box-shadow: 0 10px 30px -14px rgba(23, 23, 23, 0.4);
+  color: #fff;
+  text-decoration: none;
+  transition: background 0.25s var(--ease-soft), transform 0.25s var(--ease-soft);
 }
 
-/* ---------- 메타 행 ---------- */
+.backBtn:hover { background: #000; }
+.backBtn:hover svg { transform: translateX(-2px); }
 
-.case-meta {
+.backBtn svg {
+  width: 18px;
+  height: 18px;
+  transition: transform 0.25s var(--ease-soft);
+}
+
+@media (max-width: 767px) {
+  .backBtn { top: 14px; left: 14px; width: 42px; height: 42px; }
+  .backBtn svg { width: 16px; height: 16px; }
+}
+
+.case__inner {
+  width: min(800px, 100% - 48px);
+  margin: 0 auto;
+}
+
+/* ---- 메타 (752:7102) — pb 24, gap 32, px 4 ---- */
+
+.case__meta {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem clamp(1.25rem, 4vw, 2rem);
-  padding-top: clamp(2.5rem, 7vw, 4rem);
+  gap: 12px 32px;
+  padding: 0 4px 24px;
 }
 
-.case-meta__item { display: flex; align-items: baseline; gap: 0.5rem; font-size: 0.875rem; }
-.case-meta__key { font-weight: 600; color: #000; }
-.case-meta__val { color: var(--ink-mute); }
-
-/* ---------- 본문 블록 ---------- */
-
-.block { padding-top: var(--block-pt); padding-bottom: var(--block-pb); }
-
-.block__eyebrow {
-  font-size: var(--fs-eyebrow);
-  font-weight: 600;
-  line-height: 1.4;
-  margin-bottom: 0.75rem;
+.case__metaItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-.block__title {
-  font-size: var(--fs-title);
+.case__metaKey {
+  font-size: 16px;
+  font-weight: 500;
+  color: #000;
+}
+
+.case__metaVal {
+  font-size: 13px;
+  font-weight: 400;
+  color: #000;
+}
+
+/* ---- 텍스트 블록 (752:7286 등) — pt 40 / pb 80 ---- */
+
+.case__block { padding: 40px 0 80px; }
+
+.case__eyebrow {
+  margin: 0 0 12px;
+  font-size: 16px;
   font-weight: 600;
-  line-height: 1.5;
-  letter-spacing: -0.01em;
+  color: #000;
+}
+
+.case__h2 {
+  margin: 0 0 20px;
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 42px;
+  color: #000;
   word-break: keep-all;
 }
 
-.block__body {
-  margin-top: 1.25rem;
-  font-size: var(--fs-body);
-  line-height: 1.5;
+.case__p {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #000;
   word-break: keep-all;
 }
 
-.block__body > p + p,
-.block__body > ul { margin-top: 1.5rem; }
-.block__body strong { font-weight: 600; }
+/* Figma는 빈 줄 하나로 문단을 나눈다 — 줄 높이 한 칸(24px) */
+.case__p + .case__p { margin-top: 24px; }
+.case__p b { font-weight: 600; }
 
-.block__body ul { list-style: disc; padding-left: 1.5rem; }
-.block__body li + li { margin-top: 1.5rem; }
-.block__body li b { font-weight: 600; display: block; }
-
-/* ---------- 강조 박스 ---------- */
-
-.callout {
-  background: #f8f8f8;
-  border-radius: 12px;
-  padding: clamp(1.25rem, 4vw, 2rem);
-  margin-top: 1rem;
+.case__list {
+  margin: 0;
+  padding-left: 24px;
+  font-size: 16px;
+  line-height: 24px;
+  color: #000;
+  word-break: keep-all;
 }
-.callout--tint { background: #f5f5ff; }
 
-.callout__list { display: flex; flex-direction: column; gap: 1rem; }
-.callout__row { display: flex; align-items: flex-start; gap: 0.75rem; }
+.case__list > li { margin-bottom: 24px; }
+.case__list > li:last-child { margin-bottom: 0; }
+.case__list b { font-weight: 600; }
 
-.callout__num {
-  flex: none;
-  width: 20px; height: 20px;
+/* 태그 (752:7170) — 테두리 #d8d9ff, 글자 #868686 14 Medium */
+
+.case__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.case__tag {
+  padding: 6px 12px;
+  border: 1px solid var(--fx-accent-line);
   border-radius: 999px;
-  background: #9c9c9c;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--fx-mute-6);
+}
+
+/* ============================================================
+   Figma 프레임 재현 — 800 x 450 좌표계를 그대로 옮긴다.
+   1cqw = 컨테이너 폭의 1% = 800px일 때 8px.
+   그래서 Figma px ÷ 8 = cqw. 폭이 줄어도 비율이 그대로 유지된다.
+   ============================================================ */
+
+.fx {
+  container-type: inline-size;
+  position: relative;
+  margin: 0;              /* figure 기본 마진 제거 */
+  width: 100%;
+  aspect-ratio: 800 / 450;
+  border-radius: 1.5cqw;   /* 12 */
+  overflow: hidden;
+}
+
+.fx * { position: absolute; }
+.fx img { display: block; max-width: none; }
+
+/* ---- 752:7116 대표 화면 ---- */
+
+.fx--hero { background: #f5f5ff; }
+
+.fx--hero .fx__ui {
+  left: 13.841cqw;   /* 110.728 */
+  top: 4.886cqw;     /*  39.088 */
+  width: 72.408cqw;  /* 579.264 */
+  height: 46.368cqw; /* 370.944 */
+}
+
+/* ---- 752:7288 AS-IS ---- */
+
+.fx--asis { background: #f5f5f5; }
+
+.fx--asis .fx__box {
+  left: 15cqw;       /* 120 */
+  top: 6.25cqw;      /*  50 */
+  width: 70cqw;      /* 560 */
+  height: 42.5cqw;   /* 340 */
+  border: 0.125cqw solid #eee;
+  border-radius: 1.05cqw; /* 8.4 */
+  overflow: hidden;
+}
+
+.fx--asis .fx__map {
+  left: -0.125cqw;    /* -1 */
+  top: -0.125cqw;
+  width: 70cqw;       /* 560 */
+  height: 42.6155cqw; /* 340.924 */
+  /* Figma도 object-fit 없이 프레임에 맞춰 늘린다 (기본 fill) */
+}
+
+.fx--asis .fx__lens {
+  left: 17.9075cqw;    /* 143.26 */
+  top: 6.9388cqw;      /*  55.51 */
+  width: 31.3698cqw;   /* 250.958 */
+  height: 31.3698cqw;
+  border-radius: 50%;
+  background: #fff;
+  overflow: hidden;
+}
+
+.fx--asis .fx__lensInner {
+  left: -18.0325cqw;   /* -144.26 */
+  top: -7.0638cqw;     /*  -56.51 */
+  width: 70cqw;        /* 560 */
+  height: 42.6155cqw;  /* 340.924 */
+  overflow: hidden;
+}
+
+.fx--asis .fx__lensInner img {
+  left: -17.04%;
+  top: -7.87%;
+  width: 117.05%;
+  height: 107.87%;
+}
+
+.fx--asis .fx__cap {
+  top: 50.25cqw;       /* 402 */
+  left: 50%;
+  transform: translateX(-4.875cqw); /* Figma: calc(50% - 39px) */
+  font-size: 1.5cqw;   /* 12 */
+  font-weight: 400;
+  line-height: normal;
+  color: #818181;
+  white-space: nowrap;
+}
+
+/* ---- 752:7339 네이버 지도 API ---- */
+
+.fx--map { background: #f5f5f5; }
+
+.fx--map .fx__tit {
+  top: 6.5cqw;         /* 52 */
+  left: 50%;
+  transform: translateX(-19.5cqw); /* calc(50% - 156px) */
+  font-size: 2.25cqw;  /* 18 */
+  font-weight: 500;
+  line-height: 3.5cqw; /* 28 */
+  color: #606060;
+  white-space: nowrap;
+}
+
+.fx--map .fx__stack {
+  left: 9.75cqw;       /* 78 */
+  top: 12.0725cqw;     /* 96.58 */
+  width: 55.94cqw;     /* 447.52 */
+  height: 80.64cqw;    /* 645.12 */
+  border-radius: 1cqw; /* 8 */
+  overflow: hidden;
+}
+
+.fx--map .fx__shot {
+  left: 0;
+  width: 55.94cqw;     /* 447.52 */
+  height: 33.12cqw;    /* 264.96 */
+  overflow: hidden;
+}
+
+.fx--map .fx__shot--1 { top: 47.52cqw; }   /* 380.16 · image 869 */
+.fx--map .fx__shot--2 { top: 22.08cqw; }   /* 176.64 · image 868 */
+.fx--map .fx__shot--3 { top: 0; }          /*      0 · image 867 (맨 위) */
+
+.fx--map .fx__shot img {
+  left: 0;
+  top: -8.7%;
+  width: 102.97%;
+  height: 108.7%;
+}
+
+.fx--map .fx__chip {
+  left: 70.75cqw;      /* 566 */
+  padding: 2cqw;       /*  16 */
+  border-radius: 1cqw; /*   8 */
+  background: #1f1f1f;
+  font-size: 1.875cqw; /*  15 */
+  font-weight: 600;
+  line-height: normal;
   color: #fff;
-  font-size: 0.6875rem;
-  font-weight: 700;
+  white-space: nowrap;
+}
+
+.fx--map .fx__chip--1 { top: 16.3225cqw; } /* 130.58 */
+.fx--map .fx__chip--2 { top: 24.9475cqw; } /* 199.58 */
+.fx--map .fx__chip--3 { top: 33.5725cqw; } /* 268.58 */
+
+/* ---- 752:7403 Before / After ---- */
+
+.fx--ba { background: #f5f5ff; }
+
+.fx--ba .fx__before {
+  left: 8cqw;            /*  64 */
+  top: 14.9375cqw;       /* 119.5 */
+  width: 40cqw;          /* 320 */
+  height: 24.3517cqw;    /* 194.81 */
+  border: 0.0714cqw solid #eee; /* 0.571 */
+  border-radius: 0.6cqw; /* 4.8 */
+  opacity: 0.7;
+  overflow: hidden;
+}
+
+.fx--ba .fx__before img {
+  left: -0.0714cqw;
+  top: -0.0714cqw;
+  width: 40cqw;
+  height: 24.3518cqw;
+}
+
+.fx--ba .fx__after {
+  left: 52cqw;           /* 416 */
+  top: 14.9475cqw;       /* 119.58 */
+  width: 39.8931cqw;     /* 319.145 */
+  height: 25.5555cqw;    /* 204.444 */
+  object-fit: cover;
+}
+
+.fx--ba .fx__badge {
+  top: 8.1975cqw;        /* 65.58 */
+  width: 10cqw;          /* 80 */
+  padding: 1cqw 1.5cqw;  /* 8 / 12 */
+  border-radius: 12.375cqw; /* 99 */
+  font-size: 1.75cqw;    /* 14 */
+  font-weight: 600;
+  line-height: normal;
+  text-align: center;
+  color: #fff;
+}
+
+.fx--ba .fx__badge--before { left: 23cqw; background: #b1b1b1; }  /* 184 */
+.fx--ba .fx__badge--after  { left: 67cqw; background: #1f1f1f; }  /* 536 */
+
+.fx--ba .fx__cap {
+  top: 43.0725cqw;       /* 344.58 */
+  width: 40cqw;          /* 320 */
+  padding: 1.5cqw 2cqw;  /* 12 / 16 */
+  border: 0.125cqw solid #eee;
+  border-radius: 1cqw;
+  background: #fff;
+  font-size: 1.625cqw;   /* 13 */
+  font-weight: 600;
+  line-height: normal;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.fx--ba .fx__cap--before { left: 8cqw;  color: #7c7c7c; }
+.fx--ba .fx__cap--after  { left: 52cqw; color: #1f1f1f; }
+
+/* Figma에서 내용이 비어 있는 프레임 (752:7430 / 7499 / 7552) */
+/* ---- 모바일 플로우 영상 ---- */
+
+.fx--video {
+  margin-bottom: 80px;     /* 다음 블록(KPI)과의 간격 — .case__block 하단 여백과 맞춤 */
+  background: #eaeaea;     /* 영상 배경과 같은 색 — 로딩 중 이음매 방지 */
+}
+
+@media (max-width: 767px) {
+  .fx--video { margin-bottom: 56px; }
+}
+
+.fx--video .fx__video {
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.fx--video .fx__vbtn {
+  right: 2cqw;
+  bottom: 2cqw;
   display: grid;
   place-items: center;
-  margin-top: 0.3rem;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(31, 31, 31, 0.72);
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s;
 }
 
-.callout__text {
-  font-size: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
-  font-weight: 600;
-  line-height: 1.55;
-  color: var(--ink-body);
-  word-break: keep-all;
+.fx--video .fx__vbtn[hidden] { display: none; }
+.fx--video .fx__vbtn:hover { background: #1f1f1f; }
+.fx--video .fx__vbtn:focus-visible { outline: 2px solid var(--fx-accent); outline-offset: 3px; }
+
+.fx--video .fx__vicon {
+  position: static;
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
 }
 
-/* ---------- 도식 패널 ---------- */
+.fx--video .fx__vbtn[aria-pressed="true"] .fx__vicon--pause,
+.fx--video .fx__vbtn:not([aria-pressed="true"]) .fx__vicon--play { display: none; }
 
-.panel {
-  background: var(--fig);
-  border-radius: 20px;
-  padding: clamp(1.25rem, 4vw, 2rem);
-}
-.panel--tint { background: var(--fig-tint); }
-
-.card {
-  background: var(--card);
-  border-radius: 16px;
-  box-shadow: var(--shadow);
-  padding: clamp(1rem, 3vw, 1.5rem);
-}
-
-/* 이미지 도식 */
-.shot { display: flex; flex-direction: column; align-items: center; gap: 0.9rem; margin: 0; }
-
-.shot__img {
-  display: block;
-  width: auto;
-  max-width: 100%;
-  height: auto;
-  border-radius: 10px;
-}
-.shot__img--raise { box-shadow: 0 8px 28px rgba(17, 17, 26, 0.1); }
-
-.shot__cap {
-  font-size: 0.875rem;
-  color: var(--ink-mute);
-  text-align: center;
-  word-break: keep-all;
-}
-
-/* ---------- 그리드 ---------- */
-
-.grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(0.75rem, 2vw, 1rem); }
-.grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(0.75rem, 2vw, 1rem); }
-
-/* ---------- VOC 막대 차트 ---------- */
-
-.card__title { font-size: 1.0625rem; font-weight: 600; color: #1b1b1b; }
-.card__sub { margin-top: 0.25rem; font-size: 0.8125rem; color: var(--ink-mute); }
-
-.bars { display: flex; flex-direction: column; gap: 0.85rem; margin-top: 1.25rem; }
-
-.bar { display: grid; grid-template-columns: minmax(72px, 5.5rem) minmax(0, 1fr) 2.5rem; align-items: center; gap: 0.75rem; }
-.bar__label { font-size: 0.8125rem; color: var(--ink-mute); word-break: keep-all; }
-.bar__track { height: 8px; border-radius: 4px; background: var(--accent-soft); overflow: hidden; }
-.bar__fill { display: block; height: 100%; border-radius: 4px; background: var(--accent); }
-.bar__val { font-size: 0.8125rem; font-weight: 600; color: #1b1b1b; text-align: right; }
-
-.insight {
-  margin-top: 1.25rem;
-  background: #f9f9f9;
-  border-radius: 6px;
-  padding: 0.7rem 0.75rem;
-  text-align: center;
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: var(--ink-mute);
-  word-break: keep-all;
-}
-
-/* ---------- 비즈니스 영향 검토 ---------- */
-
-.checks { display: flex; flex-direction: column; gap: 0.75rem; margin-top: 1.25rem; }
-
-.check {
-  background: #f7f5fe;
-  border-radius: 10px;
-  padding: 0.85rem 1rem;
-}
-.check__k { font-size: 0.9375rem; font-weight: 600; color: #1b1b1b; }
-.check__k i { font-style: normal; color: var(--accent); margin-right: 0.35rem; }
-.check__v { margin-top: 0.3rem; font-size: 0.8125rem; color: var(--ink-mute); line-height: 1.5; word-break: keep-all; }
-
-/* ---------- 인터뷰 비교 ---------- */
-
-.interview { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(0.75rem, 2vw, 1.5rem); }
-
-.tag {
-  display: inline-block;
-  font-size: 0.6875rem;
-  font-weight: 600;
-  color: #4b3fa8;
-  background: var(--accent-soft);
-  border-radius: 999px;
-  padding: 0.25rem 0.6rem;
-}
-
-.interview__quote {
-  margin-top: 0.85rem;
-  font-size: clamp(0.9375rem, 0.9rem + 0.3vw, 1.0625rem);
-  font-weight: 600;
-  line-height: 1.5;
-  word-break: keep-all;
-}
-
-.interview__rows { margin-top: 1.35rem; display: flex; flex-direction: column; gap: 1rem; }
-.interview__k { font-size: 0.6875rem; color: var(--ink-faint); }
-.interview__v { font-size: 0.875rem; line-height: 1.5; margin-top: 0.25rem; color: #2b2b2b; word-break: keep-all; }
-
-/* 다크 요약 스트립 */
-.strip {
-  margin-top: clamp(0.75rem, 2vw, 1.5rem);
-  background: var(--dark);
+.case__slot {
+  width: 100%;
+  aspect-ratio: 800 / 450;
   border-radius: 12px;
-  padding: 1.15rem 1.35rem;
+  background: var(--fx-surface-v);
+}
+
+/* ---- 강조 박스 (752:7287 Problem / 752:7294 Hypothesis) ---- */
+
+.case__box {
+  padding: 32px;
+  border-radius: 12px;
+  background: #f8f8f8;
+}
+
+.case__box--tint { background: var(--fx-surface-v); }
+
+.case__boxList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: caseNum;
+}
+
+.case__boxList > li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 28px;
+  color: #373737;
+  word-break: keep-all;
+}
+
+.case__boxList--num > li::before {
+  counter-increment: caseNum;
+  content: counter(caseNum);
+  flex: 0 0 auto;
+  width: 20px;
+  height: 20px;
+  border-radius: 99px;
+  background: #9c9c9c;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 20px;
   text-align: center;
   color: #fff;
-  font-size: 0.875rem;
+}
+
+/* ============================================================
+   752:7179 — 800 x 316 프레임 안에 736폭 2단 카드
+   (752:7195 x=32 y=42 w=736 / 카드 356 : 368, gap 12)
+   여기도 1cqw = 8px 기준으로 Figma px ÷ 8 = cqw.
+   ============================================================ */
+
+.case__panel {
+  container-type: inline-size;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 800 / 316;
+  border-radius: 1.5cqw;      /* 12 */
+  background: var(--fx-surface);
+}
+
+.case__duo {
+  position: absolute;
+  left: 4cqw;                 /* 32 */
+  top: 5.25cqw;               /* 42 */
+  width: 92cqw;               /* 736 */
+  display: grid;
+  grid-template-columns: 44.5cqw 46cqw;  /* 356 : 368 */
+  gap: 1.5cqw;                /* 12 */
+  align-items: stretch;
+}
+
+.case__card {
+  padding: 2cqw 2cqw 1.75cqw; /* 16 / 16 / 14 */
+  border: 0.125cqw solid var(--fx-line-3);
+  border-radius: 1.25cqw;     /* 10 */
+  background: #fff;
+}
+
+.case__card--impact { padding: 2cqw; }
+
+.case__cardTit {
+  margin: 0;
+  font-size: 1.75cqw;         /* 14 */
   font-weight: 600;
-  line-height: 1.5;
+  line-height: 2.125cqw;      /* 17 */
+  color: #1b1b1b;
+}
+
+.case__card--impact .case__cardTit { color: var(--fx-ink-3); }
+
+.case__cardSub {
+  margin: 0.5cqw 0 2cqw;      /* 4 / 16 */
+  font-size: 1.25cqw;         /* 10 */
+  font-weight: 400;
+  line-height: 1.5cqw;        /* 12 */
+  color: var(--fx-mute-7);
+}
+
+/* VOC 막대 (752:7196) — 행 높이 16, 행 간격 10 */
+
+.bars { display: flex; flex-direction: column; gap: 1.25cqw; }
+
+.bars__row {
+  display: grid;
+  grid-template-columns: 8.25cqw 26.5cqw 3cqw;  /* 66 / 212 / 24 */
+  gap: 1.25cqw;               /* 10 */
+  align-items: center;
+  height: 2cqw;               /* 16 */
+}
+
+.bars__label {
+  display: block;
+  font-size: 1.25cqw;         /* 10 */
+  font-weight: 400;
+  line-height: normal;
+  color: var(--fx-mute-7);
+}
+
+.bars__track {
+  display: block;
+  height: 1cqw;               /* 8 */
+  border-radius: 0.5cqw;      /* 4 */
+  background: #f0ebfc;
+  overflow: hidden;
+}
+
+.bars__fill {
+  display: block;
+  height: 100%;
+  border-radius: 0.5cqw;
+  background: var(--fx-accent-4);
+}
+
+.bars__val {
+  display: block;
+  font-size: 1.25cqw;         /* 10 */
+  font-weight: 600;
+  line-height: normal;
+  text-align: right;
+  color: #1b1b1b;
+}
+
+/* Insight (752:7231) — 랭킹 아래 19, px 7 / py 8 */
+.case__insight {
+  margin: 2.375cqw 0 0;       /* 19 */
+  padding: 1cqw 0.875cqw;     /* 8 / 7 */
+  border-radius: 0.5cqw;      /* 4 */
+  background: #f9f9f9;
+  font-size: 1.5cqw;          /* 12 */
+  font-weight: 600;
+  line-height: 1.75cqw;       /* 14 */
+  text-align: center;
+  color: var(--fx-mute-7);
+}
+
+/* 비즈니스 영향 검토 (752:7233) */
+
+.impact {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25cqw;               /* 10 */
+  margin: 1.5cqw 0 0;         /* 12 */
+  padding: 0;
+  list-style: none;
+}
+
+.impact > li {
+  padding: 1cqw 1.5cqw;       /* 8 / 12 */
+  border-radius: 1cqw;        /* 8 */
+  background: var(--fx-accent-bg-2);
+  font-size: 1.5cqw;          /* 12 */
+  line-height: 2.5cqw;        /* 20 */
+  color: var(--fx-ink-3);
   word-break: keep-all;
 }
 
-/* ---------- 지표 카드 ---------- */
+.impact b { display: block; font-weight: 700; }
+.impact i { font-style: normal; font-weight: 700; color: var(--fx-accent-4); }
 
-.metrics { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(0.75rem, 2vw, 1rem); }
-.metric--wide { grid-column: 1 / -1; }
+/* ---- 인터뷰 (752:7244 / 752:7265) — 800 x 316, bg #f5f5f5 ---- */
+
+.quote {
+  padding: 54px 62px 62px;
+  border-radius: 12px;
+  background: var(--fx-surface);
+}
+
+/* Figma: 752:7244 아래 316 → 752:7265 위 356, 즉 40px */
+.quote + .quote { margin-top: 40px; }
+
+.quote__who {
+  margin: 0 0 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--fx-accent);
+}
+
+.quote__say {
+  margin: 0 0 20px;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--fx-ink);
+  word-break: keep-all;
+}
+
+.quote__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.quote__cell {
+  padding: 16px;
+  border: 1px solid var(--fx-line-2);
+  border-radius: 12px;
+  background: #fff;
+}
+
+.quote__key {
+  margin: 0 0 4px;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--fx-mute);
+}
+
+.quote__val {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 18px;
+  color: var(--fx-ink);
+  word-break: keep-all;
+}
+
+.quote__sum {
+  margin: 16px 0 0;
+  padding: 16px 20px;
+  border-radius: 10px;
+  background: var(--fx-dark-2);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 18px;
+  text-align: center;
+  color: #fff;
+  word-break: keep-all;
+}
+
+.quote__sum b { font-weight: 600; color: var(--fx-accent-on-dark); }
+.quote__sum i { font-style: normal; color: var(--fx-accent-on-dark); }
+
+/* ============================================================
+   752:7295 지표 칩 — 800 x 316, 칩 110x52를 절대 좌표로 배치
+   x 219 / 345 / 471,  y 52 / 120,  ROAS y 188 w 362
+   ============================================================ */
+
+.metrics {
+  container-type: inline-size;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 800 / 316;
+  border-radius: 1.5cqw;          /* 12 */
+  background: var(--fx-surface);
+  overflow: hidden;
+}
 
 .metric {
-  background: var(--card);
-  border-radius: 12px;
-  box-shadow: var(--shadow);
-  padding: 1.05rem 1.15rem;
-}
-.metric--dark { background: #1c1c1c; box-shadow: none; }
-
-.metric__name { display: flex; align-items: center; gap: 0.45rem; font-size: 1.0625rem; font-weight: 600; }
-.metric__desc { margin-top: 0.45rem; font-size: 0.875rem; color: var(--ink-body); line-height: 1.5; word-break: keep-all; }
-
-.metric--dark .metric__name { color: #fff; }
-.metric--dark .metric__desc { color: rgba(255, 255, 255, 0.82); }
-
-/* ---------- 지도 옵션 ---------- */
-
-.mapopt { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.65fr); gap: clamp(1rem, 3vw, 2rem); align-items: center; }
-.mapopt__chips { display: flex; flex-direction: column; gap: 1rem; }
-
-.chip-dark {
-  background: #262626;
-  color: #fff;
-  border-radius: 12px;
-  padding: 0.9rem 1.15rem;
-  font-size: clamp(0.9375rem, 0.9rem + 0.3vw, 1.125rem);
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 0.75cqw;                   /* 6 */
+  width: 13.75cqw;                /* 110 */
+  padding: 2cqw;                  /* 16 */
+  border: 0.125cqw solid var(--fx-line);
+  border-radius: 1cqw;            /* 8 */
+  background: #fff;
+  font-size: 1.875cqw;            /* 15 */
   font-weight: 600;
-  text-align: center;
+  line-height: normal;
+  color: #000;
+  white-space: nowrap;
+  justify-content: center;
 }
 
-/* ---------- 표 ---------- */
-
-.table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: 16px; background: var(--card); box-shadow: var(--shadow); }
-
-.ctable { width: 100%; min-width: 560px; border-collapse: collapse; font-size: 0.875rem; }
-.ctable th, .ctable td { padding: 1rem; text-align: center; line-height: 1.5; word-break: keep-all; }
-.ctable th { font-weight: 600; color: var(--accent); background: var(--accent-bg); }
-.ctable td { color: #2b2b2b; border-top: 1px solid var(--line); }
-.ctable th + th, .ctable td + td { border-left: 1px solid var(--line); }
-
-/* ---------- Before / After ---------- */
-
-.ba { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(1rem, 3vw, 2rem); align-items: start; }
-.ba__col { display: flex; flex-direction: column; align-items: center; gap: 1rem; }
-
-.ba__badge {
-  font-size: 0.9375rem;
-  font-weight: 600;
-  padding: 0.5rem 1.5rem;
-  border-radius: 999px;
-  background: #d0d0d0;
-  color: #fff;
+.metric i {
+  font-style: normal;
+  font-size: 2cqw;                /* 16 */
+  line-height: 1;
 }
-.ba__badge--after { background: #111; }
 
-.ba__cap {
+.metric--c1 { left: 27.375cqw; }  /* 219 */
+.metric--c2 { left: 43.125cqw; }  /* 345 */
+.metric--c3 { left: 58.875cqw; }  /* 471 */
+.metric--r1 { top: 6.5cqw; }      /*  52 */
+.metric--r2 { top: 15cqw; }       /* 120 */
+
+/* ROAS (752:7326) — 362폭 검정 박스, 좌측 정렬 2줄 */
+.metric--wide {
+  left: 27.375cqw;                /* 219 */
+  top: 23.5cqw;                   /* 188 */
+  width: 45.25cqw;                /* 362 */
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1cqw;                      /* 8 */
+  border: 0;
+  background: var(--fx-dark);
+  white-space: normal;
+}
+
+.metric--wide .metric__top {
+  display: flex;
+  align-items: center;
+  gap: 0.75cqw;                   /* 6 */
   width: 100%;
-  background: var(--card);
+  color: #fff;
+  white-space: nowrap;
+}
+
+.metric__note {
+  width: 100%;
+  font-size: 1.875cqw;            /* 15 */
+  font-weight: 700;
+  line-height: normal;
+  color: #fff;
+  white-space: nowrap;
+}
+
+/* ---- 스크래핑 대응 표 (752:7361) ---- */
+
+.ctable {
+  padding: 42px 84px;
   border-radius: 12px;
-  box-shadow: var(--shadow);
-  padding: 0.9rem 1rem;
+  background: var(--fx-surface);
+}
+
+.ctable__tit {
+  margin: 0 0 28px;
+  font-size: 20px;
+  font-weight: 600;
   text-align: center;
-  font-size: 0.875rem;
-  color: var(--ink-mute);
+  color: var(--fx-ink);
+}
+
+.ctable table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid var(--fx-line);
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.ctable th {
+  padding: 16px;
+  background: var(--fx-surface-v);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 18px;
+  text-align: center;
+  color: var(--fx-accent-3);
+}
+
+.ctable td {
+  padding: 20px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 18px;
+  text-align: center;
+  color: var(--fx-ink-2);
   word-break: keep-all;
 }
-.ba__cap--strong { color: #111; font-weight: 600; }
 
-/* ---------- 모바일 화면 ---------- */
+.ctable th,
+.ctable td { border-bottom: 1px solid var(--fx-line); }
 
-.phones { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(1rem, 4vw, 3rem); justify-items: center; }
-.phones img { display: block; width: 100%; max-width: 260px; height: auto; border-radius: 14px; box-shadow: 0 10px 30px rgba(17, 17, 26, 0.12); }
+.ctable th + th,
+.ctable td + td { border-left: 1px solid var(--fx-line); }
 
-/* ---------- 성과 ---------- */
+.ctable tr:last-child td { border-bottom: 0; }
 
-.results { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(0.75rem, 2vw, 1rem); }
-
-.result { background: var(--card); border-radius: 16px; box-shadow: var(--shadow); padding: 1.35rem 1.25rem; }
-.result__tag {
-  display: inline-block;
-  font-size: 0.625rem;
-  font-weight: 700;
-  letter-spacing: 0.03em;
-  color: #4b3fa8;
-  background: var(--accent-soft);
-  border-radius: 999px;
-  padding: 0.28rem 0.6rem;
+/* Strategy Insight (752:7399) — bg #393939 */
+.ctable__insight {
+  margin: 16px 0 0;
+  padding: 14px 20px;
+  border-radius: 8px;
+  background: var(--fx-dark-2);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  text-align: center;
+  color: #fff;
+  word-break: keep-all;
 }
-.result__num {
-  margin-top: 0.9rem;
-  font-size: clamp(2.25rem, 1.6rem + 2.6vw, 3rem);
-  font-weight: 700;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-  color: var(--accent-vivid);
-}
-.result__label { margin-top: 1.15rem; font-size: 1.0625rem; font-weight: 600; word-break: keep-all; }
-.result__desc { margin-top: 0.55rem; font-size: 0.8125rem; color: var(--ink-mute); line-height: 1.6; word-break: keep-all; }
 
-/* ---------- 푸터 ---------- */
+/* ---- 결과 KPI (752:7954) — 카드 220px, 숫자 40px #6b6fff ---- */
 
-.case-foot {
-  border-top: 1px solid var(--line);
-  margin-top: clamp(1rem, 4vw, 2rem);
-  padding-block: clamp(2rem, 6vw, 3.5rem) clamp(3rem, 8vw, 5rem);
+.kpi {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  font-size: 0.875rem;
-  color: var(--ink-mute);
-}
-.case-foot a { font-weight: 600; color: #111; }
-
-/* ---------- 반응형 ---------- */
-
-@media (max-width: 760px) {
-  .interview,
-  .metrics,
-  .grid-2,
-  .grid-3,
-  .results,
-  .ba,
-  .mapopt { grid-template-columns: minmax(0, 1fr); }
-
-  .metric--wide { grid-column: auto; }
-  .mapopt__chips { flex-direction: row; flex-wrap: wrap; gap: 0.6rem; }
-  .mapopt__chips .chip-dark { flex: 1 1 auto; padding: 0.7rem 0.9rem; }
-  .bar { grid-template-columns: minmax(0, 1fr) 2.5rem; }
-  .bar__track { grid-column: 1 / -1; }
-  .case-meta { gap: 0.4rem 1.25rem; }
+  justify-content: center;
+  gap: 16px;
+  padding: 58px 54px;
+  border-radius: 12px;
+  background: var(--fx-surface);
 }
 
-@media (max-width: 420px) {
-  .phones { grid-template-columns: minmax(0, 1fr); }
+.kpi__card {
+  width: 220px;
+  padding: 20px 24px;
+  border-radius: 16px;
+  background: #fff;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  * { animation: none !important; transition: none !important; }
+.kpi__tag {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 16px;
+  background: var(--fx-accent-bg);
+  font-size: 8px;
+  font-weight: 600;
+  color: var(--fx-accent);
+}
+
+.kpi__num {
+  margin: 8px 0 18px;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--fx-accent-2);
+}
+
+.kpi__lab {
+  margin: 0 0 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #000;
+  word-break: keep-all;
+}
+
+.kpi__desc {
+  margin: 0;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 16px;
+  color: var(--fx-mute-2);
+  word-break: keep-all;
+}
+
+/* ============================================================
+   반응형 — 폭이 좁아질 때만 재배치한다
+   ============================================================ */
+
+@media (max-width: 900px) {
+  .case__duo { grid-template-columns: 1fr; }
+  .kpi { flex-wrap: wrap; }
+  .kpi__card { width: 100%; }
+  .quote__grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 767px) {
+  .case { padding: 104px 0 100px; }
+  .case__block { padding: 28px 0 56px; }
+  .case__h2 { font-size: 22px; line-height: 32px; }
+  .case__p, .case__list { font-size: 15px; line-height: 23px; }
+  .case__meta { gap: 10px 20px; }
+  .case__box { padding: 22px; }
+  .case__boxList > li { font-size: 16px; line-height: 25px; }
+  .quote { padding: 26px 22px; }
+  .quote__say { font-size: 17px; line-height: 26px; }
+  .ctable { padding: 24px 18px; }
+  .ctable th, .ctable td { padding: 12px 8px; font-size: 12px; line-height: 17px; }
+  .kpi { padding: 24px 18px; }
+  .kpi__num { font-size: 34px; }
 }

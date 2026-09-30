@@ -39,16 +39,30 @@ def quoted(js):
     return ' '.join(out)
 
 
+PAGES = ['main.html', 'work-attracker.html']
+JS = ['data/answers.js', 'assets/js/case-video.js']
+
+
 def used_chars():
-    html = open(SITE + 'main.html', encoding='utf-8').read()
+    """모든 페이지의 화면 텍스트 + JS 문자열 리터럴에서 실제 쓰는 글자만 모은다."""
+    text = ''
+    for page in PAGES:
+        path = SITE + page
+        if not os.path.exists(path):
+            continue
+        html = open(path, encoding='utf-8').read()
 
-    body = re.sub(r'<script[\s\S]*?</script>', '', html)
-    body = re.sub(r'<style[\s\S]*?</style>', '', body)
-    text = H.unescape(re.sub(r'<[^>]+>', ' ', body))
+        body = re.sub(r'<script[\s\S]*?</script>', '', html)
+        body = re.sub(r'<style[\s\S]*?</style>', '', body)
+        text += ' ' + H.unescape(re.sub(r'<[^>]+>', ' ', body))
 
-    inline = ''.join(re.findall(r'<script>([\s\S]*?)</script>', html))
-    text += ' ' + quoted(strip_comments(inline))
-    text += ' ' + quoted(strip_comments(open(SITE + 'data/answers.js', encoding='utf-8').read()))
+        inline = ''.join(re.findall(r'<script>([\s\S]*?)</script>', html))
+        text += ' ' + quoted(strip_comments(inline))
+
+    for rel in JS:
+        path = SITE + rel
+        if os.path.exists(path):
+            text += ' ' + quoted(strip_comments(open(path, encoding='utf-8').read()))
 
     return {ord(c) for c in text if ord(c) > 0x20}
 

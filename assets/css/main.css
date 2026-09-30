@@ -909,10 +909,53 @@ textarea { font: inherit; color: inherit; resize: none; }
 
 html { scroll-behavior: smooth; }
 
-#top, #work, #ailab, #about { scroll-margin-top: 108px; }
+/* 앵커 이동 위치 — 레퍼런스 기준으로 섹션 콘텐츠가 뷰포트 상단 126px에서
+   시작하도록, 섹션마다 다른 상단 패딩을 스크롤 마진으로 상쇄한다. */
+#top   { scroll-margin-top: 0; }
+#work  { scroll-margin-top: -9px; }   /* padding-top 135 → 콘텐츠 126 */
+/* AI Lab · About은 섹션 타이틀이 네비 옆에 오도록 더 위에서 멈춘다 (콘텐츠 56) */
+#ailab { scroll-margin-top: -30px; }  /* padding-top 86 */
+#about { scroll-margin-top: -79px; }  /* padding-top 135 → 56 (마지막 섹션이라 페이지 끝에서 잘릴 수 있음) */
+
+@media (max-width: 767px) {
+  /* 모바일은 네비가 낮아 콘텐츠 시작점을 96px로 */
+  #work  { scroll-margin-top: 8px; }   /* padding-top 88 */
+  #ailab { scroll-margin-top: 10px; }  /* padding-top 86 */
+  #about { scroll-margin-top: 8px; }   /* padding-top 88 */
+}
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
+}
+
+/* ============================================================
+   섹션 공통 타이틀 — 세리프 + 볼드 두 톤
+   (#work의 "I specialize in"과 같은 계열)
+   ============================================================ */
+
+.secTit {
+  width: min(1232px, 100% - 48px);
+  margin: 0 auto 34px;
+  font-size: clamp(26px, 2.7vw, 38px);
+  font-weight: 600;  /* 산세리프 부분(Lab / me)만 한 단계 낮춤 */
+  line-height: 1.2;
+  letter-spacing: -0.8px;
+  color: var(--c-head);
+}
+
+/* 이미 컨테이너 안에 있는 경우(About) 폭을 다시 잡지 않는다 */
+.secTit--flush { width: auto; margin-left: 0; margin-right: 0; }
+
+/* AI Lab과 동일하게 21px */
+.about .secTit { margin-bottom: 21px; }
+
+.secTit__serif {
+  font-family: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  font-weight: 700;
+}
+
+@media (max-width: 767px) {
+  .secTit { margin-bottom: 24px; }
 }
 
 /* ============================================================
@@ -929,130 +972,55 @@ html { scroll-behavior: smooth; }
   margin: 0 auto;
 }
 
-.about__label {
-  margin-bottom: 22px;
-  font-size: 11.5px;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  color: var(--c-hint);
-}
-
+/* Figma 레퍼런스(image 952) 실측: 1205 x 603 = 약 2 : 1.
+   4열 등분 + 2행 등분, gap 18px(1024 렌더에서 15~16px → 1232 기준 18px).
+   3열 아래 칸만 191 : 91 로 분할된다. */
 .bento {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-auto-rows: 150px;
-  gap: 14px;
+  grid-template-rows: repeat(2, 1fr);
+  gap: 18px;
+  aspect-ratio: 1205 / 603;
 }
 
+/* 컬러 — AI Lab 카드(.card__art)와 같은 #eef1f3 + 같은 헤어라인 */
 .bt {
-  display: flex;
-  flex-direction: column;
-  padding: 24px 26px;
-  border: 1px solid rgba(23, 23, 23, 0.07);
   border-radius: 24px;
-  background: #f6f8f9;
+  background: #eef1f3;
+  box-shadow: inset 0 0 0 1px rgba(23, 23, 23, 0.05);
   overflow: hidden;
+  min-height: 0;
 }
 
-/* 타일 배치 — 큰 문장 하나 + 사진 + 작은 조각들 */
-.bt--lead    { grid-column: span 2; grid-row: span 2; justify-content: space-between; }
-.bt--photo   { grid-column: span 1; grid-row: span 2; align-items: center; justify-content: center; }
-.bt--domain  { grid-column: span 1; }
-.bt--tools   { grid-column: span 1; }
-.bt--focus   { grid-column: span 2; }
-.bt--contact { grid-column: span 2; justify-content: space-between; }
-
-.bt--lead {
-  background: linear-gradient(150deg, #eef3f5 0%, #f8fafb 62%);
-}
-
-.bt__lead {
-  font-size: clamp(20px, 2.1vw, 28px);
-  font-weight: 600;
-  line-height: 1.45;
-  letter-spacing: -0.5px;
-  color: var(--c-head);
-  word-break: keep-all;
-}
-
-.bt__name {
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: 30px;
-  line-height: 1;
-  color: var(--c-head);
-}
-
-.bt__cap {
-  margin-bottom: 12px;
-  font-size: 11.5px;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  color: var(--c-hint);
-}
-
-.bt__body {
-  font-size: 14.5px;
-  line-height: 24px;
-  color: var(--c-lead);
-  word-break: keep-all;
-}
-
-.bt__tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.bt__tags li {
-  padding: 6px 11px;
-  border-radius: 999px;
-  background: #fff;
-  box-shadow: inset 0 0 0 1px rgba(23, 23, 23, 0.06);
-  font-size: 12.5px;
-  color: var(--c-head);
-}
-
-/* 아직 안 채운 자리 */
-.bt__tags li.is-todo,
-.bt__slot {
-  color: var(--c-hint);
-  font-size: 12.5px;
-}
-
-.bt--photo { background: #eef1f3; }
-
-.bt__mail {
-  align-self: flex-start;
-  padding: 10px 16px;
-  border-radius: 999px;
-  background: var(--c-head);
-  color: #fff;
-  font-size: 13px;
-  transition: transform 0.25s var(--ease-out), opacity 0.25s var(--ease-soft);
-}
-
-.bt__mail:hover { transform: translateY(-1px); opacity: 0.88; }
+/* 배치 — 2·3열은 세로로 긴 한 장, 1·4열만 위/아래 2분할 */
+.bt--a { grid-column: 1; grid-row: 1; }
+.bt--e { grid-column: 1; grid-row: 2; }
+.bt--b { grid-column: 2; grid-row: 1 / span 2; }
+.bt--c { grid-column: 3; grid-row: 1 / span 2; }
+.bt--d { grid-column: 4; grid-row: 1; }
+.bt--h { grid-column: 4; grid-row: 2; }
 
 @media (max-width: 1024px) {
-  .bento { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 144px; }
-  .bt--lead  { grid-column: span 2; grid-row: span 2; }
-  .bt--photo { grid-column: span 1; grid-row: span 2; }
-  .bt--focus { grid-column: span 2; }
-  .bt--contact { grid-column: span 2; }
+  /* 2열에서는 2:1 비율을 유지할 수 없어 행 높이로 전환 */
+  .bento {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: none;
+    grid-auto-rows: 282px;
+    aspect-ratio: auto;
+  }
+  .bt--a { grid-column: 1; grid-row: 1; }
+  .bt--b { grid-column: 2; grid-row: 1 / span 2; }
+  .bt--c { grid-column: 1; grid-row: 2 / span 2; }
+  .bt--d { grid-column: 2; grid-row: 3; }
+  .bt--e { grid-column: 1; grid-row: 4; }
+  .bt--h { grid-column: 2; grid-row: 4; }
 }
 
 @media (max-width: 767px) {
   .about { padding: 88px 0 100px; }
-  .bento { grid-template-columns: 1fr; grid-auto-rows: auto; gap: 10px; }
-  .bt { padding: 20px 20px; min-height: 108px; }
-  .bt--lead, .bt--photo, .bt--domain,
-  .bt--tools, .bt--focus, .bt--contact { grid-column: span 1; grid-row: auto; }
-  .bt--lead { gap: 16px; }
-  .bt--photo { min-height: 180px; }
+  .bento { grid-template-columns: 1fr; grid-auto-rows: 188px; gap: 12px; }
+  .bt--a, .bt--d, .bt--e, .bt--h { grid-column: 1; grid-row: auto; }
+  .bt--b, .bt--c { grid-column: 1; grid-row: auto; grid-row-end: span 2; }
 }
 
 /* ============================================================
@@ -1158,7 +1126,7 @@ html { scroll-behavior: smooth; }
   .chips { justify-content: flex-start; }
   /* 1행 3열을 유지하면 카드가 좁아 제목 줄 수가 카드마다 달라진다.
      4줄 높이로 바닥을 깔아 카드 높이·설명 위치를 나란히 맞춘다. */
-  .card__title { min-height: calc(4em * 1.4); }
+  .card__day   { font-size: clamp(13px, 3.6vw, 52px); }
 }
 
 /* ============================================================
@@ -1233,7 +1201,8 @@ html { scroll-behavior: smooth; }
   display: block;
   width: 100%;
   min-height: 69.6px;
-  padding: 21.6px 0;
+  /* 아래쪽만 1/4 줄여 제목과 한 줄 소개 사이를 좁힌다 (21.6 → 16.2) */
+  padding: 21.6px 0 16.2px;
   text-align: left;
 }
 
@@ -1285,19 +1254,47 @@ html { scroll-behavior: smooth; }
 .acc__sub {
   display: block;
   font-size: 17px;
-  font-weight: 700;
   line-height: 28px;
-  letter-spacing: -0.02em;
+  font-weight: 700;
+  /* 라틴용 -0.02em은 17px 볼드 한글에서 글자 사이가 1px 미만으로 붙어
+     획이 뭉개져 보인다. 한글 줄이므로 자간을 0으로 둔다. */
+  letter-spacing: 0;
   color: var(--c-head);
   word-break: keep-all;
 }
 
-.acc__desc {
-  margin-top: 20px;
-  padding-bottom: 28px;
-  font-size: 17px;
+/* 상세 페이지가 있는 항목은 링크 — 겉모습은 일반 텍스트와 동일하게 */
+.acc__link {
+  display: inline;
+  color: inherit;
+  text-decoration: none;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* 쉼표 대신 굵기로 구분 — 앞쪽(분류)은 두 단계 낮게, 사이는 공백 두 칸만큼 */
+.acc__subKind {
   font-weight: 500;
-  line-height: 28px;
+  margin-right: 0.23em; /* 17px 기준 공백 한 칸 = 3.88px */
+}
+
+.acc__desc {
+  /* 타이틀과의 간격: 20 → 13 → 현재의 1/3인 4 */
+  margin-top: 4px;
+  padding-bottom: 28px;
+  /* 한 줄 소개(17)보다 한 단계 낮은 16 */
+  font-size: 16px;
+  /* 한 줄 소개보다 한 단계 낮은 400 */
+  font-weight: 400;
+  line-height: 26px;
   letter-spacing: -0.02em;
   color: var(--c-lead);
   word-break: keep-all;
@@ -1456,8 +1453,9 @@ html { scroll-behavior: smooth; }
   .acc__tit { font-size: 24px; }
   .acc__tit::after { width: 16px; height: 16px; left: calc(100% + 6px); }
   .slogan__label { margin-bottom: 18px; }
-  .acc__head { min-height: 58px; padding: 16px 0; }
-  .acc__sub, .acc__desc { font-size: 15px; line-height: 24px; }
+  .acc__head { min-height: 58px; padding: 16px 0 12px; }
+  .acc__sub { font-size: 15px; line-height: 24px; }
+  .acc__desc { font-size: 14px; line-height: 22px; }
 }
 
 /* ============================================================
@@ -1470,14 +1468,19 @@ html { scroll-behavior: smooth; }
    ============================================================ */
 
 .cards {
-  padding: 0 0 140px;
+  /* 레퍼런스에서 WORK 목록 끝 → AI Lab 타이틀 간격이 221px.
+     위 섹션(.slogan)의 하단 패딩 135px에 86px을 더해 맞춘다. */
+  padding: 86px 0 140px;
   background: #fff;
 }
+
+/* 타이틀 아래 → 카드 위: 43 → 14(1/3) → 21(1/2만큼 증가) */
+.cards .secTit { margin-bottom: 21px; }
 
 .cards__row {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  gap: 32px;
   width: min(1232px, 100% - 48px);
   margin: 0 auto;
 }
@@ -1499,7 +1502,22 @@ html { scroll-behavior: smooth; }
   transition: 0.3s ease-in-out;
 }
 
-/* 실제 이미지가 들어올 때 쓸 자리 */
+/* 호버 영역은 카드 전체가 아니라 아트(이미지) 영역만 */
+.card__art:hover .card__day,
+.card__art:focus-within .card__day { color: #fff; }
+
+.card__day {
+  position: relative;
+  z-index: 10; /* 프로스티드 레이어 위로 */
+  transition: color 0.3s ease-in-out;
+  font-size: 52px;
+  font-weight: 800;
+  line-height: 1.3;
+  letter-spacing: -0.04em;
+  color: #111;
+  text-align: center;
+}
+
 .card__img {
   position: absolute;
   inset: 0;
@@ -1524,38 +1542,22 @@ html { scroll-behavior: smooth; }
   transition: 0.3s ease-in-out;
 }
 
-.card:hover .card__art::after,
-.card:focus-within .card__art::after {
+.card__art:hover::after,
+.card__art:focus-within::after {
   opacity: 1;
   visibility: visible;
 }
 
 /* 글자와 배지는 z-index 10으로 레이어 위에 남는다 (원본과 동일) */
-.card:hover .card__day,
-.card:focus-within .card__day { color: #fff; }
-
-.card__day {
-  position: relative;
-  z-index: 10; /* 프로스티드 레이어 위로 */
-  transition: color 0.3s ease-in-out;
-  font-size: 52px;
-  font-weight: 800;
-  line-height: 1.3;
-  letter-spacing: -0.04em;
-  color: #111;
-  text-align: center;
-}
-
 .card__info { margin-top: 28px; }
 
 .card__title {
   display: block;
-  /* 제목 줄 수가 카드마다 달라 소제목 높이가 어긋난다.
-     3줄 높이로 바닥을 깔아 세 카드의 소제목을 나란히 맞춘다. */
-  min-height: calc(36.4px * 3);
-  font-size: 26px;
+  /* 바닥값(min-height)을 두면 줄 수가 적은 카드에 빈 줄이 남아
+     소제목과의 간격이 카드마다 달라진다. 간격을 맞추려고 뺐다. */
+  font-size: 24px;
   font-weight: 700;
-  line-height: 36.4px;
+  line-height: 33.6px;
   letter-spacing: -0.42px;
   color: #333;
   word-break: keep-all;
@@ -1563,9 +1565,9 @@ html { scroll-behavior: smooth; }
 
 .card__desc {
   margin-top: 16px;
-  font-size: 20px;
+  font-size: 17px;
   font-weight: 500;
-  line-height: 28px;
+  line-height: 23.8px;
   letter-spacing: -0.42px;
   color: #888;
   word-break: keep-all;
@@ -1576,12 +1578,11 @@ html { scroll-behavior: smooth; }
 /* 어느 폭에서도 1행 3열을 유지한다.
    카드가 좁아지는 만큼 글자·간격도 vw로 같이 줄여 비율을 지킨다. */
 @media (max-width: 1099px) {
-  .card__day   { font-size: clamp(13px, 3.6vw, 52px); }
-  .card__title { font-size: clamp(11px, 1.81vw, 26px); line-height: 1.4; }
-  .card__desc  { font-size: clamp(10px, 1.39vw, 20px); line-height: 1.4; }
+  .card__title { font-size: clamp(10px, 1.67vw, 24px); line-height: 1.4; }
+  .card__desc  { font-size: clamp(8.5px, 1.18vw, 17px); line-height: 1.4; }
   .card__info  { margin-top: clamp(8px, 1.95vw, 28px); }
   .card__desc  { margin-top: clamp(5px, 1.11vw, 16px); }
-  .cards__row  { gap: clamp(8px, 1.39vw, 20px); }
+  .cards__row  { gap: clamp(13px, 2.22vw, 32px); }
   .card__art   { border-radius: clamp(8px, 2.2vw, 32px); }
 }
 
