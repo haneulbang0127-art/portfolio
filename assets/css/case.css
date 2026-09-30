@@ -237,9 +237,9 @@
 
 .s-bg { padding: 180px 0; }
 /* 패널 1240x540, 내용 200,578 -> 안쪽 여백 97/100/100 */
-.s-bg .panel { height: 540px; margin-top: 56px; padding: 97px 100px 100px; }
+.s-bg .panel { height: 540px; margin-top: 56px; padding: 97px 8.0645% 100px; }   /* 100/1240 */
 
-.duo { display: flex; gap: 44px; align-items: stretch; }
+.duo { display: flex; gap: 4.2308%; align-items: stretch; width: 100%; }   /* 44/1040 */
 
 .card {
   box-sizing: border-box;
@@ -250,11 +250,11 @@
   background: #fff;
 }
 
-.card--voc { flex: 0 0 490px; padding: 20.625px 20.625px 17.875px; gap: 22px; }
-.card--imp { flex: 0 0 506px; padding: 20.625px; gap: 16.5px; }
+.card--voc { flex: 0 0 47.1154%;   /* 490/1040 */ padding: 20.625px 20.625px 17.875px; gap: 22px; }
+.card--imp { flex: 0 0 48.6538%;   /* 506/1040 */ padding: 20.625px; gap: 16.5px; }
 
 /* 카드 제목 줄: 396 폭 안에서 제목과 "가상" 칩을 양끝으로 */
-.card__head { display: flex; align-items: center; justify-content: space-between; width: 396px; height: 25px; }
+.card__head { display: flex; align-items: center; justify-content: space-between; width: 88.789%; height: 25px; }   /* 396/446 */
 
 .card__tit { margin: 0; font-size: 19.25px; font-weight: 600; line-height: 23px; color: #1b1b1b; }
 .card--imp .card__tit { line-height: 23.375px; color: #33333d; }
@@ -280,7 +280,7 @@
 
 .bars__row {
   display: grid;
-  grid-template-columns: 90.75px 291.5px 33px;   /* 트랙 폭도 피그마 고정값 */
+  grid-template-columns: 90.75px minmax(0, 291.5px) 33px;   /* 트랙은 291.5 상한, 좁아지면 줄어든다 */
   gap: 13.75px;
   align-items: center;
   height: 22px;
@@ -335,7 +335,7 @@
    ============================================================ */
 
 .s-disc {
-  padding: 160px 0 113px;
+  padding: 160px 0;
   background: var(--nv-dark);
 }
 
@@ -378,7 +378,6 @@
   margin-top: 72px;
 }
 
-.quoteCol { display: flex; flex-direction: column; align-items: center; }
 
 .quote {
   padding: 32px;
@@ -393,17 +392,6 @@
   font-weight: 600;
   line-height: 18px;
   color: var(--nv-p1);
-}
-
-/* 카드 밖, 다크 배경 위 요약 한 줄 */
-.quote__sum {
-  margin: 24px 0 0;
-  font-size: 20px;
-  font-weight: 500;
-  line-height: 22.5px;
-  color: #fff;
-  text-align: center;
-  word-break: keep-all;
 }
 
 .quote__say {
@@ -424,13 +412,13 @@
 
 .prob {
   display: flex;
-  gap: 36px;
+  gap: 3.1304%;                 /* 36/1150 */
   align-items: flex-start;
   width: 100%;
   padding: 52px 45px;
 }
 
-.prob__figure { flex: 0 0 714px; margin: 0; }
+.prob__figure { flex: 0 0 62.087%; margin: 0; }   /* 714/1150 */
 
 .prob__shot {
   position: relative;
@@ -474,7 +462,7 @@
   color: #818181;
 }
 
-.probs { flex: 0 0 380px; display: flex; flex-direction: column; gap: 16px; margin: 0; padding: 0; }
+.probs { flex: 0 0 33.0435%;   /* 380/1150 */ display: flex; flex-direction: column; gap: 16px; margin: 0; padding: 0; }
 
 .probs > li {
   padding: 20px 24px;
