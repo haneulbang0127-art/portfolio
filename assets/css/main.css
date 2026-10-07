@@ -1218,13 +1218,14 @@ html { scroll-behavior: smooth; }
   transition: opacity 0.4s var(--ease-soft);
 }
 
-/* 대각선 화살표 */
+/* 대각선 화살표 — 세로 가운데는 margin으로 잡는다.
+   transform은 아래 모션이 쓰므로 비워둔다. */
 .acc__tit::after {
   content: "";
   position: absolute;
   left: calc(100% + 8px);
   top: 50%;
-  transform: translateY(-50%);
+  margin-top: -11px;
   width: 22px;
   height: 22px;
   background: url("../icons/arrow-up-right.svg") 50% 50% / contain no-repeat;
@@ -1235,8 +1236,32 @@ html { scroll-behavior: smooth; }
 
 .acc__row.is-active .acc__tit,
 .acc__row:hover .acc__tit { opacity: 1; }
-.acc__row.is-active .acc__tit::after,
 .acc__row:hover .acc__tit::after { opacity: 1; }
+
+/* 열렸을 때 — 왼쪽 아래에서 대각선으로 들어온 뒤 천천히 떠 있는다 */
+.acc__row.is-active .acc__tit::after {
+  opacity: 1;
+  animation:
+    acc-arrow-in 0.52s var(--ease-out) both,
+    acc-arrow-float 2.8s 0.52s var(--ease-soft) infinite;
+}
+
+/* opacity는 위 규칙 + transition이 맡는다.
+   키프레임에 넣으면 애니메이션이 안 돌 때 화살표가 투명하게 남는다. */
+@keyframes acc-arrow-in {
+  0%   { transform: translate3d(-10px, 10px, 0) scale(0.8); }
+  60%  { transform: translate3d(2px, -2px, 0) scale(1.04); }
+  100% { transform: none; }
+}
+
+@keyframes acc-arrow-float {
+  0%, 100% { transform: none; }
+  50%      { transform: translate3d(3px, -3px, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .acc__row.is-active .acc__tit::after { animation: none; }
+}
 
 /* 펼쳐지는 본문 — grid-template-rows로 높이 애니메이션 */
 .acc__panel {
