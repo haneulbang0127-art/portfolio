@@ -254,7 +254,7 @@
 /* 카드 제목 줄: 396 폭 안에서 제목과 "가상" 칩을 양끝으로 */
 .card__head { display: flex; align-items: center; justify-content: space-between; width: 88.789%; height: 25px; }   /* 396/446 */
 
-.card__tit { margin: 0; font-size: 19.25px; font-weight: 600; line-height: 23px; color: #1b1b1b; }
+.card__tit { margin: 0; font-size: 20px; font-weight: 600; line-height: 23px; color: #1b1b1b; }
 .card--imp .card__tit { line-height: 23.375px; color: #33333d; }
 
 .card__chip {
@@ -268,7 +268,7 @@
 }
 
 /* 제목 묶음(제목+부제)은 간격 5.5, 그 아래 막대 묶음과는 카드 gap 22 */
-.card__sub { margin: 0; font-size: 13.75px; font-weight: 400; line-height: 16px; color: #6b707a; }
+.card__sub { margin: 0; font-size: 14px; font-weight: 400; line-height: 16px; color: #6b707a; }
 
 .card__grp { display: flex; flex-direction: column; }
 .card__grp--head { gap: 5.5px; }
@@ -284,13 +284,13 @@
   height: 22px;
 }
 
-.bars__label { font-size: 13.75px; font-weight: 400; line-height: 16px; color: #6b707a; }
+.bars__label { font-size: 14px; font-weight: 400; line-height: 16px; color: #6b707a; }
 
 .bars__track { height: 11px; border-radius: 5.5px; background: #f0ebfc; overflow: hidden; }
 .bars__fill { display: block; height: 100%; border-radius: 5.5px; background: #734de8; }
 
 .bars__val {
-  font-size: 13.75px;
+  font-size: 14px;
   font-weight: 500;
   line-height: 16px;
   text-align: right;
@@ -547,7 +547,7 @@
   border: 1.5px solid var(--nv-line);
   border-radius: 12px;
   background: #fff;
-  font-size: 22.5px;
+  font-size: 24px;
   font-weight: 600;
   line-height: 1.2;
   color: #000;
@@ -570,7 +570,7 @@
 }
 
 .metric--roas .metric__top { display: flex; align-items: center; gap: 9px; }
-.metric__note { font-size: 22.5px; font-weight: 700; color: #fff; }
+.metric__note { font-size: 24px; font-weight: 700; color: #fff; }
 
 /* ============================================================
    Strategy 02 — 1242, 네이버 지도 API
