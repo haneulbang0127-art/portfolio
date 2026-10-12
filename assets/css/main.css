@@ -1545,8 +1545,11 @@ html { scroll-behavior: smooth; }
 }
 
 /* 호버 영역은 카드 전체가 아니라 아트(이미지) 영역만 */
+/* 호버하면 프로스티드 글래스가 아트워크를 더 밝게 덮는다.
+   그래서 글자를 흰색으로 바꾸면 상호작용하는 순간 가장 안 보이게 된다
+   (대비 1.18 -> 1.15). 반대로 더 진하게 눌러 준다 (7.07 -> 14.48). */
 .card__art:hover .card__day,
-.card__art:focus-within .card__day { color: #fff; }
+.card__art:focus-within .card__day { color: #1c1c1c; }
 
 .card__day {
   position: relative;
@@ -1556,7 +1559,7 @@ html { scroll-behavior: smooth; }
   font-weight: 800;
   line-height: 1.3;
   letter-spacing: -0.02em;
-  color: #fff;
+  color: #4e4e4e;
   text-align: center;
 }
 
