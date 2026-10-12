@@ -173,9 +173,6 @@
   color: var(--nv-chip);
 }
 
-/* 마지막 칩만 단색 테두리 */
-.tag--plain { border: 1px solid #d8d9ff; padding: 5px 12px; }
-.tag--plain::before { display: none; }
 
 .tag::before {
   content: "";
