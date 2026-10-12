@@ -421,39 +421,44 @@
 
 .prob__figure { flex: 0 0 63.1858%; margin: 0; }   /* 714/1130 */
 
+/* 713.9x410, radius 10.7 — 피그마 imageTransform 으로 크롭,
+   기본은 흑백(saturation -1), 원형 렌즈 안만 컬러 */
 .prob__shot {
   position: relative;
-  border: 1.3px solid #eee;
-  border-radius: 11px;
+  border-radius: 10.71px;
   overflow: hidden;
-  aspect-ratio: 714 / 410;
+  aspect-ratio: 713.9 / 410;
 }
 
-.prob__shot img {
+.prob__shot > img {
   position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 106%;
+  left: -17.03%;            /* -121.6 / 713.9 */
+  top: -8.34%;              /* -34.2 / 410 */
+  width: 117.05%;           /* 835.6 / 713.9 */
+  height: 114.34%;          /* 468.8 / 410 */
+  filter: grayscale(1);
   display: block;
 }
 
 .prob__lens {
   position: absolute;
-  left: 25.8%;
-  top: 17.6%;
-  width: 44.8%;
+  left: 25.77%;             /* 184 / 713.9 */
+  top: 17.56%;              /* 72 / 410 */
+  width: 44.82%;            /* 320 / 713.9 */
   aspect-ratio: 1;
   border-radius: 50%;
-  background: #fff;
   overflow: hidden;
+  display: block;
 }
 
+/* 렌즈 안 이미지는 바탕과 정확히 겹쳐야 한다 */
 .prob__lens img {
   position: absolute;
-  left: -57.6%;
-  top: -21.9%;
-  width: 223%;
-  height: auto;
+  left: -95.5%;
+  top: -33.2%;
+  width: 261.13%;
+  height: 146.5%;
+  display: block;
 }
 
 .prob__cap {
@@ -607,17 +612,28 @@
 
 .mapapi__shots { position: absolute; left: 10.726cqw; top: 13.871cqw; width: 54.597cqw; }
 
-.mapapi__shots img {
+/* 피그마 imageTransform: 가로 97.12% (0 부터), 세로 92% (8% 부터) */
+.mapapi__shot {
   position: absolute;
   left: 0;
   display: block;
-  width: 54.597cqw;            /* 677 */
-  height: 32.339cqw;           /* 401 */
+  width: 54.589cqw;            /* 676.9 */
+  height: 32.323cqw;           /* 400.8 */
+  overflow: hidden;
   border-radius: 0.976cqw;    /* 12.1 */
 }
 
-.mapapi__shots img:nth-of-type(1) { top: 0; }
-.mapapi__shots img:nth-of-type(2) { top: 21.532cqw; }   /* 267 */
+.mapapi__shot img {
+  position: absolute;
+  left: 0;
+  top: -2.810cqw;              /* -34.85 */
+  width: 56.208cqw;            /* 696.98 */
+  height: 35.133cqw;           /* 435.65 */
+  display: block;
+}
+
+.mapapi__shot:nth-of-type(1) { top: 0; }
+.mapapi__shot:nth-of-type(2) { top: 21.532cqw; }   /* 267 */
 
 .mapapi__chips { position: absolute; left: 70.242cqw; top: 18.065cqw; }   /* 871, 224 */
 
