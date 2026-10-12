@@ -632,11 +632,29 @@ textarea { font: inherit; color: inherit; resize: none; }
   flex-direction: column;
   gap: 12px;
   max-height: min(44vh, 340px);
-  padding-right: 6px;
+  /* 스크롤바를 패널 가장자리까지 밀어내고(.ask__thread 의 좌우 여백 16 중 14),
+     말풍선은 padding 으로 제자리에 둔다. 그러지 않으면 기본 두께의 막대가
+     말풍선 위에 바로 얹힌다. */
+  margin-right: -14px;
+  padding-right: 12px;
   overflow-y: auto;
   overscroll-behavior: contain;
   scroll-behavior: smooth;
+  /* Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(23, 23, 23, 0.16) transparent;
 }
+
+/* WebKit — 기본 15px 막대를 4px 로 줄인다 */
+.ask__log::-webkit-scrollbar { width: 4px; }
+.ask__log::-webkit-scrollbar-track { background: transparent; }
+
+.ask__log::-webkit-scrollbar-thumb {
+  border-radius: 2px;
+  background: rgba(23, 23, 23, 0.16);
+}
+
+.ask__log:hover::-webkit-scrollbar-thumb { background: rgba(23, 23, 23, 0.26); }
 
 /* 아래에 더 있을 때만 페이드 — 잘린 게 아니라 이어진다는 신호 */
 .ask__thread::after {
