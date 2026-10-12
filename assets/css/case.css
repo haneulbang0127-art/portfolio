@@ -736,6 +736,19 @@
   background: var(--nv-surface-v);
 }
 
+/* 브라우저가 얹는 재생 버튼 오버레이를 지운다.
+   사파리는 자동재생을 막으면 화면을 흐리게 깔고 가운데에 재생 버튼을 띄우는데
+   그 버튼은 UA 섀도우 DOM 이라 이 의사요소로만 끌 수 있다.
+   모르는 의사요소가 섞이면 선택자 목록 전체가 무효가 되므로 규칙을 하나씩 쓴다. */
+.sol__video::-webkit-media-controls { display: none !important; }
+.sol__video::-webkit-media-controls-panel { display: none !important; }
+.sol__video::-webkit-media-controls-overlay-play-button { display: none !important; }
+.sol__video::-webkit-media-controls-play-button { display: none !important; }
+.sol__video::-webkit-media-controls-start-playback-button {
+  display: none !important;
+  -webkit-appearance: none;
+}
+
 /* ---- Solution 01 — AS-IS / TO-BE 비교 (패널 1240x653) ---- */
 .s-sol1 .panel {
   container-type: inline-size;

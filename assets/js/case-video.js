@@ -1,68 +1,74 @@
-/* 영상은 autoplay 속성으로 바로 재생된다.
-   여기서는 두 가지만 거든다.
-   1) 화면 밖으로 나가면 멈추고 다시 들어오면 이어서 재생해
-      보이지 않는 동안 디코딩이 도는 것을 막는다.
-   2) Safari 저전력 모드처럼 자동재생이 거부되는 환경에서는
-      사용자의 첫 입력 때 한 번 더 재생을 시도한다. */
+/* 영상은 autoplay 속성으로 바로 재생된다. 이 스크립트가 하는 일은 두 가지다.
+
+   1) 재생을 몇 번 더 밀어준다.
+      데이터가 덜 찼을 때 play() 가 거부되는 일이 있어 잠깐 간격으로 재시도한다.
+
+   2) 끝내 거부되면 포스터 이미지로 바꿔 끼운다.
+      사파리는 자동재생을 막으면 화면을 흐리게 깔고 재생 버튼을 얹는다.
+      버튼 자체는 CSS 로 지워두었지만, 흐려진 채 멈춘 영상을 두느니
+      또렷한 정지 화면을 보여주는 편이 낫다.
+      prefers-reduced-motion 을 켠 사용자에게도 같은 정지 화면을 준다.
+
+   화면 밖에서 일시정지하는 로직은 넣지 않는다.
+   pause() 를 한 번 부르면 사파리가 그 재생 버튼 오버레이를 띄워버린다.
+
+   탭이 숨겨져 있으면 어느 브라우저든 자동재생을 막는다.
+   그건 거부로 치지 않고, 다시 보일 때 재시도한다. */
 (function () {
   var vids = [].slice.call(document.querySelectorAll('video[data-autoplay]'));
   if (!vids.length) return;
 
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reduce) {
-    vids.forEach(function (v) { v.removeAttribute('autoplay'); v.pause(); });
-    return;
+  var GAP = 400;      /* 재시도 간격 */
+  var LIMIT = 8;      /* 화면이 보이는 동안의 재시도 횟수 — 약 3초 */
+
+  /* 영상 자리에 포스터를 그대로 끼운다. 크기와 object-fit 은 클래스가 가지고 있다 */
+  function toPoster(v) {
+    if (!v.poster || v.getAttribute('data-still') || !v.parentNode) return;
+    v.setAttribute('data-still', '1');
+    var img = new Image();
+    img.className = v.className;
+    img.src = v.poster;
+    img.alt = v.getAttribute('aria-label') || '';
+    img.decoding = 'async';
+    if (v.width) img.width = v.width;
+    if (v.height) img.height = v.height;
+    v.parentNode.replaceChild(img, v);
   }
 
-  var MARGIN = 200;
-  var blocked = false;           /* 자동재생이 거부된 적이 있는가 */
+  vids.forEach(function (v) {
+    if (reduce) { v.removeAttribute('autoplay'); v.pause(); toPoster(v); return; }
 
-  function near(v) {
-    var r = v.getBoundingClientRect();
-    var h = window.innerHeight || document.documentElement.clientHeight;
-    return r.bottom > -MARGIN && r.top < h + MARGIN;
-  }
+    var denied = 0;
+    var pending = null;
 
-  function tryPlay(v) {
-    var p = v.play();
-    if (p && p.catch) p.catch(function () { blocked = true; armGesture(); });
-  }
+    function hidden() { return document.visibilityState === 'hidden'; }
 
-  function sync() {
-    vids.forEach(function (v) {
-      if (near(v)) { if (v.paused) tryPlay(v); }
-      else if (!v.paused) v.pause();
+    function attempt() {
+      if (!v.parentNode || !v.paused) return;
+      if (hidden()) return;                 /* 숨겨진 탭은 원래 막힌다 — 거부로 세지 않는다 */
+      var p = v.play();
+      if (!p || !p.catch) return;
+      p.catch(function () {
+        if (hidden()) return;
+        if (++denied >= LIMIT) { toPoster(v); return; }
+        clearTimeout(pending);
+        pending = setTimeout(attempt, GAP);
+      });
+    }
+
+    v.addEventListener('loadeddata', attempt);
+    v.addEventListener('canplay', attempt);
+    v.addEventListener('playing', function () { denied = 0; clearTimeout(pending); });
+    v.addEventListener('error', function () { toPoster(v); });
+    /* <source> 가 전부 실패하면 video 가 아니라 source 에서 error 가 난다 */
+    [].slice.call(v.querySelectorAll('source')).forEach(function (s) {
+      s.addEventListener('error', function () {
+        if (v.networkState === 3 /* NETWORK_NO_SOURCE */) toPoster(v);
+      });
     });
-  }
+    document.addEventListener('visibilitychange', function () { denied = 0; attempt(); });
 
-  /* 첫 입력 한 번만 듣는다 — 거부됐을 때만 건다 */
-  var armed = false;
-  function onGesture() {
-    armed = false;
-    ['pointerdown', 'touchstart', 'keydown'].forEach(function (e) {
-      document.removeEventListener(e, onGesture);
-    });
-    vids.forEach(function (v) { if (near(v) && v.paused) v.play().catch(function () {}); });
-  }
-  function armGesture() {
-    if (armed) return;
-    armed = true;
-    ['pointerdown', 'touchstart', 'keydown'].forEach(function (e) {
-      document.addEventListener(e, onGesture, { once: true, passive: true });
-    });
-  }
-
-  /* rAF 는 문서가 숨겨지면 멈춘다 — setTimeout 으로 스로틀한다 */
-  var queued = false;
-  function onScroll() {
-    if (queued) return;
-    queued = true;
-    setTimeout(function () { queued = false; sync(); }, 80);
-  }
-
-  window.addEventListener('scroll', onScroll, { passive: true });
-  window.addEventListener('resize', onScroll, { passive: true });
-  document.addEventListener('visibilitychange', sync);
-  vids.forEach(function (v) { v.addEventListener('canplay', function () { if (near(v) && v.paused) tryPlay(v); }); });
-  sync();
+    attempt();
+  });
 }());
