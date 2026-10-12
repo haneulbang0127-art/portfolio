@@ -731,6 +731,8 @@
   height: 100%;
   object-fit: cover;
   display: block;
+  /* 첫 프레임이 그려지기 전 빈 박스가 회색으로 보이지 않도록 패널과 같은 색 */
+  background: var(--nv-surface-v);
 }
 
 /* ---- Solution 01 — AS-IS / TO-BE 비교 (패널 1240x653) ---- */
