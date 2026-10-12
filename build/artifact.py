@@ -20,7 +20,7 @@ SITE = os.path.dirname(HERE) + '/'
 OUT_DIR = sys.argv[1] if len(sys.argv) > 1 else os.path.join(SITE, 'dist-artifact')
 
 # (파일명, 완전한 문서로 만들지) — 지원 파일은 감싸주는 게 없어 True
-PAGES = [('main.html', False), ('work-attracker.html', True), ('work-weekendtori.html', True), ('work-mumuz.html', True), ('work-voc.html', True), ('work-interview.html', True)]
+PAGES = [('main.html', False), ('work-attracker.html', True), ('work-weekendtori.html', True), ('work-mumuz.html', True), ('work-voc.html', True), ('work-interview.html', True), ('work-qa.html', True)]
 
 MIME = {'.svg': 'image/svg+xml', '.png': 'image/png', '.jpg': 'image/jpeg',
         '.jpeg': 'image/jpeg', '.webp': 'image/webp', '.gif': 'image/gif',

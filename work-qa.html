@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="robots" content="noindex, nofollow" />
+<title>유저 케이스별 QA — 조하늘</title>
+<meta name="description" content="요구사항·정책 문서·구현 화면을 입력하면 AI가 사용자 시나리오를 구성하고 정상·예외·경계 경로를 점검하는 QA 케이스 스터디." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;450;500;600;700;800&family=Cormorant+Garamond:wght@700&display=swap" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+<link rel="stylesheet" href="assets/css/main.css" />
+<link rel="stylesheet" href="assets/css/case.css" />
+<link rel="stylesheet" href="assets/css/case-qa.css" />
+</head>
+<body>
+
+<a class="backBtn" href="main.html#ailab" aria-label="AI Lab 목록으로">
+  <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+    <path d="M9.5 3.5L5 8l4.5 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+  </svg>
+</a>
+
+<main class="case case--qa">
+
+  <!-- ===== Intro (1110:33951) ===== -->
+  <section class="s-intro">
+    <div class="ic intro">
+      <div class="intro__meta">
+        <div><p class="meta__k">Date</p><p class="meta__v">2026.10</p></div>
+        <div><p class="meta__k">Product</p><p class="meta__v">개인 프로젝트</p></div>
+        <div><p class="meta__k">Role</p><p class="meta__v">Product Design(100%)</p></div>
+        <div><p class="meta__k">Category</p><p class="meta__v">Web Dashboard</p></div>
+      </div>
+
+      <div class="intro__main">
+        <p class="intro__eyebrow">Overview</p>
+        <h1 class="intro__h1">사용자 케이스별 핵심 과업 완료 여부와<br />정책·화면 누락 검증하기</h1>
+        <p class="intro__p">커머스의 주문·교환·반품은 여러 정책과 사용자 케이스가 얽혀 있어 기존 QA 방식으로는 사용자별로 핵심 과업을<br />완료했는지 한눈에 판단하기 어려웠습니다. 이에 요구사항과 정책 문서, 구현 화면을 입력하면 AI가 사용자 시나리오를<br />구성하고 정상·예외·경계 경로를 점검해 과업이 막힌 단계와 원인, 수정이 필요한 화면을 제안하도록 설계했습니다.<br />담당자는 AI가 제시한 근거를 검토해 최종 수정 방향을 결정하고 이를 후속 작업으로 연결합니다. 이를 통해 QA 시간을<br />8시간에서 4시간으로 50% 단축하고 정책·화면 누락 탐지율 90% 이상을 달성하는 것을 목표로 했습니다.</p>
+        <div class="tags">
+          <span class="tag">사용자별 과업 완료 검증</span>
+          <span class="tag">정책·화면 정합성 검토</span>
+          <span class="tag">예외·경계 케이스 파악</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Showcase (1110:34604) ===== -->
+  <section class="s-show">
+    <div class="ic">
+      <div class="qa-show">
+        <img src="assets/img/qa/showcase.webp" width="2480" height="1400" alt="User Scenario QA 대표 화면" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Background (1110:34608) ===== -->
+  <section class="s-qa">
+    <div class="ic">
+      <div class="ihead">
+        <div class="ihead__title">
+          <p class="eyebrow">Background</p>
+          <h2 class="h2">사용자 케이스별 핵심 과업을 방해하는정책·화면 누락을 발견해요.</h2>
+        </div>
+        <div class="ihead__body">
+          <p class="p">복잡한 커머스 정책과 화면을 연결해 검증 시나리오의 누락을 줄이고 발견한 문제를 수정 과제로<br />이어지는 방향으로 개선안을 설정했습니다. 실제 업무 플로우에 적용했을 때 주 평균 8시간이 걸리던<br />QA 준비·검토 업무를 4시간으로 단축하고, 검증용 사례 기준 정책·화면 누락 탐지율 90% 이상을<br />달성하는 것을 목표로 했습니다.</p>
+        </div>
+      </div>
+      <div class="qa-card">
+        <img src="assets/img/qa/background-card.webp" width="2480" height="1400" alt="기존 QA 방식의 문제점과 개선 방향" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Workflow (1110:34878) ===== -->
+  <section class="s-qa">
+    <div class="ic">
+      <div class="ihead">
+        <div class="ihead__title">
+          <p class="eyebrow">Workflow</p>
+          <h2 class="h2">AI는 화면 매핑과 사용자 케이스를<br />검토하고, 담당자는 수정 범위를<br />결정해요.</h2>
+        </div>
+        <div class="ihead__body">
+          <p class="p">요구사항과 화면을 기준으로 반복해서 점검하는 업무는 AI가 맡고, 제품 맥락과 고객 영향을 고려해야 하는 판단은 담당자가 맡도록 역할을 나눴습니다. AI는 상태·액션의 누락과 정상·예외·경계 경로를<br />점검해 과업별 판단 근거를 제공하고, 담당자는 검증 범위를 설정하고 결과의 타당성을 검토해 실제<br />수정이 필요한 항목과 우선순위를 결정하도록 설계했습니다.</p>
+        </div>
+      </div>
+      <div class="qa-card">
+        <img src="assets/img/qa/workflow-card.webp" width="2480" height="960" alt="AI와 담당자의 역할 분담 흐름" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Solution (1110:34630) ===== -->
+  <section class="s-qa s-qa--last">
+    <div class="ic">
+      <div class="ihead">
+        <div class="ihead__title">
+          <p class="eyebrow">Solution</p>
+          <h2 class="h2">사용자 과업이 막힌 원인을 확인하고<br />우선순위와 후속 작업을 결정해요.</h2>
+        </div>
+        <div class="ihead__body">
+          <p class="p">주문·교환·반품의 상태와 화면을 연결해 사용자가 겪을 수 있는 정상·예외 경로를 생성했습니다. 각<br />경로에서 필요한 액션과 입력값, 결과 화면이 갖춰져 있는지 점검하고 과업을 끝내지 못하는 단계와 그 원인을 결과 화면에 표시했습니다. 담당자는 막힌 과업을 펼쳐 사용자 경로를 확인한 뒤 관련<br />화면과 수정·추가할 항목을 바로 검토할 수 있습니다. 화면별 오류 목록을 다시 정리하지 않아도 어떤 사용자 과업에 영향을 주는 문제인지를 기준으로 다음 작업을 결정하도록 설계했습니다.</p>
+        </div>
+      </div>
+      <div class="qa-panel"></div>
+    </div>
+  </section>
+
+</main>
+
+<script src="assets/js/case-video.js" defer></script>
+</body>
+</html>
