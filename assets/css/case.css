@@ -632,8 +632,10 @@
   display: block;
 }
 
-.mapapi__shot:nth-of-type(1) { top: 0; }
-.mapapi__shot:nth-of-type(2) { top: 21.532cqw; }   /* 267 */
+/* 피그마 z-순서: 위 스크린샷이 맨 위 — 아래 이미지의 브라우저 바를 가려
+   한 장처럼 이어지게 한다 */
+.mapapi__shot:nth-of-type(1) { top: 0; z-index: 2; }
+.mapapi__shot:nth-of-type(2) { top: 21.532cqw; z-index: 1; }   /* 267 */
 
 .mapapi__chips { position: absolute; left: 70.242cqw; top: 18.065cqw; }   /* 871, 224 */
 
