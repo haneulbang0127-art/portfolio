@@ -39,7 +39,11 @@ def quoted(js):
     return ' '.join(out)
 
 
-PAGES = ['main.html', 'work-attracker.html']
+# 케이스 페이지를 추가하면 여기에도 반드시 넣는다. 빠뜨리면 그 페이지에만
+# 쓰이는 글자가 든 폰트 조각이 통째로 빠져서 아티팩트에서 두부(□)로 나온다.
+PAGES = ['main.html', 'work-attracker.html', 'work-weekendtori.html',
+         'work-mumuz.html', 'work-voc.html', 'work-interview.html',
+         'work-qa.html']
 JS = ['data/answers.js', 'assets/js/case-video.js']
 
 
@@ -110,6 +114,18 @@ def main():
         b64 = base64.b64encode(open(chunk, 'rb').read()).decode()
         out.append(re.sub(r'url\([^)]+\)',
                           'url(data:font/woff2;base64,' + b64 + ')', block, count=1))
+
+    # 고른 조각들이 실제로 쓰는 글자를 다 덮는지 확인한다.
+    # 안 덮이면 그 글자는 아티팩트에서 두부(□)가 된다.
+    covered = set()
+    for block, _ in needed:
+        rng = re.search(r'unicode-range:([^;}]+)', block)
+        if rng:
+            covered |= parse_range(rng.group(1))
+    missing = sorted(c for c in codes if c not in covered)
+    if missing:
+        sample = ''.join(chr(c) for c in missing[:60])
+        print('!! 폰트에 없는 글자 %d자: %s' % (len(missing), sample))
 
     gm = base64.b64encode(open(gm_path, 'rb').read()).decode()
     out.append('@font-face {\n  font-family: "Gmarket Sans";\n'
