@@ -53,6 +53,10 @@ def inline_css_urls(css, css_dir):
 
 def build(page, fonts, full_doc=False):
     html = open(SITE + page, encoding='utf-8').read()
+    # HTML 주석은 빌드 전에 턴다. 주석 안에 아직 없는 파일을 가리키는 src 가
+    # 들어 있으면 아래 스캐너가 "에셋 없음"으로 멈추기 때문이다.
+    # 외부 css/js 는 아직 인라인되기 전이라 그쪽 주석은 건드리지 않는다.
+    html = re.sub(r'<!--.*?-->', '', html, flags=re.S)
 
     title = re.search(r'<title>(.*?)</title>', html, re.S)
     title = title.group(1).strip() if title else page

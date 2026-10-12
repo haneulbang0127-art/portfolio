@@ -54,6 +54,10 @@ def inline_css(css, css_dir):
 
 def build(page):
     html = open(SITE + page, encoding='utf-8').read()
+    # HTML 주석은 빌드 전에 턴다. 주석 안에 아직 없는 파일을 가리키는 src 가
+    # 들어 있으면 아래 스캐너가 "에셋 없음"으로 멈추기 때문이다.
+    # 외부 css/js 는 아직 인라인되기 전이라 그쪽 주석은 건드리지 않는다.
+    html = re.sub(r'<!--.*?-->', '', html, flags=re.S)
     counts = {'css': 0, 'cssurl': 0, 'img': 0, 'js': 0, 'copy': 0}
 
     def css_link(m):
