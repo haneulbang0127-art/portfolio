@@ -1348,7 +1348,9 @@ html { scroll-behavior: smooth; }
 .mock__img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  /* contain 이라 컨테이너 비율이 어떻게 되든 썸네일이 잘리지 않는다.
+     지금은 .mock 비율(1000/564)이 원본과 같아 cover 와 결과가 동일하다. */
+  object-fit: contain;
   display: block;
 }
 
