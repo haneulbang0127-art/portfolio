@@ -1545,8 +1545,8 @@ html { scroll-behavior: smooth; }
 }
 
 /* 호버 영역은 카드 전체가 아니라 아트(이미지) 영역만.
-   평상시에는 아트워크를 흐려서 그라데이션 한 겹으로만 보이게 두고,
-   호버하면 초점이 맞듯 선명해진다.
+   평상시에는 아트워크를 그대로 보여 주고, 호버하면 흐려지면서
+   그라데이션 한 겹으로 물러난다.
    기본값 글자는 흰색(디자인 결정). 바탕이 밝아 대비는 1.2 안팎이므로
    읽히는 라벨이 아니라 아트워크의 일부로 다룬다. 호버하면 #4e4e4e 로
    또렷해진다 (대비 7.2) — 가리키는 순간 비로소 읽히는 구조다. */
@@ -1577,19 +1577,17 @@ html { scroll-behavior: smooth; }
   width: 100%;
   height: 100%;
   object-fit: cover;
-  /* 평상시엔 아트워크를 흐려서 그라데이션처럼 쓴다.
-     blur 는 가장자리 픽셀을 바깥으로 번지게 해 테두리가 비치므로
-     scale 로 조금 키워서 덮는다. */
-  transform: scale(1.18);
-  filter: blur(44px);
   transition: transform 0.4s ease-in-out, filter 0.4s ease-in-out;
   will-change: filter;
 }
 
+/* 호버하면 아트워크가 흐려져 그라데이션 한 겹으로 물러난다.
+   blur 는 가장자리 픽셀을 바깥으로 번지게 해 테두리가 비치므로
+   scale 로 조금 키워서 덮는다. */
 .card__art:hover .card__img,
 .card__art:focus-within .card__img {
-  transform: none;
-  filter: none;
+  transform: scale(1.18);
+  filter: blur(44px);
 }
 
 /* 흐림 전환은 장식이라 모션을 줄인 환경에서는 걷어낸다 */
