@@ -26,6 +26,7 @@ MIME = {'.svg': 'image/svg+xml', '.png': 'image/png', '.jpg': 'image/jpeg',
         '.jpeg': 'image/jpeg', '.webp': 'image/webp', '.gif': 'image/gif',
         '.avif': 'image/avif'}
 COPY_EXT = {'.mp4', '.webm', '.mov', '.m4v', '.ogg', '.mp3', '.wav'}
+BIG_ASSET = 700 * 1024      # 이보다 큰 자산은 인라인하지 않고 동반 파일로
 
 copied = set()
 
@@ -97,7 +98,10 @@ def build(page, fonts, full_doc=False):
         p = SITE + ref
         if not os.path.exists(p):
             raise SystemExit('에셋 없음: ' + ref)
-        if os.path.splitext(ref)[1].lower() in COPY_EXT:
+        # 큰 파일은 base64 로 박지 않고 따로 올린다.
+        # 애니메이션 WebP 가 수 MB 라 전부 박으면 페이지가 아티팩트 한도(16MB)를 넘는다.
+        if (os.path.splitext(ref)[1].lower() in COPY_EXT
+                or os.path.getsize(p) > BIG_ASSET):
             dst = os.path.join(OUT_DIR, ref)
             os.makedirs(os.path.dirname(dst), exist_ok=True)
             shutil.copy2(p, dst)
