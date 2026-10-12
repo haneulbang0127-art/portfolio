@@ -1018,8 +1018,11 @@
   .mapapi__chips { position: static; display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
   .mapapi__chips span { position: static; height: auto; padding: 14px 18px; font-size: 18px; }
 
-  .metrics__row { flex-wrap: wrap; }
-  .metric { flex: 1 1 140px; height: auto; font-size: 19px; }
+  /* 행 묶음을 풀어 6개가 고르게 2열로 흐르게 한다 */
+  .metrics { flex-direction: row; flex-wrap: wrap; gap: 24px; }
+  .metrics__row { display: contents; }
+  .metric { flex: 1 1 calc(50% - 12px); height: auto; font-size: 19px; }
+  .metric--roas { flex: 1 1 100%; }
   .metric--roas { height: auto; }
   .metric__ic { font-size: 20px; }
 }
@@ -1042,7 +1045,8 @@
   .stab th, .stab td { padding: 12px 8px; font-size: 12px; line-height: 17px; }
   .stab__insight { padding: 16px; font-size: 13px; line-height: 20px; }
   .probs span { font-size: 16px; line-height: 25px; }
-  .metric { font-size: 15px; padding: 16px; }
+  .metrics { gap: 12px; }
+  .metric { flex: 1 1 calc(50% - 6px); font-size: 15px; padding: 14px 10px; }
   .metric__ic { font-size: 16px; }
   .metric__note { font-size: 16px; }
   .kpi { height: auto; padding: 32px 24px; }
@@ -1050,4 +1054,54 @@
   .kpi__lab { font-size: 18px; line-height: 24px; }
   .backBtn { top: 14px; left: 14px; width: 42px; height: 42px; }
   .backBtn svg { width: 16px; height: 16px; }
+}
+
+/* ---- 560 이하: 3열 표는 칸이 너무 좁아 라벨 붙인 카드로 쌓는다 ---- */
+@media (max-width: 560px) {
+  .stab table, .stab tbody, .stab tr, .stab td { display: block; width: 100%; }
+  .stab thead { display: none; }
+
+  .stab tr {
+    border: 1px solid rgba(23, 23, 23, 0.08);
+    border-radius: 12px;
+    background: #fff;
+    padding: 4px 0;
+    margin-bottom: 10px;
+  }
+  .stab tr:last-child { margin-bottom: 0; }
+
+  .stab td {
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+    border: 0;
+    padding: 9px 14px;
+    text-align: left;
+    font-size: 14px;
+    line-height: 21px;
+  }
+  .stab td + td { border-top: 1px solid rgba(23, 23, 23, 0.06); }
+
+  .stab td::before {
+    content: attr(data-label);
+    flex: 0 0 88px;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 21px;
+    color: var(--nv-p4);
+  }
+
+  /* Results 라벨은 10.4px 이면 너무 작다 */
+  .kpi__tag { font-size: 12px; }
+}
+
+/* ---- 767 이하: 피그마의 고정 줄바꿈은 620px 기준이라 좁은 화면에서
+   짧게 끊긴다. 본문만 자연스럽게 흐르게 한다 (목록 구분용 <br> 은 유지) ---- */
+@media (max-width: 767px) {
+  .intro__p br,
+  .p:not(.p--keep) br,
+  .hyp__p br,
+  .res__p br,
+  .kpi__desc br,
+  .probs span br { display: none; }
 }
