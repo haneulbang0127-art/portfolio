@@ -16,7 +16,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 SITE = os.path.dirname(HERE) + '/'
 OUT_DIR = sys.argv[1] if len(sys.argv) > 1 else os.path.join(SITE, 'dist')
 
-PAGES = ['main.html', 'work-attracker.html', 'work-weekendtori.html', 'work-mumuz.html']
+PAGES = ['main.html', 'work-attracker.html', 'work-weekendtori.html', 'work-mumuz.html', 'work-voc.html']
 
 MIME = {'.svg': 'image/svg+xml', '.png': 'image/png', '.jpg': 'image/jpeg',
         '.jpeg': 'image/jpeg', '.webp': 'image/webp', '.gif': 'image/gif',
