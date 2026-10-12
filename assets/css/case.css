@@ -164,7 +164,8 @@
   position: relative;
   padding: 6px 13px;
   border-radius: 999px;
-  background: #f5f5ff;
+  /* 피그마 칩 fill 은 흰색(#fff). #f5f5ff 는 visible:false 인 B2B SaaS 칩 값이었다 */
+  background: #fff;
   /* 피그마는 라틴도 Pretendard — 기본 스택(Geist)이면 폭이 넓어진다 */
   font-family: "Pretendard Variable", Pretendard, sans-serif;
   font-size: 14px;
@@ -180,7 +181,7 @@
   inset: 0;
   border-radius: inherit;
   padding: 1px;
-  background: linear-gradient(140deg, #d8d9ff, #aaacf1);
+  background: linear-gradient(101deg, #d8d9ff, #aaacf1);
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
   mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
@@ -867,7 +868,7 @@
   height: 403px;                 /* Figma 360x403 */
   padding: 42px 28px 30px;
   border-radius: 20px;
-  background: linear-gradient(180deg, #ded6fa 0%, #f0ebfa 65%, #fcfbfe 100%);
+  background: linear-gradient(180deg, #bda3f4 0%, #f0ebfa 65%, #fcfbfe 100%);
   text-align: left;
 }
 
@@ -881,6 +882,7 @@
   padding: 22px 24px;
   border-radius: 18px;
   background: rgba(255, 255, 255, 0.88);
+  box-shadow: 0 14px 32px rgba(88, 64, 131, 0.12);
 }
 
 .kpi__tag {
@@ -889,9 +891,9 @@
   padding: 5.2px 10.4px;
   border-radius: 20px;
   background: #f0e9ff;
-  font-size: 10.4px;
+  font-size: 11px;
   font-weight: 600;
-  line-height: 12px;
+  line-height: 13px;
   color: #7950d6;
 }
 
