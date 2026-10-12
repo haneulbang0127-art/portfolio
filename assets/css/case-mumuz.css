@@ -1,0 +1,230 @@
+/* ============================================================
+   무무즈 케이스 — Figma 1003:28218 "무무즈 — Niva 레이아웃"
+   1440 캔버스 / 컨테이너 1240 (좌우 100)
+   골격은 case.css 를 그대로 쓰고, 여기서는 이 케이스에서
+   달라지는 값만 덮는다. 수치·색은 전부 Figma 에서 읽은 값이다.
+
+   클래스 이름에 m- / mz- 접두사를 붙인 것은 case.css 의 앳트래커
+   규칙(.hyp, .stmt 등)이 딸려 들어오는 것을 막기 위해서다.
+   ============================================================ */
+
+.case--mz {
+  --mz-accent: #0f6af2;      /* Hypothesis · Solution · Results eyebrow */
+  --mz-tint: #e8f1ff;        /* Solution 패널 */
+  --mz-chip-a: #e8f1ff;      /* 칩 테두리 그라데이션 시작 */
+  --mz-chip-b: #c5dcff;      /* 칩 테두리 그라데이션 끝 */
+  --mz-dark: #111111;        /* Discovery 배경 */
+}
+
+/* Intro 태그 — 파란 테두리 (1003:28242).
+   채움은 흰색, 보이는 건 1px 그라데이션 테두리뿐이다.
+   각도 101deg 는 Figma gradientTransform 을 역산한 값. */
+.case--mz .tag::before {
+  background: linear-gradient(101deg, var(--mz-chip-a), var(--mz-chip-b));
+}
+
+/* 이 케이스도 eyebrow 와 제목 사이가 20 이다 (앳트래커는 16).
+   Problem 섹션만 16 이라 따로 되돌린다. */
+.case--mz .ihead .eyebrow { margin-bottom: 20px; }
+.case--mz .ihead--g16 .eyebrow { margin-bottom: 16px; }
+
+/* ---- 섹션 여백 ---- */
+.s-mz-prob { padding: 140px 0 0; }
+.s-mz-hyp,
+.s-mz-st,
+.s-mz-sol { padding: 180px 0 0; }
+.s-mz-sol--last { padding: 180px 0; }
+
+/* ---- Showcase (1003:28251) — 1240x700 한 장으로 내보냄 ---- */
+.mz-show {
+  position: relative;
+  aspect-ratio: 1240 / 700;
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+.mz-show img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ---- 본문 카드 공통 ---- */
+.mz-card {
+  margin-top: 56px;
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+.mz-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ============================================================
+   Discovery (1058:35664) — 1440x815.3, 다크 #111111
+   ============================================================ */
+
+.s-mz-dis {
+  padding: 160px 0;
+  background: var(--mz-dark);
+}
+
+/* 가운데 정렬 선언문 — 폭 1180 (1058:35665) */
+.mz-stmt {
+  width: 95.1613%;              /* 1180/1240 */
+  margin: 0 auto;
+  text-align: center;
+}
+
+.mz-stmt .eyebrow { margin: 0 0 24px; }
+
+.mz-stmt__h2 {
+  margin: 0 0 28px;
+  font-size: 44px;
+  font-weight: 500;
+  line-height: 60px;
+  color: #fff;
+  word-break: keep-all;
+}
+
+.mz-stmt__p {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 28px;
+  color: #b8b8b8;
+  word-break: keep-all;
+}
+
+/* 지표 줄 — 960 폭 (1058:35670) */
+.mz-drow {
+  width: 77.4194%;              /* 960/1240 */
+  margin: 72px auto 0;
+}
+
+.mz-drow img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ============================================================
+   Hypothesis (1022:29004) — 1240x265
+   흰 바탕이 아니라 파랑 그라데이션 한 겹이다
+   ============================================================ */
+
+.mz-hyp {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 80px 0;
+  border-radius: 24px;
+  text-align: center;
+  background: linear-gradient(90deg, #dee9ff 10%, #f0f6ff 50%, #fefff7 90%);
+}
+
+.mz-hyp .eyebrow { margin: 0; color: var(--mz-accent); }
+
+.mz-hyp__p {
+  margin: 0;
+  width: 91.0484%;              /* 1129/1240 */
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 36px;
+  color: var(--nv-body);
+  word-break: keep-all;
+}
+
+/* ============================================================
+   Solution 01~03 — 패널 1240x774, 배경 #e8f1ff
+   ============================================================ */
+
+.s-mz-sol .eyebrow { color: var(--mz-accent); }
+
+.mz-panel {
+  margin-top: 56px;
+  border-radius: 24px;
+  overflow: hidden;
+  background: var(--mz-tint);
+}
+
+.mz-panel img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ============================================================
+   Results (1058:35574) — 1440x1040, 배경 #f5f5f5
+   ============================================================ */
+
+.s-mz-res {
+  padding: 160px 0;
+  background: var(--nv-surface);
+}
+
+.s-mz-res .mz-stmt { width: 90.3226%; }     /* 1120/1240 */
+.s-mz-res .eyebrow { color: var(--mz-accent); }
+.s-mz-res .mz-stmt__h2 { color: #171717; }
+.s-mz-res .mz-stmt__p { color: #5a5a5a; }
+
+/* 성과 카드 3장 — 1120 폭, 360 x 403, gap 20 */
+.mz-rcards {
+  display: flex;
+  gap: 1.7857%;                 /* 20/1120 */
+  width: 90.3226%;              /* 1120/1240 */
+  margin: 72px auto 0;
+}
+
+.mz-rcards > div { flex: 0 0 32.1429%; }    /* 360/1120 */
+
+.mz-rcards img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ============================================================
+   반응형 — case.css 의 1099 / 767 분기를 이 블록에도 적용한다
+   ============================================================ */
+
+@media (max-width: 1099px) {
+  .mz-stmt,
+  .mz-drow,
+  .mz-rcards { width: 100%; }
+
+  .mz-rcards { flex-direction: column; gap: 20px; }
+  .mz-rcards > div { flex: 1 1 auto; width: 100%; }
+
+  .mz-hyp { padding: 56px 28px; }
+  .mz-hyp__p { width: 100%; }
+}
+
+@media (max-width: 767px) {
+  .s-mz-dis,
+  .s-mz-res { padding: 88px 0; }
+
+  .s-mz-prob,
+  .s-mz-hyp,
+  .s-mz-st,
+  .s-mz-sol { padding-top: 88px; }
+
+  .s-mz-sol--last { padding-bottom: 88px; }
+
+  .mz-stmt__h2 { font-size: 24px; line-height: 36px; }
+  .mz-stmt__p { font-size: 15px; line-height: 26px; }
+  .mz-hyp__p { font-size: 17px; line-height: 30px; }
+
+  /* 피그마 줄바꿈은 좁은 화면에서 접는다 */
+  .mz-stmt__p br,
+  .mz-hyp__p br { display: none; }
+
+  .mz-show,
+  .mz-card,
+  .mz-panel { border-radius: 16px; }
+}
