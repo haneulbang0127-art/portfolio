@@ -23,6 +23,11 @@
   background: linear-gradient(101deg, var(--mz-chip-a), var(--mz-chip-b));
 }
 
+/* 피그마 원문에서 "교환·반품" 의 가운뎃점만 Bold 다 (1003:28238, 1003:28575).
+   앞뒤 글자는 Medium. 눈에 잘 띄지는 않지만 원문 그대로 옮긴다. */
+.case--mz .intro__h1 b,
+.case--mz .h2 b { font-weight: 700; }
+
 /* 이 케이스도 eyebrow 와 제목 사이가 20 이다 (앳트래커는 16).
    Problem 섹션만 16 이라 따로 되돌린다. */
 .case--mz .ihead .eyebrow { margin-bottom: 20px; }
