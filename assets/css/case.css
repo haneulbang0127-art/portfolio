@@ -165,6 +165,8 @@
   padding: 6px 13px;
   border-radius: 999px;
   background: #f5f5ff;
+  /* 피그마는 라틴도 Pretendard — 기본 스택(Geist)이면 폭이 넓어진다 */
+  font-family: "Pretendard Variable", Pretendard, sans-serif;
   font-size: 14px;
   font-weight: 500;
   line-height: 19px;
@@ -237,7 +239,7 @@
 /* 패널 1240x540, 내용 200,578 -> 안쪽 여백 97/100/100 */
 .s-bg .panel { height: 540px; margin-top: 56px; padding: 97px 8.0645% 100px; }   /* 100/1240 */
 
-.duo { display: flex; gap: 4.2308%; align-items: stretch; width: 100%; }   /* 44/1040 */
+.duo { display: flex; gap: 4.2308%; align-items: flex-start; width: 100%; }   /* 44/1040 */
 
 .card {
   box-sizing: border-box;
@@ -299,12 +301,12 @@
 
 .insight {
   box-sizing: border-box;
-  height: 42px;
+  height: 41px;
   margin: 0;
   padding: 9.625px 8.25px;
   border: 1.375px solid #fff;
   border-radius: 5.5px;
-  background: #f9f9f9;
+  background: #f3f3f3;
   font-size: 16.5px;
   font-weight: 500;
   line-height: 20px;
@@ -318,14 +320,15 @@
   padding: 11px 16.5px;
   border-radius: 11px;
   background: #faf7ff;
-  font-size: 16.5px;
+  font-size: 16px;
   font-weight: 400;
-  line-height: 27.5px;
+  line-height: 27px;
   color: #33333d;
   word-break: keep-all;
 }
 
-.imp b { display: block; font-weight: 700; }
+/* 줄바꿈은 마크업의 <br> 이 맡는다 — display:block 이면 두 번 끊긴다 */
+.imp b { font-weight: 700; }
 .imp i { font-style: normal; font-weight: 700; color: #734de8; }
 
 /* ============================================================
