@@ -728,18 +728,29 @@
 .s-sol .panel { position: relative; height: auto; aspect-ratio: 1240 / 698; margin-top: 56px; overflow: hidden; }
 
 
-/* Solution 패널의 애니메이션 WebP.
-   비디오 요소 대신 이미지를 쓴다. 자동재생 정책에 걸리지 않아
-   저전력 모드에서도 항상 움직이고, 브라우저가 그리는 재생 버튼도 없다. */
-.sol__anim {
+.sol__video {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
-  /* 받아오는 동안 빈 박스가 회색으로 보이지 않도록 패널과 같은 색 */
+  /* 첫 프레임이 그려지기 전 빈 박스가 회색으로 보이지 않도록 패널과 같은 색 */
   background: var(--nv-surface-v);
 }
 
+/* 브라우저가 얹는 재생 버튼 오버레이를 지운다.
+   사파리는 자동재생을 막으면 화면을 흐리게 깔고 가운데에 재생 버튼을 띄우는데
+   그 버튼은 UA 섀도우 DOM 이라 이 의사요소로만 끌 수 있다.
+   모르는 의사요소가 섞이면 선택자 목록 전체가 무효가 되므로 규칙을 하나씩 쓴다. */
+.sol__video::-webkit-media-controls { display: none !important; }
+.sol__video::-webkit-media-controls-panel { display: none !important; }
+.sol__video::-webkit-media-controls-overlay-play-button { display: none !important; }
+.sol__video::-webkit-media-controls-play-button { display: none !important; }
+.sol__video::-webkit-media-controls-enclosure { display: none !important; }
+.sol__video::-webkit-media-controls-overlay-enclosure { display: none !important; }
+.sol__video::-webkit-media-controls-start-playback-button {
+  display: none !important;
+  -webkit-appearance: none;
+}
 
 /* ---- Solution 01 — AS-IS / TO-BE 비교 (패널 1240x653) ---- */
 .s-sol1 .panel {
