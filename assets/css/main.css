@@ -570,13 +570,24 @@ textarea { font: inherit; color: inherit; resize: none; }
 
 /* ---- 응답자 표시 ---- */
 
-/* 닫기 버튼 하나뿐이라 오른쪽으로 민다 */
 .ask__threadHead {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
+  gap: 12px;
   /* 첫 말풍선이 닫기 버튼 바로 아래(간격 4px)에 붙어 겹쳐 보였다 */
   margin-bottom: 20px;
+}
+
+/* 응답 중임을 알리는 초록 점. 글자("조하늘 · 자동 응답")는 뺐고
+   점만 남아 왼쪽 자리를 지킨다. */
+.ask__dot {
+  flex: 0 0 auto;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #34c759;
+  box-shadow: 0 0 0 2.5px rgba(52, 199, 89, 0.18);
 }
 
 .ask__close {
