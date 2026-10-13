@@ -10,6 +10,20 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;450;500;600;700;800&family=Cormorant+Garamond:wght@700&display=swap" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+<!-- 상세로 들어왔을 때 늘 맨 위에서 시작한다.
+     브라우저는 같은 URL 을 다시 열면 직전 스크롤 위치를 되살린다(scrollRestoration
+     기본값 auto). 그래서 목록에서 눌러 들어와도 중간부터 보였다가 맨 위로
+     미끄러졌다. 복원을 끄고, 이미 복원됐다면 끊어서 되돌린다.
+     main.css 의 html{scroll-behavior:smooth} 때문에 instant 로 지정해야
+     미끄러지는 게 보이지 않는다. 해시로 특정 섹션을 지목해 들어온 경우는 둔다.
+     head 안에 inline 으로 둬야 첫 페인트 전에 돈다. -->
+<script>
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  if (!location.hash && (window.scrollX || window.scrollY)) {
+    try { window.scrollTo({ top: 0, left: 0, behavior: 'instant' }); }
+    catch (e) { window.scrollTo(0, 0); }
+  }
+</script>
 <link rel="stylesheet" href="assets/css/main.css" />
 <link rel="stylesheet" href="assets/css/case.css" />
 <link rel="stylesheet" href="assets/css/case-tori.css" />
