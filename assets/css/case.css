@@ -752,6 +752,32 @@
   -webkit-appearance: none;
 }
 
+/* 자동재생이 막혔을 때만 나타나는 재생 버튼 — case-video.js 가 패널에 얹는다 */
+.vplay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: clamp(48px, 6vw, 72px);
+  height: clamp(48px, 6vw, 72px);
+  margin: auto;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(17, 17, 17, 0.56);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
+}
+.vplay[hidden] { display: none; }
+.vplay svg { width: 42%; height: 42%; margin-left: 6%; fill: currentColor; }
+.vplay:hover { background: rgba(17, 17, 17, 0.72); }
+.vplay:active { transform: scale(0.96); }
+.vplay:focus-visible { outline: 3px solid var(--nv-p1); outline-offset: 3px; }
+
 /* ---- Solution 01 — AS-IS / TO-BE 비교 (패널 1240x653) ---- */
 .s-sol1 .panel {
   container-type: inline-size;
