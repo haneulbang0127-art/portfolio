@@ -735,10 +735,24 @@
   display: block;
   /* 첫 프레임이 그려지기 전 빈 박스가 회색으로 보이지 않도록 패널과 같은 색 */
   background: var(--nv-surface-v);
-  /* 영상 높이가 소수점(예: 380.8px)으로 떨어지거나 둥근 패널에 잘릴 때
-     브라우저가 영상 가장자리에 1px 검은 선을 그린다. 바깥 1px 을 잘라 낸다.
+  /* 영상 높이가 소수점(예: 380.8px)으로 떨어지면 브라우저가 마지막 반 픽셀을
+     채우지 못해 영상 아래 가장자리에 1px 검은 선이 생긴다. 바깥 1px 을 잘라 낸다.
      영상 가장자리는 배경색이라 내용은 달라 보이지 않는다. */
   clip-path: inset(1px);
+}
+
+/* 영상이 패널을 꽉 채우는 폭에서는 아예 사방 2px 크게 깔아 그 선이
+   패널(overflow: hidden) 밖에서 생기게 한다. 패딩이 붙는 좁은 폭은 위 clip-path 로 막는다. */
+@media (min-width: 1100px) {
+  .s-sol .panel > .sol__video {
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    max-width: none;            /* main.css 의 video{max-width:100%} 가 폭을 깎지 않게 */
+    clip-path: none;
+  }
 }
 
 /* 브라우저가 얹는 재생 버튼 오버레이를 지운다.
