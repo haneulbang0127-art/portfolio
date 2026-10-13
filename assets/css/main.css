@@ -570,31 +570,13 @@ textarea { font: inherit; color: inherit; resize: none; }
 
 /* ---- 응답자 표시 ---- */
 
+/* 닫기 버튼 하나뿐이라 오른쪽으로 민다 */
 .ask__threadHead {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 12px;
+  justify-content: flex-end;
   /* 첫 말풍선이 닫기 버튼 바로 아래(간격 4px)에 붙어 겹쳐 보였다 */
   margin-bottom: 20px;
-}
-
-.ask__who {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 11.5px;
-  line-height: 16px;
-  letter-spacing: 0.1px;
-  color: var(--c-hint);
-}
-
-.ask__dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #34c759;
-  box-shadow: 0 0 0 2.5px rgba(52, 199, 89, 0.18);
 }
 
 .ask__close {
