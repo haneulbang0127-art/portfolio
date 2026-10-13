@@ -841,7 +841,12 @@ textarea { font: inherit; color: inherit; resize: none; }
 
 /* ---- 이어서 물어보기 ---- */
 
-.more { width: 100%; }
+/* 말풍선이 gap:10 인 flex 열이라 칩 묶음도 본문 문단과 같은 간격이었다.
+   답이 끝났다는 걸 알아보게 여기만 한 칸 더 띄운다 (10 + 10). */
+.more {
+  width: 100%;
+  margin-top: 10px;
+}
 
 .more__cap {
   margin-bottom: 10px;
