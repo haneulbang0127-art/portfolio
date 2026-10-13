@@ -35,7 +35,20 @@
 * { box-sizing: border-box; }
 
 html, body { margin: 0; padding: 0; }
-html { -webkit-text-size-adjust: 100%; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  /* body 의 overflow-x:hidden 은 뷰포트로 '전파'되기 때문에 body 자신은
+     여전히 visible 로 동작한다. 그래서 가로로 삐져나간 요소가 있으면
+     사파리에서는 트랙패드로 옆으로 밀려 버리고, 그 순간 뷰포트 폭에
+     맞춰진 .hero 오른쪽으로 흰 바탕이 드러난다.
+     clip 은 hidden 과 달리 스크롤 컨테이너를 만들지 않아 어떤 방법으로도
+     밀리지 않으면서 position:sticky 도 그대로 산다. */
+  overflow-x: clip;
+}
+
+/* 어떤 이미지도 자기 칸보다 넓어지지 못하게 한다 */
+img, svg, video, canvas { max-width: 100%; }
 
 body {
   font-family: var(--font-ui);
@@ -98,7 +111,7 @@ textarea { font: inherit; color: inherit; resize: none; }
   display: flex;
   align-items: center;
   height: 96px;
-  width: min(1232px, 100% - 48px);
+  width: min(1240px, 100% - 48px);
   margin: 0 auto;
 }
 
@@ -174,7 +187,7 @@ textarea { font: inherit; color: inherit; resize: none; }
 .nav__panel {
   display: flex;
   flex-direction: column;
-  width: min(1232px, 100% - 48px);
+  width: min(1240px, 100% - 48px);
   margin: 0 auto;
   padding: 4px 0 18px;
 }
@@ -304,7 +317,7 @@ textarea { font: inherit; color: inherit; resize: none; }
 
 .headline {
   margin: 0 auto;
-  max-width: 1232px;
+  max-width: 1240px;
   padding: 0 24px;
   font-size: 38.4px;
   /* Figma는 450(Medium 근처). 한 단계 위인 600(SemiBold) */
@@ -323,7 +336,7 @@ textarea { font: inherit; color: inherit; resize: none; }
 /* 입력창 안내 문구 — Figma 351:11027 (y=392, 헤드라인 끝 377에서 15px) */
 .ask__lead {
   margin: 15px auto 0;
-  max-width: 1232px;
+  max-width: 1240px;
   padding: 0 24px;
   font-size: 17px;
   line-height: 28.9px;
@@ -347,7 +360,9 @@ textarea { font: inherit; color: inherit; resize: none; }
   /* 대화 모드와 같은 폭을 써서 대화가 열릴 때 입력창 폭이 바뀌지 않게 한다
      (Figma 원안은 740px이었음) */
   margin: 36px auto 0;
-  width: min(920px, 100% - 40px);
+  /* 입력 카드는 피그마에서도 본문보다 좁다. 다만 좁은 화면 거터는
+     20px 이 아니라 다른 섹션과 같은 24px 로 맞춘다. */
+  width: min(920px, 100% - 48px);
   animation: rise-in 1.1s 0.32s var(--ease-out) both;
 }
 
@@ -967,7 +982,7 @@ html { scroll-behavior: smooth; }
    ============================================================ */
 
 .secTit {
-  width: min(1232px, 100% - 48px);
+  width: min(1240px, 100% - 48px);
   margin: 0 auto 34px;
   font-size: clamp(26px, 2.7vw, 38px);
   font-weight: 600;  /* 산세리프 부분(Lab / me)만 한 단계 낮춤 */
@@ -1001,12 +1016,13 @@ html { scroll-behavior: smooth; }
 }
 
 .about__inner {
-  width: min(1232px, 100% - 48px);
+  width: min(1240px, 100% - 48px);
   margin: 0 auto;
 }
 
 /* Figma 레퍼런스(image 952) 실측: 1205 x 603 = 약 2 : 1.
-   4열 등분 + 2행 등분, gap 18px(1024 렌더에서 15~16px → 1232 기준 18px).
+   4열 등분 + 2행 등분, gap 18px(1024 렌더에서 15~16px → 당시 컨테이너 1232 기준 18px.
+   컨테이너는 이후 피그마 값 1240 으로 맞췄지만 gap 은 그대로 둔다).
    3열 아래 칸만 191 : 91 로 분할된다. */
 .bento {
   display: grid;
@@ -1203,7 +1219,7 @@ html { scroll-behavior: smooth; }
   display: flex;
   align-items: flex-start;
   gap: 48px;
-  width: min(1232px, 100% - 48px);
+  width: min(1240px, 100% - 48px);
   margin: 0 auto;
 }
 
@@ -1550,7 +1566,7 @@ html { scroll-behavior: smooth; }
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 32px;
-  width: min(1232px, 100% - 48px);
+  width: min(1240px, 100% - 48px);
   margin: 0 auto;
 }
 
@@ -1689,5 +1705,7 @@ html { scroll-behavior: smooth; }
 
 @media (max-width: 767px) {
   .cards { padding-bottom: 88px; }
-  .cards__row { width: min(1232px, 100% - 32px); }
+  /* 767 아래에서만 16px 거터를 쓰고 있었다. 다른 섹션과 달라 보여
+     전부 24px(컨테이너 100% - 48)로 맞춘다. */
+  .cards__row { width: min(1240px, 100% - 48px); }
 }
