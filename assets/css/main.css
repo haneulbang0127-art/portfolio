@@ -582,12 +582,29 @@ textarea { font: inherit; color: inherit; resize: none; }
 /* 응답 중임을 알리는 초록 점. 글자("조하늘 · 자동 응답")는 뺐고
    점만 남아 왼쪽 자리를 지킨다. */
 .ask__dot {
+  position: relative;
   flex: 0 0 auto;
   width: 6px;
   height: 6px;
   border-radius: 50%;
   background: #34c759;
   box-shadow: 0 0 0 2.5px rgba(52, 199, 89, 0.18);
+}
+
+/* 살아 있다는 신호 — 심지는 가만히 두고 둘레만 번져 나간다.
+   글자가 사라진 자리라 점 자체를 깜빡이면 시선을 너무 끈다. */
+.ask__dot::after {
+  content: "";
+  position: absolute;
+  inset: -2.5px;
+  border-radius: 50%;
+  background: rgba(52, 199, 89, 0.4);
+  animation: dot-live 2.4s ease-out infinite;
+}
+
+@keyframes dot-live {
+  0%        { transform: scale(0.75); opacity: 0.5; }
+  60%, 100% { transform: scale(2.3);  opacity: 0; }
 }
 
 .ask__close {
@@ -1144,6 +1161,7 @@ html { scroll-behavior: smooth; }
    ============================================================ */
 
 @media (prefers-reduced-motion: reduce) {
+  .ask__dot::after { animation: none; opacity: 0; }
   .ask__thread, .msg { opacity: 1 !important; transform: none !important; }
   .ask__log { scroll-behavior: auto; }
   .typing i { animation: none !important; opacity: 0.6 !important; }
