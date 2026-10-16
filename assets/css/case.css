@@ -520,11 +520,16 @@
 
 .hyp__p {
   margin: 0 auto;
-  max-width: 1000px;
+  /* .hyp 안쪽 폭(1240 - 좌우 80) 을 그대로 쓴다. 1000 이면 가설 문장
+     첫 줄(1003px)이 3px 모자라 세 줄로 흩어진다. */
+  max-width: 1080px;
   font-size: 20px;
   font-weight: 500;
   line-height: 36px;
   color: var(--nv-body);
+  /* 없으면 한글이 음절 단위로 끊겨 "의사결정을 지원하 / 여" 가 된다.
+     이 파일의 다른 본문 블록들과 같은 값. */
+  word-break: keep-all;
 }
 
 .hyp__p b { font-weight: 600; }
