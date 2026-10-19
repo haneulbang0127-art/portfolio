@@ -118,12 +118,24 @@
           <p class="p">VOC 운영 담당자, 제품 의사결정 담당자, 디자인·개발 검토 참여자의 업무 목적에 따라 필요한<br />정보와 기능을 구분했습니다. 운영 담당자는 수집·처리 현황을 관리하고, 의사결정 담당자는 판단<br />근거를 검토해 개선 과제를 선정하며, 검토 참여자는 문제의 맥락과 해결 가능성을 확인하도록<br />구성했습니다. 공통으로는 과거 유사 사례의 해결 과정과 성과를 탐색해 현재의 판단과 개선 과제에 활용할 수 있도록 설계했습니다.</p>
         </div>
       </div>
-      <div class="voc-panel"></div>
+      <!-- 피그마 1453:110409 (VOC chart · card ×5) — 화면 1~4 슬라이드. 좌우 버튼은 영역을 클릭했을 때만 보인다 -->
+      <div class="voc-panel voc-slides" data-voc-slides>
+        <div class="voc-slides__track" data-voc-track>
+          <img class="voc-slides__img" src="assets/img/voc/slides/voc-slide-1.webp" alt="1. 메인 — 현황 파악" draggable="false" />
+          <img class="voc-slides__img" src="assets/img/voc/slides/voc-slide-2.webp" alt="2. 전체 VOC — 의사 결정" draggable="false" />
+          <img class="voc-slides__img" src="assets/img/voc/slides/voc-slide-3.webp" alt="2. 전체 VOC — 의사 결정 (상세)" draggable="false" />
+          <img class="voc-slides__img" src="assets/img/voc/slides/voc-slide-4.webp" alt="3. 나에게 온 요청 — 검토 요청 확인" draggable="false" />
+          <img class="voc-slides__img" src="assets/img/voc/slides/voc-slide-5.webp" alt="4. 성과 리포트 — 인사이트 축적" draggable="false" />
+        </div>
+        <button class="voc-slides__btn voc-slides__btn--prev" type="button" aria-label="이전 화면" data-voc-prev><svg viewBox="0 0 80 80" aria-hidden="true"><path d="M40 77.14C60.51 77.14 77.14 60.51 77.14 40C77.14 19.49 60.51 2.86 40 2.86C19.49 2.86 2.86 19.49 2.86 40C2.86 60.51 19.49 77.14 40 77.14Z" fill="white" fill-opacity="0.4" stroke="white"/><path d="M32.86 25.71L48.57 40L32.86 54.29" stroke="white" stroke-width="5.5914" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></button>
+        <button class="voc-slides__btn voc-slides__btn--next" type="button" aria-label="다음 화면" data-voc-next><svg viewBox="0 0 80 80" aria-hidden="true"><path d="M40 77.14C60.51 77.14 77.14 60.51 77.14 40C77.14 19.49 60.51 2.86 40 2.86C19.49 2.86 2.86 19.49 2.86 40C2.86 60.51 19.49 77.14 40 77.14Z" fill="white" fill-opacity="0.4" stroke="white"/><path d="M32.86 25.71L48.57 40L32.86 54.29" stroke="white" stroke-width="5.5914" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></button>
+      </div>
     </div>
   </section>
 
 </main>
 
 <script src="assets/js/case-video.js" defer></script>
+<script src="assets/js/voc-slides.js" defer></script>
 </body>
 </html>

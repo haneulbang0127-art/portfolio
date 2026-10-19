@@ -75,6 +75,26 @@
   display: block;
 }
 
+/* ---- Solution 슬라이드 (1453:110409) ----
+   카드 1240×700 을 2배로 뽑은 이미지 5장을 옆으로 넘긴다. 좌우 버튼(80×80, 좌 x48 / 우 x1112, y330)은
+   피그마 SVG 그대로 — 흰 40% 원 + 1px 흰 테두리 + 배경 흐림 2px, 흰 꺾쇠 5.59px.
+   버튼은 평소엔 숨기고 패널을 누르면 보인다. 바깥을 누르거나 Esc 를 누르면 다시 숨는다.
+   (호버로는 나오지 않는다 — 가리키기만 해도 뜨면 스크롤 중에 깜빡인다.) */
+.voc-slides { position: relative; touch-action: pan-y; }
+.voc-slides__track { display: flex; height: 100%; transition: transform 0.55s cubic-bezier(0.65, 0, 0.35, 1); will-change: transform; }
+.voc-slides__img { flex: 0 0 100%; width: 100%; height: 100%; object-fit: cover; display: block; user-select: none; -webkit-user-drag: none; }
+.voc-slides__btn {
+  position: absolute; top: 47.143%; width: 6.452%; aspect-ratio: 1; padding: 0; border: 0; background: none;
+  border-radius: 50%; cursor: pointer; opacity: 0; visibility: hidden;
+  -webkit-backdrop-filter: blur(2px); backdrop-filter: blur(2px);
+  transition: opacity 0.2s ease, visibility 0s linear 0.2s;
+}
+.voc-slides__btn svg { display: block; width: 100%; height: 100%; overflow: visible; }
+.voc-slides__btn--prev { left: 3.871%; transform: rotate(180deg); }
+.voc-slides__btn--next { right: 3.871%; }
+.voc-slides.is-controls .voc-slides__btn,
+.voc-slides__btn:focus-visible { opacity: 1; visibility: visible; transition: opacity 0.2s ease, visibility 0s; }
+
 /* ============================================================
    반응형 — case.css 의 1099 / 767 분기를 이 블록에도 적용한다
    ============================================================ */
